@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="saruter">
+  <link rel="canonical" href="https://smarthome.ms1.de/projekte/Solvis Heizung/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Solvis Heizung via Modbus auslesen - Smarthome Doku</title>
+  <link rel="stylesheet" href="https://fonts.geekzu.org/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Solvis Heizung via Modbus auslesen";
+    var mkdocs_page_input_path = "projekte/Solvis Heizung.md";
+    var mkdocs_page_url = "/projekte/Solvis Heizung/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Smarthome Doku</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Projekte</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Solvis Heizung via Modbus auslesen</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#home-assistant-ubersicht">Home Assistant Übersicht</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#benotigte-hardware">benötigte Hardware</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#aktivierung-modbus-in-solvis-heizung">Aktivierung Modbus in Solvis Heizung</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#auszug-configurationyaml">Auszug configuration.yaml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#links-zu-solvis-doku">Links zu Solvis Doku</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../feinstaubsensor/">Feinstaubsensor mit ESP8266 und Home Assistant</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../gasverbrauch/">Gaszähler mit ESP8266 und Home Assistant auslesen</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../stromverbrauch/">(digitalen) Stromzähler mit ESP8266 auslesen</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../tasterschaltung/">Eltako Stromstoßrelais durch Shelly 1PM ersetzen</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Smarthome Doku</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Projekte &raquo;</li>
+        
+      
+    
+    <li>Solvis Heizung via Modbus auslesen</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="solvis-heizung-via-modbus-auslesen">Solvis Heizung via Modbus auslesen</h1>
+<p>Eine <a href="https://www.solvis.de">Solvis Heizung</a> lässt sich mit Hilfe der Solvis Remote fernsteuern. Die Solvis Remote bildet im Prinzip das Touchdisplay der Heizung 1:1 via Browser nach. Zusätzlich gibt es Graphen über den Temperaturverlauf der einzelnen Sensoren des Schichtenspeichers. Aber zusätzlich lässt sich darüber die Heizung via Modbus TCP auslesen und, falls gewünscht, auch steuern. </p>
+<p>Vorbildlich ist die Bereitstellung aller Dokumentationen inkl. Modbus Register von Solvis auf deren Webseite. </p>
+<h2 id="home-assistant-ubersicht">Home Assistant Übersicht</h2>
+<p>In Home Assistant wurde die Ansicht der Anlage auf der Solvis Remote nachgebildet
+<img alt="Heizung Übersicht" src="../../img/hass-heizung-uebersicht.png" />
+Zusätzlich gibt es eine Detail-Ansicht der einzelnen Sensoren und Stati.
+<img alt="Heizung Sensoren" src="../../img/hass-heizung-detail.png" /></p>
+<p>Für Langzeitstatistiken werden die Daten von Home Assistant in einer Prometheus Datenbank gespeichert und mittels Grafana visualisiert.
+<img alt="Heizung Grafana" src="../../img/heizung-grafana.png" /></p>
+<h2 id="benotigte-hardware">benötigte Hardware</h2>
+<ul>
+<li>Solvis Max Heizung</li>
+<li>Solvis Remote zur Anbindung ans Netzwerk und Bereitstellung des Modbus-TCP Protokolls</li>
+</ul>
+<h2 id="aktivierung-modbus-in-solvis-heizung">Aktivierung Modbus in Solvis Heizung</h2>
+<p>Zur Aktivierung von Modbus TCP muss in das Installateurmenü gewechselt werden. Den zugehörigen Code werde ich nicht veröffentlichen. Bitte mit dem Installateur der Heizung Kontakt aufnehmen. 
+Im Menüpunkt "Sonstiges" --&gt; "Remote" auswählen und dort dann den Modus für "Modbus TCP" auf "lesen" oder auch "schreiben" einstellen.
+Sollten die Einstellungen korrekt sein sollte unter der IP-Addresse der Solvis-Remote auf Port TCP/502 ein Connect möglich sein.</p>
+<p><img alt="Solvis Remote1" src="../../img/solvis-remote-1.png" /></p>
+<p><img alt="Solvis Remote2" src="../../img/solvis-remote-2.png" /></p>
+<h2 id="auszug-configurationyaml">Auszug configuration.yaml</h2>
+<pre><code>modbus:
+  name: SolvisRemote
+  type: tcp
+  host: &lt;ip-addresse-solvis-remote&gt;
+  port: 502
+
+ - platform: modbus
+    scan_interval: 30
+    registers:
+    - name: Warmwasserpuffer
+      hub: SolvisRemote
+      unit_of_measurement: °C
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33024
+
+    - name: Warmwassertemperatur
+      hub: SolvisRemote
+      unit_of_measurement: °C
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33025
+
+    - name: Speicherreferenztemperatur
+      hub: SolvisRemote
+      unit_of_measurement: °C
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33026
+
+    - name: Heizungspuffertemperatur oben
+      hub: SolvisRemote
+      unit_of_measurement: °C
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33027
+
+    - name: Aussentemperatur
+      hub: SolvisRemote
+      unit_of_measurement: °C
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33033
+
+    - name: Heizungspuffertemperatur unten
+      hub: SolvisRemote
+      unit_of_measurement: °C
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33032
+
+    - name: Zirkulationsdurchfluss
+      hub: SolvisRemote
+      unit_of_measurement: °C
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33034
+
+    - name: Vorlauftemperatur
+      hub: SolvisRemote
+      unit_of_measurement: °C
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33035
+
+#    kein Sensor angeschlossen, zeigt immer 10°C  
+#    - name: Kaltwassertemperatur
+#      hub: SolvisRemote
+#      unit_of_measurement: °C
+#      scale: 0.1
+#      slave: 1
+#      precision: 2
+#      register_type: input
+#      register: 33038
+
+    - name: Durchfluss Warmwasserzirkualation
+      hub: SolvisRemote
+      unit_of_measurement: l/min
+      slave: 1
+      precision: 2
+      scale: 0.1
+      register_type: input
+      register: 33041
+
+    - name: Laufzeit Brenner
+      hub: SolvisRemote
+      unit_of_measurement: h
+      slave: 1
+      precision: 0
+      register_type: input
+      register: 33536
+
+    - name: Brennerstarts
+      hub: SolvisRemote
+      unit_of_measurement: Starts 
+      slave: 1
+      precision: 0
+      register_type: input
+      register: 33537
+
+    - name: Brennerleistung
+      hub: SolvisRemote
+      unit_of_measurement: kW
+      scale: 0.1
+      slave: 1
+      precision: 2
+      register_type: input
+      register: 33539
+
+    - name: Ionisationsstrom
+      hub: SolvisRemote
+      unit_of_measurement: mA 
+      slave: 1
+      scale: 0.1
+      precision: 1
+      register_type: input
+      register: 33540
+
+    - name: VersionSC2
+      hub: SolvisRemote 
+      slave: 1
+      scale: 0.01
+      precision: 2
+      register_type: input
+      register: 32770
+
+    - name: VersionNBG
+      hub: SolvisRemote 
+      slave: 1
+      scale: 0.01
+      register_type: input
+      register: 32771
+
+    - name: ZirkulationBetriebsart
+      hub: SolvisRemote 
+      slave: 1
+      register_type: input
+      register: 2049
+
+    - name: A01.Pumpe Zirkulation
+      hub: SolvisRemote 
+      slave: 1
+      unit_of_measurement: V
+      scale: 0.01
+      precision: 0
+      register_type: input
+      register: 33280
+
+    - name: A02.Pumpe Warmwasser
+      hub: SolvisRemote 
+      slave: 1
+      unit_of_measurement: V
+      scale: 0.01
+      precision: 0
+      register_type: input
+      register: 33281
+
+    - name: A03.Pumpe HK1
+      hub: SolvisRemote 
+      slave: 1
+      unit_of_measurement: V
+      scale: 0.01
+      precision: 0
+      register_type: input
+      register: 33282
+
+    - name: A12.Brennerstatus
+      hub: SolvisRemote 
+      slave: 1
+      unit_of_measurement: V
+      scale: 0.01
+      precision: 0
+      register_type: input
+      register: 33291
+
+    - name: DigIn Stoerungen
+      hub: SolvisRemote 
+      slave: 1
+      register_type: input
+      register: 33045
+
+    - name: HKR1 Betriebsart
+      hub: SolvisRemote 
+      slave: 1
+      register_type: holding
+      register: 2818
+
+    - name: WW Solltemperatur
+      hub: SolvisRemote 
+      unit_of_measurement: °C
+      slave: 1
+      register_type: holding
+      register: 2305
+
+    - name: HKR1 Solltemperatur Tag
+      hub: SolvisRemote 
+      unit_of_measurement: °C
+      slave: 1
+      register_type: holding
+      register: 2820
+
+    - name: HKR1 Absenktemperatur Nacht
+      hub: SolvisRemote 
+      unit_of_measurement: °C
+      slave: 1
+      register_type: holding
+      register: 2821
+
+
+
+  - platform: template
+    sensors:
+      ww_zirkulationsart:
+       friendly_name: &quot;WW Zirkulation Betriebsart&quot;
+       entity_id: sensor.zirkulationbetriebsart
+       value_template: &gt;-
+          {% if states('sensor.zirkulationbetriebsart') == '1' %}
+            Aus
+          {% elif states('sensor.zirkulationbetriebsart') == '2' %}
+            Puls
+          {% elif states('sensor.zirkulationbetriebsart') == '3' %}
+            Temp
+          {% elif states('sensor.zirkulationbetriebsart') == '4' %}
+            Warten
+          {% else %}
+            unbekannt
+          {% endif %}
+
+
+      hkr1betriebsart:
+        friendly_name: &quot;Heizkreislauf Betriebsart&quot;
+        entity_id: sensor.hkr1_betriebsart
+        value_template: &quot;{%if states.sensor.hkr1_betriebsart.state == '1' %}Aus{% elif states.sensor.hkr1_betriebsart.state == '2' %}Automatik{% elif states.sensor.hkr1_betriebsart.state == '3' %}Tagbetrieb{% elif states.sensor.hkr1_betriebsart.state == '4' %}Absenkbetrieb{% elif states.sensor.hkr1_betriebsart.state == '5' %}Standby{% elif states.sensor.hkr1_betriebsart.state == '6' %}Eco{% elif states.sensor.hkr1_betriebsart.state == '7' %}Urlaub{% elif states.sensor.hkr1_betriebsart.state == '8' %}WW Vorang{% elif states.sensor.zirkulationbetriebsart.state == '9' %}Frostschutz{% elif states.sensor.zirkulationbetriebsart.state == '10' %}Pumpenschutz{% elif states.sensor.hkr1_betriebsart.state == '11' %}Estrich{% endif %}&quot;
+
+
+</code></pre>
+
+<h2 id="links-zu-solvis-doku">Links zu Solvis Doku</h2>
+<p><a href="https://solvis-files.s3.eu-central-1.amazonaws.com/seiten/produkte/solvisremote/Download/SolvisRemote+Modbus+Spezifikationen+201906.pdf">Doku: Solvis Modbus Register</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../feinstaubsensor/" class="btn btn-neutral float-right" title="Feinstaubsensor mit ESP8266 und Home Assistant">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright 2019-2020 - saruter. Creative Commons Attribution 4.0.</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a theme provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+    <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../feinstaubsensor/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+  </div>
+
+  
+    <div>
+      <a href="https://github.com/saruter/smarthome" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+  
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script type="text/javascript" defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
