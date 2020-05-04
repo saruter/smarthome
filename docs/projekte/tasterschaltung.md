@@ -3,7 +3,7 @@
 
 Durch ein Shelly 1PM wird eine Tasterschaltung für Flurlicht smart über Home Assistant steuerbar. Zusätzlich kann der Stromverbrauch gemessen werden.
 Eingesetzt wurden Shelly 1PM mit der Original Firmware ohne Aktivierung der Cloud-Anbindung. Anbindung an Home Assistant via MQTT welches nativ in der Firmware enthalten ist.
-Vorteil der Shelly 1PM: man kann weiterhin über die vorhandenen 230V Tasterschalter das Licht an und aus schalten.
+Vorteil der Shelly1PM: man kann weiterhin über die vorhandenen 230V Tasterschalter das Licht an und aus schalten.
 
 ![Shelly1PM](../img/Shelly1PMRelais.jpg)
 
