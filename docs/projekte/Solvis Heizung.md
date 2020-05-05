@@ -13,8 +13,8 @@ Zusätzlich gibt es eine Detail-Ansicht der einzelnen Sensoren und Stati.
 
 Klick auf die einzelnen Sensoren bringen die Historie des Sensors bzw. die Auswahlmöglichkeiten zur Steuerung, z.b. den HKR1-Betriebsmodus zu ändern
 
-!![Heizung Detail1](../img/hass-heizung-wwpuffer-history.png) 
-!![Heizung Detail2](../img/hass-heizung-hkr1-betriebsart.png)
+![Heizung Detail1](../img/hass-heizung-wwpuffer-history.png) 
+![Heizung Detail2](../img/hass-heizung-hkr1-betriebsart.png)
 
 Für Langzeitstatistiken werden die Daten von Home Assistant in einer InfluxDB Datenbank gespeichert und mittels Grafana visualisiert.
 ![Heizung Grafana](../img/heizung-grafana.png)
