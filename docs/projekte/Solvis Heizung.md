@@ -16,8 +16,16 @@ Klick auf die einzelnen Sensoren bringen die Historie des Sensors bzw. die Auswa
 ![Heizung Detail1](../img/hass-heizung-wwpuffer-history.png) 
 ![Heizung Detail2](../img/hass-heizung-hkr1-betriebsart.png)
 
+## Langzeitauswertung mit Grafana/InfluxDB
 Für Langzeitstatistiken werden die Daten von Home Assistant in einer InfluxDB Datenbank gespeichert und mittels Grafana visualisiert.
 ![Heizung Grafana](../img/heizung-grafana.png)
+
+Für die monatliche Auswertung der Brennerstarts und Laufzeit des Brenners werden mit folgenden Queries die Daten ermittelt:
+```
+SELECT spread("value") FROM "Starts" WHERE ("entity_id" = 'brennerstarts') AND time > now()  - 365d GROUP BY time(30d) fill(null)
+
+SELECT spread("value") FROM "h" WHERE ("entity_id" = 'laufzeit_brenner') AND time > now() - 365d  GROUP BY time(30d) fill(null)
+```
 
 ## benötigte Hardware
 * Solvis Max Heizung
