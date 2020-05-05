@@ -57,6 +57,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#home-assistant-ubersicht">Home Assistant Übersicht</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#langzeitauswertung-mit-grafanainfluxdb">Langzeitauswertung mit Grafana/InfluxDB</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#benotigte-hardware">benötigte Hardware</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#aktivierung-modbus-in-solvis-heizung">Aktivierung Modbus in Solvis Heizung</a>
@@ -123,8 +125,15 @@
 <p>Klick auf die einzelnen Sensoren bringen die Historie des Sensors bzw. die Auswahlmöglichkeiten zur Steuerung, z.b. den HKR1-Betriebsmodus zu ändern</p>
 <p><img alt="Heizung Detail1" src="../../img/hass-heizung-wwpuffer-history.png" /> 
 <img alt="Heizung Detail2" src="../../img/hass-heizung-hkr1-betriebsart.png" /></p>
+<h2 id="langzeitauswertung-mit-grafanainfluxdb">Langzeitauswertung mit Grafana/InfluxDB</h2>
 <p>Für Langzeitstatistiken werden die Daten von Home Assistant in einer InfluxDB Datenbank gespeichert und mittels Grafana visualisiert.
 <img alt="Heizung Grafana" src="../../img/heizung-grafana.png" /></p>
+<p>Für die monatliche Auswertung der Brennerstarts und Laufzeit des Brenners werden mit folgenden Queries die Daten ermittelt:</p>
+<pre><code>SELECT spread(&quot;value&quot;) FROM &quot;Starts&quot; WHERE (&quot;entity_id&quot; = 'brennerstarts') AND time &gt; now()  - 365d GROUP BY time(30d) fill(null)
+
+SELECT spread(&quot;value&quot;) FROM &quot;h&quot; WHERE (&quot;entity_id&quot; = 'laufzeit_brenner') AND time &gt; now() - 365d  GROUP BY time(30d) fill(null)
+</code></pre>
+
 <h2 id="benotigte-hardware">benötigte Hardware</h2>
 <ul>
 <li>Solvis Max Heizung</li>
