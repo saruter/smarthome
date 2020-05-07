@@ -65,6 +65,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#auszug-configurationyaml">Auszug configuration.yaml</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#automatisierungen">Automatisierungen</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#stundenweises-umschalten-von-automatik-auf-standby-betrieb">Stundenweises umschalten von Automatik auf Standby-Betrieb</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#konfiguration">Konfiguration</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#links-zu-solvis-doku">Links zu Solvis Doku</a>
     </li>
     </ul>
@@ -397,6 +407,86 @@ Sollten die Einstellungen korrekt sein sollte unter der IP-Addresse der Solvis-R
         value_template: &quot;{%if states.sensor.hkr1_betriebsart.state == '1' %}Aus{% elif states.sensor.hkr1_betriebsart.state == '2' %}Automatik{% elif states.sensor.hkr1_betriebsart.state == '3' %}Tagbetrieb{% elif states.sensor.hkr1_betriebsart.state == '4' %}Absenkbetrieb{% elif states.sensor.hkr1_betriebsart.state == '5' %}Standby{% elif states.sensor.hkr1_betriebsart.state == '6' %}Eco{% elif states.sensor.hkr1_betriebsart.state == '7' %}Urlaub{% elif states.sensor.hkr1_betriebsart.state == '8' %}WW Vorang{% elif states.sensor.zirkulationbetriebsart.state == '9' %}Frostschutz{% elif states.sensor.zirkulationbetriebsart.state == '10' %}Pumpenschutz{% elif states.sensor.hkr1_betriebsart.state == '11' %}Estrich{% endif %}&quot;
 
 
+</code></pre>
+
+<h2 id="automatisierungen">Automatisierungen</h2>
+<h3 id="stundenweises-umschalten-von-automatik-auf-standby-betrieb">Stundenweises umschalten von Automatik auf Standby-Betrieb</h3>
+<p><img alt="stundenweises Standby HKR1" src="../../img/hass-heizung-automate-standby.png" /></p>
+<p>Gerade in der Übergangszeit kann es vorkommen, dass an sonnigen Tagen trotz noch kühler Außentemperatur es in den Zimmern durch die Sonneneinstrahlung bereits warm ist. Die Heizung aber noch wegen der kühlen Außentemperatur weiterhin läuft bis auch die Außentemperatur entsprechend später am Tag steigt.</p>
+<p>Hier wäre ein Nutzungsszenario für folgende Automatisierung:
+Schalte den Heizkreis auf Standby-Modus für x-Stunden (z.B. bis Abends).</p>
+<p>Realisiert ist dies über einen <code>timer</code> in Home-Assistant, dessen Zeitwert (Stunden) per <code>input_number</code> gesetzt wird (Schieberegler im Frontend). Über ein <code>input_boolean</code> (Ein-/Ausschalter im Frontend) wird dann eine Automatisierung ausgeführt, die den Timer startet (<code>service: timer.start</code>) und das Modbus Register 2818 auf den Wert <code>5</code> (HKR1 Standbymodus) schreibt.</p>
+<p>Wenn der Timer abgelaufen ist, startet eine zweite Automatisierung (getriggert durch <code>event_type: timer.finished</code>) die dann den Ein-/Ausschalter wieder auf "Aus" setzt.</p>
+<p>Durch das setzen des Ein-Ausschalters auf "Aus" durch diese Automatisierung wird wiederum eine weitere Automatisierung getriggert die dann zum Einen das Modbus-Register 2818 wieder auf <code>2</code> (Automatik) setzt, also den Heizkreis wieder in den normalen Automatikmodus versetzt. Der zweite Anwendungsfall ist das manuelle Umschalten des Ein-/Ausschalters in der Weboberfläche auf "Aus" um wieder manuell auf "Automatik" umzuschalten. Auch hier triggert diese Automatisierung. </p>
+<h4 id="konfiguration">Konfiguration</h4>
+<pre><code># Eingabefelder 
+input_number:
+  delayheizungstandby:
+    name: Stunden auf Standby
+    initial: 5
+    min: 0
+    max: 8
+    step: 1
+    icon: mdi:timer
+
+input_boolean:
+  heizungstandbyon:
+    name: Heizung stundenweise auf Standby
+    initial: off
+
+
+# Timer for setting heating on standby for x hours
+timer:
+  heizungaufstandbyfor:
+    name: Noch auf Standby für
+
+
+automation:
+
+  - alias: Heizung auf Standby Start
+    trigger:
+      platform: state
+      entity_id: input_boolean.heizungstandbyon
+      to: 'on'
+    action:
+    -  service: timer.start
+       entity_id: timer.heizungaufstandbyfor
+       data_template:
+         duration: &quot;{{ states('input_number.delayheizungstandby') | int * 60 * 60 }}&quot;
+    - service: modbus.write_register
+      data:
+        address: 2818
+        hub: SolvisRemote
+        unit: 1
+        value: 5    
+
+
+  - alias: Heizung Standby To Automatic
+    trigger:
+      platform: state
+      entity_id: input_boolean.heizungstandbyon
+      to: 'off'
+    action:
+    - service: timer.cancel
+      entity_id: timer.heizungaufstandbyfor
+    - service: modbus.write_register
+      data:
+        address: 2818
+        hub: SolvisRemote
+        unit: 1
+        value: 2
+
+
+  - alias: Heizung Standby Timer Finished
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.heizungaufstandbyfor
+    action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.heizungstandbyon
 </code></pre>
 
 <h2 id="links-zu-solvis-doku">Links zu Solvis Doku</h2>
