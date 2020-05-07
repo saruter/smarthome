@@ -12,8 +12,8 @@ repo_name: "Github"
 repo_url: "https://github.com/saruter/smarthome"
 edit_uri: ""
 
-#theme: "readthedocs"
-theme: "rtd-mklab"
+theme: "readthedocs"
+#theme: "rtd-mklab"
 #theme: "rtd-dropdown"
 #theme: "bootstrap"
 
