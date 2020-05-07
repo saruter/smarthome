@@ -75,6 +75,12 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#weitere-ideen">Weitere Ideen</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#raumtemperatur-per-modbus-register">Raumtemperatur per Modbus Register</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#links-zu-solvis-doku">Links zu Solvis Doku</a>
     </li>
     </ul>
@@ -489,6 +495,15 @@ automation:
         entity_id: input_boolean.heizungstandbyon
 </code></pre>
 
+<h2 id="weitere-ideen">Weitere Ideen</h2>
+<h3 id="raumtemperatur-per-modbus-register">Raumtemperatur per Modbus Register</h3>
+<ul>
+<li>laut Modbus Doku existiert ein Holding-Register für die Raumtemperatur des Raumbedienelementes</li>
+<li>Idee: statt Raumbedienelement wird die Temperatur eines Zigbee-Temperatursensors in dieses Register geschrieben</li>
+<li>Vorteil: keine Verkabelung für das Raumbedienelement im Haus nötig, Temperatursensoren sind in Räumen vorhanden und die Temperaturen in Home Assistant nutzbar</li>
+<li>testweises schreiben des Registers schlug mit Modbus-Fehlermeldung fehl. Bisher aber auch kein Raumbedienelement in Solvis Control konfiguriert</li>
+<li>Wer hier weitere Infos hat, <a href="https://github.com/saruter/smarthome/issues/new">Feedback</a> erwünscht!</li>
+</ul>
 <h2 id="links-zu-solvis-doku">Links zu Solvis Doku</h2>
 <p><a href="https://solvis-files.s3.eu-central-1.amazonaws.com/seiten/produkte/solvisremote/Download/SolvisRemote+Modbus+Spezifikationen+201906.pdf">Doku: Solvis Modbus Register</a></p>
               
