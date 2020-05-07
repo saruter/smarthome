@@ -295,6 +295,95 @@ modbus:
    
 ```
 
+## Automatisierungen
+
+### Stundenweises umschalten von Automatik auf Standby-Betrieb
+
+![stundenweises Standby HKR1](../img/hass-heizung-automate-standby.png)
+
+Gerade in der Übergangszeit kann es vorkommen, dass an sonnigen Tagen trotz noch kühler Außentemperatur es in den Zimmern durch die Sonneneinstrahlung bereits warm ist. Die Heizung aber noch wegen der kühlen Außentemperatur weiterhin läuft bis auch die Außentemperatur entsprechend später am Tag steigt.
+
+Hier wäre ein Nutzungsszenario für folgende Automatisierung:
+Schalte den Heizkreis auf Standby-Modus für x-Stunden (z.B. bis Abends).
+
+Realisiert ist dies über einen `timer` in Home-Assistant, dessen Zeitwert (Stunden) per `input_number` gesetzt wird (Schieberegler im Frontend). Über ein `input_boolean` (Ein-/Ausschalter im Frontend) wird dann eine Automatisierung ausgeführt, die den Timer startet (`service: timer.start`) und das Modbus Register 2818 auf den Wert `5` (HKR1 Standbymodus) schreibt.
+
+Wenn der Timer abgelaufen ist, startet eine zweite Automatisierung (getriggert durch `event_type: timer.finished`) die dann den Ein-/Ausschalter wieder auf "Aus" setzt.
+
+Durch das setzen des Ein-Ausschalters auf "Aus" durch diese Automatisierung wird wiederum eine weitere Automatisierung getriggert die dann zum Einen das Modbus-Register 2818 wieder auf `2` (Automatik) setzt, also den Heizkreis wieder in den normalen Automatikmodus versetzt. Der zweite Anwendungsfall ist das manuelle Umschalten des Ein-/Ausschalters in der Weboberfläche auf "Aus" um wieder manuell auf "Automatik" umzuschalten. Auch hier triggert diese Automatisierung. 
+#### Konfiguration
+```
+# Eingabefelder 
+input_number:
+  delayheizungstandby:
+    name: Stunden auf Standby
+    initial: 5
+    min: 0
+    max: 8
+    step: 1
+    icon: mdi:timer
+    
+input_boolean:
+  heizungstandbyon:
+    name: Heizung stundenweise auf Standby
+    initial: off
+
+
+# Timer for setting heating on standby for x hours
+timer:
+  heizungaufstandbyfor:
+    name: Noch auf Standby für
+
+
+automation:
+
+  - alias: Heizung auf Standby Start
+    trigger:
+      platform: state
+      entity_id: input_boolean.heizungstandbyon
+      to: 'on'
+    action:
+    -  service: timer.start
+       entity_id: timer.heizungaufstandbyfor
+       data_template:
+         duration: "{{ states('input_number.delayheizungstandby') | int * 60 * 60 }}"
+    - service: modbus.write_register
+      data:
+        address: 2818
+        hub: SolvisRemote
+        unit: 1
+        value: 5    
+        
+        
+  - alias: Heizung Standby To Automatic
+    trigger:
+      platform: state
+      entity_id: input_boolean.heizungstandbyon
+      to: 'off'
+    action:
+    - service: timer.cancel
+      entity_id: timer.heizungaufstandbyfor
+    - service: modbus.write_register
+      data:
+        address: 2818
+        hub: SolvisRemote
+        unit: 1
+        value: 2
+
+
+  - alias: Heizung Standby Timer Finished
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.heizungaufstandbyfor
+    action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.heizungstandbyon
+```
+
+
 ## Links zu Solvis Doku
 [Doku: Solvis Modbus Register](https://solvis-files.s3.eu-central-1.amazonaws.com/seiten/produkte/solvisremote/Download/SolvisRemote+Modbus+Spezifikationen+201906.pdf)
 
