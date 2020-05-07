@@ -1,4 +1,4 @@
-# Solvis Heizung via Modbus auslesen
+# Solvis Heizung via Modbus auslesen und steuern
 Eine [Solvis Heizung](https://www.solvis.de) lässt sich mit Hilfe der Solvis Remote fernsteuern. Die Solvis Remote bildet im Prinzip das Touchdisplay der Heizung 1:1 via Browser nach. Zusätzlich gibt es Graphen über den Temperaturverlauf der einzelnen Sensoren des Schichtenspeichers. Aber zusätzlich lässt sich darüber die Heizung via Modbus TCP auslesen und, falls gewünscht, auch steuern. 
 
 Vorbildlich ist die Bereitstellung aller Dokumentationen inkl. Modbus Register von Solvis auf deren Webseite. 
