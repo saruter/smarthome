@@ -28,7 +28,8 @@ SELECT spread("value") FROM "h" WHERE ("entity_id" = 'laufzeit_brenner') AND tim
 ```
 
 ## benötigte Hardware
-* Solvis Max Heizung
+* Solvis Heizung, hier Solvis Max 7
+* Solvis Control 2 (SC2)
 * Solvis Remote zur Anbindung ans Netzwerk und Bereitstellung des Modbus-TCP Protokolls
 
 ## Aktivierung Modbus in Solvis Heizung
@@ -383,13 +384,49 @@ automation:
         entity_id: input_boolean.heizungstandbyon
 ```
 
-## Weitere Ideen
-### Raumtemperatur per Modbus Register 
-  * laut Modbus Doku existiert ein Holding-Register für die Raumtemperatur des Raumbedienelementes
-  * Idee: statt Raumbedienelement wird die Temperatur eines Zigbee-Temperatursensors in dieses Register geschrieben
-  * Vorteil: keine Verkabelung für das Raumbedienelement im Haus nötig, Temperatursensoren sind in Räumen vorhanden und die Temperaturen in Home Assistant nutzbar
-  * testweises schreiben des Registers schlug mit Modbus-Fehlermeldung fehl. Bisher aber auch kein Raumbedienelement in Solvis Control konfiguriert
-  * Wer hier weitere Infos hat, [Feedback](https://github.com/saruter/smarthome/issues/new) erwünscht!
+## Raumtemperatur per Modbus-Register statt Raumbedienelement 
+Normalerweise wird über das (optionale) Raumbedienelement die Raumtemperatur an die Solvis Control2 (SC2) gemeldet. Dadurch kann die Heizung die Regelung an die erreichte Raumtemperatur anpassen.
+
+Da im Haus keine einfache Verkabelung des Raumbedienelements möglich war, es aber ein Modbus Register 34304 (Raumtemperatur 1) gibt, war die Idee geboren die Raumtemperatur über die in Home Assistant vorhandenen Zigbee Temperatursensoren per Modbus in das Register zu schreiben, was zunächst fehlschlug da das Register nicht schreibbar war. Allerdings war zu dem Zeitpunkt die SC2 noch nicht für ein Raumbedienelement eingerichtet.
+
+Nach Kontaktaufnahme mit Solvis bekam ich die Infos dir mir fehlten. Vielen Dank hierfür an [Wolf Walter](https://github.com/saruter/smarthome/issues/1)
+
+### Voraussetzungen
+- Solvis Control muss mit Raumbedienelement für den Heizkreislauf konfiguriert sein (auch wenn kein Raumbedienelement per Kabel angeschlossen wird)
+- dafür ist ein Zurücksetzen der Solvis Control auf Werkseinstellung nötig, da in der Initialisierung das Raumbedienelement zum Heizkreislauf zugeordnet wird
+- Zusätzlich muss im Installateur-Menü unter `Sonstiges --> Remote --> Seite 3 --> Raumfühler HK1` auf `Modbus` umgestellt werden
+- und der Modbus-Modus muss auf `senden` was dem schreibenden Zugriff wohl entspricht umgestellt werden, falls noch nicht geschehen
+
+![Remote-HKR1-Raumfühler-Modbus](../img/solvis-remote-raumtemp-modbus.png)
+
+### Hinweise
+- Die Temperatur muss ca. alle 60 Sekunden per Modbus in das Register geschrieben werden, danach "verschwindet" die Temperatur in der Anzeige und zeigt nur noch "--"
+
+
+### zyklisches setzen der Raumtemperatur in Home Assistant
+Eine Automatisierung schreibt den Sensorwert eines Zigbee Temperatursensors alle 30 Sekunden in das Modbus Register.
+
+Dazu muss der Wert des Sensors konvertiert werden, da das Modbus-Register den Wert in 0.1°C skaliert erwartet. Zudem muss der Wert in ein `int` gewandelt werden da der write_register Service ein `int` erwartet.
+
+Automatisierung:
+```
+  - alias: Heizung Raumtemperatur per Modbus aktualisieren
+    trigger:
+      platform: time_pattern
+      seconds: "/30"
+    action:
+    - service: modbus.write_register
+      data_template:
+        address: 34304
+        hub: SolvisRemote
+        unit: 1
+        value: "{{ (states('sensor.temperatur_wohnzimmer') | float * 10) | int }}"
+```
+
+### Raumtemperaturanzeige in der SC2
+![Remote-Raumtemp1](../img/solvis-raumtemp-startseite.png)
+
+![Remote-Raumtemp2](../img/solvis-raumtemp-anlagenstatus.png)
 
 
 ## Links zu Solvis Doku
