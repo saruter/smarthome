@@ -1,7 +1,14 @@
 # Solvis Heizung via Modbus auslesen und steuern
-Eine [Solvis Heizungsanlage](https://www.solvis.de), hier SolvisMax, lässt sich mit Hilfe der optional erhältlichen [Solvis Remote](https://www.solvis.de/solvisremote-ben-max/) fernsteuern. Die Solvis Remote bildet im Prinzip das Touchdisplay der Heizung 1:1 via Browser nach. Zusätzlich gibt es Graphen über den Temperaturverlauf der einzelnen Sensoren des Schichtenspeichers. Aber zusätzlich lässt sich darüber die Heizung via Modbus TCP auslesen und, falls gewünscht, auch steuern. 
+Eine [Solvis Heizungsanlage](https://www.solvis.de), hier SolvisMax, lässt sich mit Hilfe der optional erhältlichen [Solvis Remote](https://www.solvis.de/solvisremote-ben-max/) fernsteuern. Die Solvis Remote bildet im Prinzip das Touchdisplay der Heizung 1:1 via Browser nach. Zusätzlich gibt es Graphen über den Temperaturverlauf der einzelnen Sensoren des Schichtenspeichers und die Möglichkeit, sich ein Anlagenschema darzustellen. 
+
+Für eine Integration ein ein bestehendes Smart Home System, hier [Home Assistant](https://www.home-assistant.io), bietet die Solvis Remote zusätzlich die Möglichkeit die Heizung mittels Modbus-TCP Protokoll lokal auslesen und, falls gewünscht, auch steuern zu können. 
 
 Vorbildlich ist die Bereitstellung aller Dokumentationen inkl. Modbus Register von Solvis auf deren Webseite. 
+
+## benötigte Hardware
+* Solvis Heizung, hier SolvisMax 7
+* Solvis Control 2 (SC2)
+* Solvis Remote zur Anbindung ans Netzwerk und Bereitstellung des Modbus-TCP Protokolls
 
 
 ## Home Assistant Übersicht
@@ -26,11 +33,6 @@ SELECT spread("value") FROM "Starts" WHERE ("entity_id" = 'brennerstarts') AND t
 
 SELECT spread("value") FROM "h" WHERE ("entity_id" = 'laufzeit_brenner') AND time > now() - 365d  GROUP BY time(30d) fill(null)
 ```
-
-## benötigte Hardware
-* Solvis Heizung, hier Solvis Max 7
-* Solvis Control 2 (SC2)
-* Solvis Remote zur Anbindung ans Netzwerk und Bereitstellung des Modbus-TCP Protokolls
 
 ## Aktivierung Modbus Protokoll
 Zur Aktivierung von Modbus TCP muss in das Installateurmenü gewechselt werden. Den zugehörigen Code werde ich nicht veröffentlichen. Bitte mit dem Installateur der Heizung Kontakt aufnehmen. 
@@ -300,7 +302,7 @@ modbus:
 ## Raumtemperatur per Modbus-Register statt Raumbedienelement 
 Normalerweise wird über das (optionale) Raumbedienelement die Raumtemperatur an die Solvis Control2 (SC2) gemeldet. Dadurch kann die Heizung die Regelung an die erreichte Raumtemperatur anpassen.
 
-Da im Haus keine einfache Verkabelung des Raumbedienelements möglich war, es aber ein Modbus Register 34304 (Raumtemperatur 1) gibt, war die Idee geboren die Raumtemperatur über die in Home Assistant vorhandenen Zigbee Temperatursensoren per Modbus in das Register zu schreiben, was zunächst fehlschlug da das Register nicht schreibbar war. Allerdings war zu dem Zeitpunkt die SC2 noch nicht für ein Raumbedienelement eingerichtet.
+Da im Haus keine einfache Verkabelung des Raumbedienelements möglich war, es aber ein Modbus Register 34304 (Raumtemperatur 1) gibt, war die Idee geboren die Raumtemperatur über die in Home Assistant vorhandenen Zigbee Temperatursensoren per Modbus in das Register zu schreiben, was zunächst fehlschlug, trotz aktiviertem schreibenden Modbus-Zugriff. Allerdings war zu dem Zeitpunkt die SC2 noch nicht für ein Raumbedienelement eingerichtet.
 
 Nach Kontaktaufnahme mit Solvis bekam ich die Infos dir mir fehlten. Vielen Dank hierfür an [Wolf Walter](https://github.com/saruter/smarthome/issues/1)
 
@@ -308,9 +310,8 @@ Nach Kontaktaufnahme mit Solvis bekam ich die Infos dir mir fehlten. Vielen Dank
 - Solvis Control muss mit Raumbedienelement für den Heizkreislauf konfiguriert sein (auch wenn kein Raumbedienelement per Kabel angeschlossen wird)
 - dafür ist ein Zurücksetzen der Solvis Control auf Werkseinstellung nötig, da in der Initialisierung das Raumbedienelement zum Heizkreislauf zugeordnet wird
 - Zusätzlich muss im Installateur-Menü unter `Sonstiges --> Remote --> Seite 3 --> Raumfühler HK1` auf `Modbus` umgestellt werden
-- und der Modbus-Modus muss auf `senden` was dem schreibenden Zugriff wohl entspricht umgestellt werden, falls noch nicht geschehen
-
 ![Remote-HKR1-Raumfühler-Modbus](../img/solvis-remote-raumtemp-modbus.png)
+- und der Modbus-Modus muss auf `senden` was dem schreibenden Zugriff wohl entspricht umgestellt werden, falls noch nicht geschehen
 
 Hinweis
 - Die Temperatur muss ca. alle 60 Sekunden per Modbus in das Register geschrieben werden, sonst "verschwindet" die Temperatur in der Anzeige und zeigt nur noch "--"
