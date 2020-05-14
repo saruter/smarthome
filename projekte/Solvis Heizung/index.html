@@ -66,19 +66,19 @@
     
         <ul>
         
+            <li><a class="toctree-l4" href="#benotigte-hardware">benötigte Hardware</a></li>
+        
             <li><a class="toctree-l4" href="#home-assistant-ubersicht">Home Assistant Übersicht</a></li>
         
             <li><a class="toctree-l4" href="#langzeitauswertung-mit-grafanainfluxdb">Langzeitauswertung mit Grafana/InfluxDB</a></li>
         
-            <li><a class="toctree-l4" href="#benotigte-hardware">benötigte Hardware</a></li>
-        
-            <li><a class="toctree-l4" href="#aktivierung-modbus-in-solvis-heizung">Aktivierung Modbus in Solvis Heizung</a></li>
+            <li><a class="toctree-l4" href="#aktivierung-modbus-protokoll">Aktivierung Modbus Protokoll</a></li>
         
             <li><a class="toctree-l4" href="#auszug-configurationyaml">Auszug configuration.yaml</a></li>
         
-            <li><a class="toctree-l4" href="#automatisierungen">Automatisierungen</a></li>
+            <li><a class="toctree-l4" href="#raumtemperatur-per-modbus-register-statt-raumbedienelement">Raumtemperatur per Modbus-Register statt Raumbedienelement</a></li>
         
-            <li><a class="toctree-l4" href="#weitere-ideen">Weitere Ideen</a></li>
+            <li><a class="toctree-l4" href="#stundenweises-umschalten-von-automatik-auf-standby-betrieb">Stundenweises umschalten von Automatik auf Standby-Betrieb</a></li>
         
             <li><a class="toctree-l4" href="#links-zu-solvis-doku">Links zu Solvis Doku</a></li>
         
@@ -143,8 +143,15 @@
             <div class="section">
               
                 <h1 id="solvis-heizung-via-modbus-auslesen-und-steuern">Solvis Heizung via Modbus auslesen und steuern</h1>
-<p>Eine <a href="https://www.solvis.de">Solvis Heizung</a> lässt sich mit Hilfe der Solvis Remote fernsteuern. Die Solvis Remote bildet im Prinzip das Touchdisplay der Heizung 1:1 via Browser nach. Zusätzlich gibt es Graphen über den Temperaturverlauf der einzelnen Sensoren des Schichtenspeichers. Aber zusätzlich lässt sich darüber die Heizung via Modbus TCP auslesen und, falls gewünscht, auch steuern. </p>
+<p>Eine <a href="https://www.solvis.de">Solvis Heizungsanlage</a>, hier SolvisMax, lässt sich mit Hilfe der optional erhältlichen <a href="https://www.solvis.de/solvisremote-ben-max/">Solvis Remote</a> fernsteuern. Die Solvis Remote bildet im Prinzip das Touchdisplay der Heizung 1:1 via Browser nach. Zusätzlich gibt es Graphen über den Temperaturverlauf der einzelnen Sensoren des Schichtenspeichers und die Möglichkeit, sich ein Anlagenschema darzustellen. </p>
+<p>Für eine Integration ein ein bestehendes Smart Home System, hier <a href="https://www.home-assistant.io">Home Assistant</a>, bietet die Solvis Remote zusätzlich die Möglichkeit die Heizung mittels Modbus-TCP Protokoll lokal auslesen und, falls gewünscht, auch steuern zu können. </p>
 <p>Vorbildlich ist die Bereitstellung aller Dokumentationen inkl. Modbus Register von Solvis auf deren Webseite. </p>
+<h2 id="benotigte-hardware">benötigte Hardware</h2>
+<ul>
+<li>Solvis Heizung, hier SolvisMax 7</li>
+<li>Solvis Control 2 (SC2)</li>
+<li>Solvis Remote zur Anbindung ans Netzwerk und Bereitstellung des Modbus-TCP Protokolls</li>
+</ul>
 <h2 id="home-assistant-ubersicht">Home Assistant Übersicht</h2>
 <p>In Home Assistant wurde die Ansicht der Anlage auf der Solvis Remote nachgebildet
 <img alt="Heizung Übersicht" src="../../img/hass-heizung-uebersicht.png" /></p>
@@ -162,18 +169,14 @@
 SELECT spread(&quot;value&quot;) FROM &quot;h&quot; WHERE (&quot;entity_id&quot; = 'laufzeit_brenner') AND time &gt; now() - 365d  GROUP BY time(30d) fill(null)
 </code></pre>
 
-<h2 id="benotigte-hardware">benötigte Hardware</h2>
-<ul>
-<li>Solvis Max Heizung</li>
-<li>Solvis Remote zur Anbindung ans Netzwerk und Bereitstellung des Modbus-TCP Protokolls</li>
-</ul>
-<h2 id="aktivierung-modbus-in-solvis-heizung">Aktivierung Modbus in Solvis Heizung</h2>
+<h2 id="aktivierung-modbus-protokoll">Aktivierung Modbus Protokoll</h2>
 <p>Zur Aktivierung von Modbus TCP muss in das Installateurmenü gewechselt werden. Den zugehörigen Code werde ich nicht veröffentlichen. Bitte mit dem Installateur der Heizung Kontakt aufnehmen. 
-Im Menüpunkt "Sonstiges" --&gt; "Remote" auswählen und dort dann den Modus für "Modbus TCP" auf "lesen" oder auch "schreiben" einstellen.
+Im Menüpunkt <code>Sonstiges --&gt; Remote</code> auswählen und dort dann den Modus für <code>Modbus TCP</code> auf <code>lesen</code> oder auch <code>senden</code> (schreiben) einstellen.
 Sollten die Einstellungen korrekt sein sollte unter der IP-Addresse der Solvis-Remote auf Port TCP/502 ein Connect möglich sein.</p>
 <p><img alt="Solvis Remote1" src="../../img/solvis-remote-1.png" /></p>
 <p><img alt="Solvis Remote2" src="../../img/solvis-remote-2.png" /></p>
 <h2 id="auszug-configurationyaml">Auszug configuration.yaml</h2>
+<p>Nachfolgend ein Auszug der configuration.yaml von Home Assistant mit den wichtigsten Sensoren und Templates</p>
 <pre><code>modbus:
   name: SolvisRemote
   type: tcp
@@ -427,16 +430,50 @@ Sollten die Einstellungen korrekt sein sollte unter der IP-Addresse der Solvis-R
 
 </code></pre>
 
-<h2 id="automatisierungen">Automatisierungen</h2>
-<h3 id="stundenweises-umschalten-von-automatik-auf-standby-betrieb">Stundenweises umschalten von Automatik auf Standby-Betrieb</h3>
-<p><img alt="stundenweises Standby HKR1" src="../../img/hass-heizung-automate-standby.png" /></p>
+<h2 id="raumtemperatur-per-modbus-register-statt-raumbedienelement">Raumtemperatur per Modbus-Register statt Raumbedienelement</h2>
+<p>Normalerweise wird über das (optionale) Raumbedienelement die Raumtemperatur an die Solvis Control2 (SC2) gemeldet. Dadurch kann die Heizung die Regelung an die erreichte Raumtemperatur anpassen.</p>
+<p>Da im Haus keine einfache Verkabelung des Raumbedienelements möglich war, es aber ein Modbus Register 34304 (Raumtemperatur 1) gibt, war die Idee geboren die Raumtemperatur über die in Home Assistant vorhandenen Zigbee Temperatursensoren per Modbus in das Register zu schreiben, was zunächst fehlschlug, trotz aktiviertem schreibenden Modbus-Zugriff. Allerdings war zu dem Zeitpunkt die SC2 noch nicht für ein Raumbedienelement eingerichtet.</p>
+<p>Nach Kontaktaufnahme mit Solvis bekam ich die Infos dir mir fehlten. Vielen Dank hierfür an <a href="https://github.com/saruter/smarthome/issues/1">Wolf Walter</a></p>
+<h3 id="voraussetzungen">Voraussetzungen</h3>
+<ul>
+<li>Solvis Control muss mit Raumbedienelement für den Heizkreislauf konfiguriert sein (auch wenn kein Raumbedienelement per Kabel angeschlossen wird)</li>
+<li>dafür ist ein Zurücksetzen der Solvis Control auf Werkseinstellung nötig, da in der Initialisierung das Raumbedienelement zum Heizkreislauf zugeordnet wird</li>
+<li>Zusätzlich muss im Installateur-Menü unter <code>Sonstiges --&gt; Remote --&gt; Seite 3 --&gt; Raumfühler HK1</code> auf <code>Modbus</code> umgestellt werden
+<img alt="Remote-HKR1-Raumfühler-Modbus" src="../../img/solvis-remote-raumtemp-modbus.png" /></li>
+<li>und der Modbus-Modus muss auf <code>senden</code> was dem schreibenden Zugriff wohl entspricht umgestellt werden, falls noch nicht geschehen</li>
+</ul>
+<p>Hinweis
+- Die Temperatur muss ca. alle 60 Sekunden per Modbus in das Register geschrieben werden, sonst "verschwindet" die Temperatur in der Anzeige und zeigt nur noch "--"</p>
+<h3 id="zyklisches-setzen-der-raumtemperatur-in-home-assistant">zyklisches setzen der Raumtemperatur in Home Assistant</h3>
+<p>Eine Automatisierung schreibt den Sensorwert eines Zigbee Temperatursensors alle 30 Sekunden in das Modbus Register.</p>
+<p>Dazu muss der Wert des Sensors konvertiert werden, da das Modbus-Register den Wert in 0.1°C skaliert erwartet. Zudem muss der Wert in ein <code>int</code> gewandelt werden da der <code>modbus.write_register</code>-Service ein <code>int</code> erwartet.</p>
+<h4 id="automatisierung">Automatisierung</h4>
+<pre><code>  - alias: Heizung Raumtemperatur per Modbus aktualisieren
+    trigger:
+      platform: time_pattern
+      seconds: &quot;/30&quot;
+    action:
+    - service: modbus.write_register
+      data_template:
+        address: 34304
+        hub: SolvisRemote
+        unit: 1
+        value: &quot;{{ (states('sensor.temperatur_wohnzimmer') | float * 10) | int }}&quot;
+</code></pre>
+
+<h3 id="raumtemperaturanzeige-in-der-sc2">Raumtemperaturanzeige in der SC2</h3>
+<p>Bei erfolgreichem setzen der Temperatur erscheint diese in der Solvis Control
+<img alt="Remote-Raumtemp1" src="../../img/solvis-raumtemp-startseite.png" /></p>
+<p><img alt="Remote-Raumtemp2" src="../../img/solvis-raumtemp-anlagenstatus.png" /></p>
+<h2 id="stundenweises-umschalten-von-automatik-auf-standby-betrieb">Stundenweises umschalten von Automatik auf Standby-Betrieb</h2>
 <p>Gerade in der Übergangszeit kann es vorkommen, dass an sonnigen Tagen trotz noch kühler Außentemperatur es in den Zimmern durch die Sonneneinstrahlung bereits warm ist. Die Heizung aber noch wegen der kühlen Außentemperatur weiterhin läuft bis auch die Außentemperatur entsprechend später am Tag steigt.</p>
 <p>Hier wäre ein Nutzungsszenario für folgende Automatisierung:
 Schalte den Heizkreis auf Standby-Modus für x-Stunden (z.B. bis Abends).</p>
+<p><img alt="stundenweises Standby HKR1" src="../../img/hass-heizung-automate-standby.png" /></p>
 <p>Realisiert ist dies über einen <code>timer</code> in Home-Assistant, dessen Zeitwert (Stunden) per <code>input_number</code> gesetzt wird (Schieberegler im Frontend). Über ein <code>input_boolean</code> (Ein-/Ausschalter im Frontend) wird dann eine Automatisierung ausgeführt, die den Timer startet (<code>service: timer.start</code>) und das Modbus Register 2818 auf den Wert <code>5</code> (HKR1 Standbymodus) schreibt.</p>
 <p>Wenn der Timer abgelaufen ist, startet eine zweite Automatisierung (getriggert durch <code>event_type: timer.finished</code>) die dann den Ein-/Ausschalter wieder auf "Aus" setzt.</p>
 <p>Durch das setzen des Ein-Ausschalters auf "Aus" durch diese Automatisierung wird wiederum eine weitere Automatisierung getriggert die dann zum Einen das Modbus-Register 2818 wieder auf <code>2</code> (Automatik) setzt, also den Heizkreis wieder in den normalen Automatikmodus versetzt. Der zweite Anwendungsfall ist das manuelle Umschalten des Ein-/Ausschalters in der Weboberfläche auf "Aus" um wieder manuell auf "Automatik" umzuschalten. Auch hier triggert diese Automatisierung. </p>
-<h4 id="konfiguration">Konfiguration</h4>
+<h3 id="konfiguration-home-assistant">Konfiguration Home-Assistant</h3>
 <pre><code># Eingabefelder 
 input_number:
   delayheizungstandby:
@@ -507,15 +544,6 @@ automation:
         entity_id: input_boolean.heizungstandbyon
 </code></pre>
 
-<h2 id="weitere-ideen">Weitere Ideen</h2>
-<h3 id="raumtemperatur-per-modbus-register">Raumtemperatur per Modbus Register</h3>
-<ul>
-<li>laut Modbus Doku existiert ein Holding-Register für die Raumtemperatur des Raumbedienelementes</li>
-<li>Idee: statt Raumbedienelement wird die Temperatur eines Zigbee-Temperatursensors in dieses Register geschrieben</li>
-<li>Vorteil: keine Verkabelung für das Raumbedienelement im Haus nötig, Temperatursensoren sind in Räumen vorhanden und die Temperaturen in Home Assistant nutzbar</li>
-<li>testweises schreiben des Registers schlug mit Modbus-Fehlermeldung fehl. Bisher aber auch kein Raumbedienelement in Solvis Control konfiguriert</li>
-<li>Wer hier weitere Infos hat, <a href="https://github.com/saruter/smarthome/issues/new">Feedback</a> erwünscht!</li>
-</ul>
 <h2 id="links-zu-solvis-doku">Links zu Solvis Doku</h2>
 <p><a href="https://solvis-files.s3.eu-central-1.amazonaws.com/seiten/produkte/solvisremote/Download/SolvisRemote+Modbus+Spezifikationen+201906.pdf">Doku: Solvis Modbus Register</a></p>
               
