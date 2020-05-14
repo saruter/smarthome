@@ -17,11 +17,4 @@ theme: "readthedocs"
 #theme: "rtd-dropdown"
 #theme: "bootstrap"
 
-# nav:
-# - Home: 'index.md'
-# - Eltako mit Shelly1 PM ersetzen: 'projekte/tasterschaltung.md'
-# - Feinstaubsensor: 'feinstaubsensor.md'
-# - Solvis Heizung: 'Solvis Heizung.md'
-# - Stromzähler auslesen: 'stromverbrauch.md'
-# - Gaszähler auslesen: 'gasverbrauch.md'
 

@@ -366,7 +366,7 @@ input_number:
   delayheizungstandby:
     name: Stunden auf Standby
     initial: 5
-    min: 0
+    min: 1
     max: 8
     step: 1
     icon: mdi:timer
