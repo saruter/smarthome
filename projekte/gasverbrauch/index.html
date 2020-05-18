@@ -135,11 +135,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="gaszahler-mit-esp8266-und-home-assistant-auslesen">Gaszähler mit ESP8266 und Home Assistant auslesen</h1>
+                <h1 id="gaszahler-mit-esp8266-und-home-assistant-auslesen">Gaszähler mit ESP8266 und Home Assistant auslesen<a class="headerlink" href="#gaszahler-mit-esp8266-und-home-assistant-auslesen" title="Permanent link">&para;</a></h1>
 <p>Ein Standardgaszähler hat auf den letzen Ziffern einen Magneten verbaut, der bei jedem Durchlauf mit einem Reed-Kontakt ausgelesen werden kann. Ein Reed-Kontakt (Magnetschalter) erzeugt bei jedem Durchlauf einen Impuls. Diese Impulse werden per ESPhome gezählt und in die Kubikmeter umgerechnet. 1 Impuls entspricht 0,01 m³.</p>
 <p><img alt="Gaszähler" src="../../img/gaszaehler.jpg" /></p>
 <p><img alt="HomeAssistant Gas" src="../../img/HassStromGaszaehler.png" /></p>
-<h2 id="benotigte-hardware">benötigte Hardware</h2>
+<h2 id="benotigte-hardware">benötigte Hardware<a class="headerlink" href="#benotigte-hardware" title="Permanent link">&para;</a></h2>
 <ul>
 <li>ESP8266 NodeMCU</li>
 <li>Reed Sensor, z.B. MK-471B bei Reichelt</li>
@@ -147,28 +147,42 @@
 <li>USB-Netzteil</li>
 <li>Gehäuse, z.B. <a href="https://www.hornbach.de/shop/Feuchtraum-Kabelabzweigkasten-H75-x-B75-x-T35-mm-grau/3880536/artikel.html">Kabelabzweigdose</a></li>
 </ul>
-<h2 id="software-auf-esp8266">Software auf ESP8266</h2>
+<h2 id="software-auf-esp8266">Software auf ESP8266<a class="headerlink" href="#software-auf-esp8266" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://esphome.io">ESPHome</a></li>
 </ul>
-<h2 id="auszug-esphome-yaml">Auszug ESPhome YAML</h2>
-<pre><code>  - platform: pulse_counter
-    pin: 
-      number: GPIO5
-      mode: INPUT_PULLUP
-    name: &quot;Gasverbrauch&quot;
-    update_interval : 60s
-    filters:
-      - lambda: |-
-          static float total_value = 0.0;
-          total_value += x * 0.01;
-          return total_value;
-    unit_of_measurement: &quot;m³&quot;
-    accuracy_decimals: 2
-    icon: 'mdi:fire'
-</code></pre>
+<h2 id="auszug-esphome-yaml">Auszug ESPhome YAML<a class="headerlink" href="#auszug-esphome-yaml" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>  <span class="o">-</span> <span class="nv">platform</span>: <span class="nv">pulse_counter</span>
+    <span class="nv">pin</span>: 
+      <span class="nv">number</span>: <span class="nv">GPIO5</span>
+      <span class="nv">mode</span>: <span class="nv">INPUT_PULLUP</span>
+    <span class="nv">name</span>: <span class="s2">&quot;</span><span class="s">Gasverbrauch</span><span class="s2">&quot;</span>
+    <span class="nv">update_interval</span> : <span class="mi">60</span><span class="nv">s</span>
+    <span class="nv">filters</span>:
+      <span class="o">-</span> <span class="nv">lambda</span>: <span class="o">|-</span>
+          <span class="nv">static</span> <span class="nv">float</span> <span class="nv">total_value</span> <span class="o">=</span> <span class="mi">0</span>.<span class="mi">0</span><span class="c1">;</span>
+          <span class="nv">total_value</span> <span class="o">+=</span> <span class="nv">x</span> <span class="o">*</span> <span class="mi">0</span>.<span class="mi">01</span><span class="c1">;</span>
+          <span class="k">return</span> <span class="nv">total_value</span><span class="c1">;</span>
+    <span class="nv">unit_of_measurement</span>: <span class="s2">&quot;</span><span class="s">m³</span><span class="s2">&quot;</span>
+    <span class="nv">accuracy_decimals</span>: <span class="mi">2</span>
+    <span class="nv">icon</span>: <span class="s1">&#39;</span><span class="s">mdi:fire</span><span class="s1">&#39;</span>
+</pre></div>
+</td></tr></table>
 
-<h1 id="auswertung-in-grafana">Auswertung in Grafana</h1>
+<h1 id="auswertung-in-grafana">Auswertung in Grafana<a class="headerlink" href="#auswertung-in-grafana" title="Permanent link">&para;</a></h1>
 <p>Zur besseren Darstellung der Verbrauchsdaten bietet sich Grafana an. Die Daten von Home Assistant werden hier in eine InfluxDB geschrieben und über Grafana visualisiert.</p>
 <p><img alt="HomeAssistant Gas" src="../../img/grafana-verbrauchhaus.png" /></p>
               

@@ -78,17 +78,13 @@
     <a class="current" href="./">Eltako Stromstoßrelais durch Shelly 1PM ersetzen</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#eltako-stromstorelais-durch-shelly-1pm-ersetzen">Eltako Stromstoßrelais durch Shelly 1PM ersetzen</a></li>
+    <li class="toctree-l3"><a href="#benotigte-hardware">benötigte Hardware</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l4" href="#benotigte-hardware">benötigte Hardware</a></li>
-        
-            <li><a class="toctree-l4" href="#konfiguration-shelly-1pm">Konfiguration Shelly 1PM</a></li>
-        
-            <li><a class="toctree-l4" href="#home-assistant">Home Assistant</a></li>
-        
-        </ul>
+
+    <li class="toctree-l3"><a href="#konfiguration-shelly-1pm">Konfiguration Shelly 1PM</a></li>
+    
+
+    <li class="toctree-l3"><a href="#home-assistant">Home Assistant</a></li>
     
 
     </ul>
@@ -132,24 +128,26 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="eltako-stromstorelais-durch-shelly-1pm-ersetzen">Eltako Stromstoßrelais durch Shelly 1PM ersetzen</h1>
-<p><strong> Achtung! Arbeiten an 230V können tödlich sein. Falls kein Know-How vorhanden ist, lieber einen Elektroinstallateur beauftragen! </strong> </p>
+                <div class="admonition danger">
+<p class="admonition-title">Achtung!</p>
+<p>Arbeiten an 230V können tödlich sein. Falls kein Know-How vorhanden ist, lieber einen Elektroinstallateur beauftragen! </p>
+</div>
 <p>Durch ein Shelly 1PM wird eine Tasterschaltung für Flurlicht smart über Home Assistant steuerbar. Zusätzlich kann der Stromverbrauch gemessen werden.
 Eingesetzt wurden Shelly 1PM mit der Original Firmware ohne Aktivierung der Cloud-Anbindung. Anbindung an Home Assistant via MQTT welches nativ in der Firmware enthalten ist.
 Vorteil der Shelly1PM: man kann weiterhin über die vorhandenen 230V Tasterschalter das Licht an und aus schalten.</p>
 <p><img alt="Shelly1PM" src="../../img/Shelly1PMRelais.jpg" /></p>
 <p><img alt="HomeAssistant Shelly1PM" src="../../img/HassShelly1PM.png" /></p>
-<h2 id="benotigte-hardware">benötigte Hardware</h2>
+<h2 id="benotigte-hardware">benötigte Hardware<a class="headerlink" href="#benotigte-hardware" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://shelly.cloud">Shelly 1PM</a></li>
 <li><a href="https://www.hornbach.de/shop/Wago-221-413-Compact-Verbindungsklemme-4-mm-3-Leiter-alle-Leiterarten-50-Stueck/5723506/artikel.html">Wago Klemmen</a></li>
 <li>etwas Kabel</li>
 <li>Know How</li>
 </ul>
-<h2 id="konfiguration-shelly-1pm">Konfiguration Shelly 1PM</h2>
+<h2 id="konfiguration-shelly-1pm">Konfiguration Shelly 1PM<a class="headerlink" href="#konfiguration-shelly-1pm" title="Permanent link">&para;</a></h2>
 <p>Damit der Shelly 1 PM als Stromstoßrelais fungiert, muss der Button-Type auf "Momentary" eingestellt werden.
 <img alt="Shelly1pmconfig" src="../../img/shelly1pmconfig.png" /></p>
-<h2 id="home-assistant">Home Assistant</h2>
+<h2 id="home-assistant">Home Assistant<a class="headerlink" href="#home-assistant" title="Permanent link">&para;</a></h2>
 <p>Zur automatischen Erkennung von Shelly Devices nutze ich das Shelly Discovery Skript von hier:</p>
 <ul>
 <li><a href="https://community.home-assistant.io/t/shellies-discovery-script/94048">Shelly Discovery Skript</a></li>

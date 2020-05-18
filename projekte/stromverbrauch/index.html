@@ -136,45 +136,64 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="digitalen-stromzahler-mit-esp8266-auslesen">(digitalen) Stromzähler mit ESP8266 auslesen</h1>
+                <h1 id="digitalen-stromzahler-mit-esp8266-auslesen">(digitalen) Stromzähler mit ESP8266 auslesen<a class="headerlink" href="#digitalen-stromzahler-mit-esp8266-auslesen" title="Permanent link">&para;</a></h1>
 <p>Das Auslesen eines digitalen Stromzählers (EhZ) geschieht anhand der optischen S0-Schnittstelle bei der der Stromzähler den Verbrauch über die Impulsrate einer IR-LED anzeigt. Hier zeigen 10000 Impulse 1 kwH an. Über die Pulsrate kann der aktuelle Leistungsbedarf in Watt berechnet werden. Die S0-Schnittstelle ist hier mittels einer IR-Led ausgeführt die mittels eines Phototransistors oder wie in meinem Fall über ein TCRT-5000 (IR-Licht/Abstandssensor) ausgelesen werden kann.</p>
 <p>Gut zu wissen: mit einer Handykamera (meist die Selfie-Kamera) kann man meist die IR-Signale "sehen" da dort kein IR-Filter eingebaut ist. Beim Hager EhZ sieht man allerdings nur die Signale der seriellen SML-Schnittstelle. Die Impulse der S0-IR-Led waren zu schwach um sie sichtbar in der Fotoansicht zu sehen.</p>
 <p><img alt="Stromzähler2" src="../../img/stromzaehler-2.jpg" /></p>
 <p><img alt="TCRT-5000" src="../../img/stromzaehler-1.jpg" /></p>
-<h2 id="hardware">Hardware</h2>
+<h2 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h2>
 <ul>
 <li>ESP8266 NodeMCU</li>
 <li>Phototransistor oder TCRT-5000 (IR-Licht/Abstandssensor)</li>
 <li>Käbelchen</li>
 <li>USB-Netzteil</li>
 </ul>
-<h2 id="software-auf-esp8266">Software auf ESP8266</h2>
+<h2 id="software-auf-esp8266">Software auf ESP8266<a class="headerlink" href="#software-auf-esp8266" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://esphome.io">ESPHome</a></li>
 </ul>
-<h2 id="auszug-esphome-yaml">Auszug ESPhome YAML</h2>
-<pre><code> - platform: pulse_counter
-    pin: GPIO5
-    unit_of_measurement: 'W'
-    name: 'Energieverbrauch'
-    update_interval: 60s
-    filters:
-    # - multiply: 0.06 in KW
-      - multiply: 6 # in W
-    accuracy_decimals: 0
-    icon: 'mdi:flash'
-    id: energieverbrauch_w
+<h2 id="auszug-esphome-yaml">Auszug ESPhome YAML<a class="headerlink" href="#auszug-esphome-yaml" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> <span class="o">-</span> <span class="n">platform</span><span class="p">:</span> <span class="n">pulse_counter</span>
+    <span class="n">pin</span><span class="p">:</span> <span class="n">GPIO5</span>
+    <span class="n">unit_of_measurement</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Energieverbrauch&#39;</span>
+    <span class="n">update_interval</span><span class="p">:</span> <span class="mi">60</span><span class="n">s</span>
+    <span class="n">filters</span><span class="p">:</span>
+    <span class="o">#</span> <span class="o">-</span> <span class="n">multiply</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">06</span> <span class="k">in</span> <span class="n">KW</span>
+      <span class="o">-</span> <span class="n">multiply</span><span class="p">:</span> <span class="mi">6</span> <span class="o">#</span> <span class="k">in</span> <span class="n">W</span>
+    <span class="n">accuracy_decimals</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">icon</span><span class="p">:</span> <span class="s1">&#39;mdi:flash&#39;</span>
+    <span class="n">id</span><span class="p">:</span> <span class="n">energieverbrauch_w</span>
 
-  - platform: total_daily_energy
-    name: &quot;Tagesverbrauch&quot;
-    power_id: energieverbrauch_w
+  <span class="o">-</span> <span class="n">platform</span><span class="p">:</span> <span class="n">total_daily_energy</span>
+    <span class="n">name</span><span class="p">:</span> <span class="ss">&quot;Tagesverbrauch&quot;</span>
+    <span class="n">power_id</span><span class="p">:</span> <span class="n">energieverbrauch_w</span>
 
-time:
-  - platform: sntp
-    id: my_time
-</code></pre>
+<span class="n">time</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">platform</span><span class="p">:</span> <span class="n">sntp</span>
+    <span class="n">id</span><span class="p">:</span> <span class="n">my_time</span>
+</pre></div>
+</td></tr></table>
 
-<h2 id="home-assistant">Home Assistant</h2>
+<h2 id="home-assistant">Home Assistant<a class="headerlink" href="#home-assistant" title="Permanent link">&para;</a></h2>
 <p><img alt="HomeAssistant" src="/../img/HassStromGaszaehler.png" /></p>
 <p>Dort wird über die Integration "utility_meter" der Stromverbrauch in Wh über die Zeiträume </p>
 <ul>
@@ -184,7 +203,7 @@ time:
 <li>jährlich</li>
 </ul>
 <p>aufgenommen und angezeigt. Diese Sensoren dienen auch als Datenbasis zur Darstellung des Verbrauchs in Grafana via InfluxDB</p>
-<h2 id="verbrauchswerte-in-grafana">Verbrauchswerte in Grafana</h2>
+<h2 id="verbrauchswerte-in-grafana">Verbrauchswerte in Grafana<a class="headerlink" href="#verbrauchswerte-in-grafana" title="Permanent link">&para;</a></h2>
 <p><img alt="Grafana" src="../../img/grafana-verbrauchhaus.png" /></p>
               
             </div>
