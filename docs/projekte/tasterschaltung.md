@@ -1,5 +1,6 @@
 # Eltako Stromstoßrelais durch Shelly 1PM ersetzen
-** Achtung! Arbeiten an 230V können tödlich sein. Falls kein Know-How vorhanden ist, lieber einen Elektroinstallateur beauftragen! ** 
+!!! danger "Achtung!" 
+    Arbeiten an 230V können tödlich sein. Falls kein Know-How vorhanden ist, lieber einen Elektroinstallateur beauftragen! 
 
 Durch ein Shelly 1PM wird eine Tasterschaltung für Flurlicht smart über Home Assistant steuerbar. Zusätzlich kann der Stromverbrauch gemessen werden.
 Eingesetzt wurden Shelly 1PM mit der Original Firmware ohne Aktivierung der Cloud-Anbindung. Anbindung an Home Assistant via MQTT welches nativ in der Firmware enthalten ist.

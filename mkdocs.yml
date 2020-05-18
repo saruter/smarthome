@@ -18,5 +18,36 @@ theme:
 #theme: "rtd-mklab"
 #theme: "rtd-dropdown"
 #theme: "bootstrap"
+#theme: 
+#  name: material
+# language: de
+#  font: false 
+ #   text: roboto
+ #   code: Roboto Mono
+#  icon:
+#    logo: material/home
 
+#  features: 
+  #  - instant
+#    - tabs
 
+#  extra:
+#    social:
+#      - icon: fontawesome/brands/github-alt
+#        link: https://github.com/saruter
+#      - icon: fontawesome/brands/twitter
+#        link: https://twitter.com/squidfunk
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: true
+      linenums: true
+
+  - toc:
+      permalink: true
+
+  #- pymdownx.emoji:
+  #    emoji_index: !!python/name:materialx.emoji.twemoji
+  #    emoji_generator: !!python/name:materialx.emoji.to_svg

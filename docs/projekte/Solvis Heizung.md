@@ -313,9 +313,8 @@ Nach Kontaktaufnahme mit Solvis bekam ich die Infos dir mir fehlten. Vielen Dank
 ![Remote-HKR1-Raumfühler-Modbus](../img/solvis-remote-raumtemp-modbus.png)
 - und der Modbus-Modus muss auf `senden` was dem schreibenden Zugriff entspricht umgestellt werden, falls noch nicht geschehen
 
-Hinweis
-- Die Temperatur muss ca. alle 60 Sekunden per Modbus in das Register geschrieben werden, sonst "verschwindet" die Temperatur in der Anzeige und zeigt nur noch "--"
-
+!!! info "Hinweis"
+    Die Temperatur muss ca. alle 60 Sekunden per Modbus in das Register geschrieben werden, sonst "verschwindet" die Temperatur in der Anzeige und zeigt nur noch "--"
 
 ### zyklisches setzen der Raumtemperatur in Home Assistant
 Eine Automatisierung schreibt den Sensorwert eines Zigbee Temperatursensors alle 30 Sekunden in das Modbus Register.
