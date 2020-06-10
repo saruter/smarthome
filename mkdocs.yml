@@ -12,31 +12,40 @@ repo_name: "Github"
 repo_url: "https://github.com/saruter/smarthome"
 edit_uri: ""
 
-theme: 
-  name: "readthedocs"
-  custom_dir: "rtd-custom"
+#theme: 
+#  name: "readthedocs"
+#  custom_dir: "rtd-custom"
 #theme: "rtd-mklab"
 #theme: "rtd-dropdown"
 #theme: "bootstrap"
-#theme: 
-#  name: material
-# language: de
-#  font: false 
- #   text: roboto
- #   code: Roboto Mono
-#  icon:
-#    logo: material/home
 
-#  features: 
-  #  - instant
-#    - tabs
+## material theme
+theme: 
+  name: material
+  language: de
+  font: false 
+#   text: roboto
+#   code: Roboto Mono
+  icon:
+    logo: material/home
 
-#  extra:
-#    social:
-#      - icon: fontawesome/brands/github-alt
-#        link: https://github.com/saruter
-#      - icon: fontawesome/brands/twitter
-#        link: https://twitter.com/squidfunk
+  palette:
+    primary: black
+    accent: indigo
+    #scheme: slate
+
+  features: 
+    - instant
+    - tabs
+
+  extra:
+    social:
+      - icon: fontawesome/brands/github-alt
+        link: https://github.com/saruter
+      - icon: fontawesome/brands/twitter
+        link: https://twitter.com/saruter
+      
+  
 
 # Extensions
 markdown_extensions:
@@ -48,6 +57,6 @@ markdown_extensions:
   - toc:
       permalink: true
 
-  #- pymdownx.emoji:
-  #    emoji_index: !!python/name:materialx.emoji.twemoji
-  #    emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
