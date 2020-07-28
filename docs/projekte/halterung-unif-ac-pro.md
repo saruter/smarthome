@@ -8,3 +8,8 @@ Benötigtes Material:
 
 Die Kabelsammelhalter rasten in der geöffneten Position genau in den runden Rasterring auf der Rückseite des APs ein. Dadurch kann er nun recht stabil in die Kabelsammelhalter gesteckt werden
 
+# Fotos
+
+![Unifi Halterung1](../img/unifi-halterung1.jpg)
+
+![Unifi Halterung2](../img/unifi-halterung2.jpg)
