@@ -5,7 +5,7 @@ Nachfolgend ein paar Anleitungen und Anregungen für die Realisierung von smarte
 Bisher vorhanden:
 
 * verschiedene ESP8266 NodeMCUs zum Auslesen von Gaszähler und Stromzähler
-* Auslesen einer [Solvis Heizung](projekte/Solvis Heizung.md) via Modbus TCP
+* Auslesen einer [Solvis Heizung](projekte/solvis-heizung.md) via Modbus TCP
 * Feinstaubsensor auf ESP8266-Basis von [Luftdaten.info](https://www.luftdaten.info)
 * Austausch von mehreren Eltako Stromstoßrelais durch ein [Shelly 1PM](https://shelly.cloud) zur smarten Flurlichtschaltung
 * DIY Halterung für Unifi APs
