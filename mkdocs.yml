@@ -28,9 +28,11 @@ theme:
 #   code: Roboto Mono
   icon:
     logo: material/home
+    favicon: img/favicon.png
 
+  favicon: img/favicon.png
   palette:
-    primary: black
+    primary: blue
     accent: indigo
     #scheme: slate
 
@@ -38,13 +40,12 @@ theme:
     - instant
     - tabs
 
-  extra:
-    social:
-      - icon: fontawesome/brands/github-alt
-        link: https://github.com/saruter
-      - icon: fontawesome/brands/twitter
-        link: https://twitter.com/saruter
-      
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/saruter
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/saruter
   
 
 # Extensions
