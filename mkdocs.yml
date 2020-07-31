@@ -34,7 +34,7 @@ theme:
   palette:
     primary: blue
     accent: indigo
-    #scheme: slate
+    scheme: slate
 
   features: 
     - instant
