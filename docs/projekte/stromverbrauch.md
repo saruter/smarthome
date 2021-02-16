@@ -30,7 +30,8 @@ Gut zu wissen: mit einer Handykamera (meist die Selfie-Kamera) kann man meist di
     accuracy_decimals: 0
     icon: 'mdi:flash'
     id: energieverbrauch_w
-    
+
+  # Dieser Sensor errechnet die Wh aus den aktuellen Verbrauchswerten in W  
   - platform: total_daily_energy
     name: "Tagesverbrauch"
     power_id: energieverbrauch_w
@@ -44,14 +45,33 @@ time:
 
 ![HomeAssistant](/../img/HassStromGaszaehler.png)
 
-Dort wird über die Integration "utility_meter" der Stromverbrauch in Wh über die Zeiträume 
+Dort wird über die Integration "utility_meter" des Sensors "sensor.tagesverbrauch" (siehe ESPHome Sensor vom Typ "total_daily_energy") der Stromverbrauch in Wh über die Zeiträume 
 
 * täglich
 * wöchentlich
 * monatlich
 * jährlich
 
-aufgenommen und angezeigt. Diese Sensoren dienen auch als Datenbasis zur Darstellung des Verbrauchs in Grafana via InfluxDB
+aufgenommen und angezeigt. Diese Sensoren dienen auch als Datenbasis zur Darstellung des Verbrauchs in Grafana via InfluxDB.
+
+## Auszug Home Assistant Konfiguration
+```
+sensor:
+
+utility_meter:
+  stromverbrauch_tag:
+    source: sensor.tagesverbrauch
+    cycle: daily
+  stromverbrauch_woche:  
+    source: sensor.tagesverbrauch
+    cycle: weekly
+  stromverbrauch_monat:
+    source: sensor.tagesverbrauch
+    cycle: monthly
+  stromverbrauch_jahr:
+    source: sensor.tagesverbrauch
+    cycle: yearly
+```
 
 ## Verbrauchswerte in Grafana
 
