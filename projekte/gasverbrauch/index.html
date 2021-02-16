@@ -303,6 +303,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#auszug-home-assistant-yaml" class="md-nav__link">
+    Auszug Home Assistant YAML
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -410,6 +417,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#auszug-home-assistant-yaml" class="md-nav__link">
+    Auszug Home Assistant YAML
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -467,6 +481,38 @@
     <span class="nt">unit_of_measurement</span><span class="o">:</span> <span class="s2">&quot;m³&quot;</span>
     <span class="nt">accuracy_decimals</span><span class="o">:</span> <span class="nt">2</span>
     <span class="nt">icon</span><span class="o">:</span> <span class="s1">&#39;mdi:fire&#39;</span>
+</code></pre></div>
+</td></tr></table>
+<h2 id="auszug-home-assistant-yaml">Auszug Home Assistant YAML<a class="headerlink" href="#auszug-home-assistant-yaml" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">sensor</span><span class="o">:</span>
+
+<span class="n">utility_meter</span><span class="o">:</span>
+  <span class="n">gasverbrauch_daily</span><span class="o">:</span>
+    <span class="n">source</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">gasverbrauch</span>
+    <span class="n">cycle</span><span class="o">:</span> <span class="n">daily</span>
+  <span class="n">gasverbrauch_weekly</span><span class="o">:</span>  
+    <span class="n">source</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">gasverbrauch</span>
+    <span class="n">cycle</span><span class="o">:</span> <span class="n">weekly</span>
+  <span class="n">gasverbrauch_monthly</span><span class="o">:</span>
+    <span class="n">source</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">gasverbrauch</span>
+    <span class="n">cycle</span><span class="o">:</span> <span class="n">monthly</span>
+  <span class="n">gasverbrauch_yearly</span><span class="o">:</span>
+    <span class="n">source</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">gasverbrauch</span>
+    <span class="n">cycle</span><span class="o">:</span> <span class="n">yearly</span>
 </code></pre></div>
 </td></tr></table>
 <h1 id="auswertung-in-grafana">Auswertung in Grafana<a class="headerlink" href="#auswertung-in-grafana" title="Permanent link">&para;</a></h1>
