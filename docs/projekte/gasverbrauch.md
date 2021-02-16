@@ -33,6 +33,24 @@ Ein Standardgaszähler hat auf den letzen Ziffern einen Magneten verbaut, der be
     icon: 'mdi:fire'
 ```
 
+## Auszug Home Assistant YAML
+```
+sensor:
+
+utility_meter:
+  gasverbrauch_daily:
+    source: sensor.gasverbrauch
+    cycle: daily
+  gasverbrauch_weekly:  
+    source: sensor.gasverbrauch
+    cycle: weekly
+  gasverbrauch_monthly:
+    source: sensor.gasverbrauch
+    cycle: monthly
+  gasverbrauch_yearly:
+    source: sensor.gasverbrauch
+    cycle: yearly
+```
 # Auswertung in Grafana
 Zur besseren Darstellung der Verbrauchsdaten bietet sich Grafana an. Die Daten von Home Assistant werden hier in eine InfluxDB geschrieben und über Grafana visualisiert.
 
