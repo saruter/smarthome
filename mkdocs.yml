@@ -5,7 +5,7 @@ site_name: "Smarthome Doku"
 site_url: "https://smarthome.ms1.de"
 site_description: "Doku zu Home Assistant und sonstigen smarten Basteleien"
 site_author: "saruter"
-copyright: "Copyright 2019-2020 - saruter. Creative Commons Attribution 4.0."
+copyright: "Copyright 2019-2021 - saruter. Creative Commons Attribution 4.0."
 
 # Repository
 repo_name: "Github"
