@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <html lang="de" class="no-js">
   <head>
@@ -9,14 +11,13 @@
         <meta name="description" content="Doku zu Home Assistant und sonstigen smarten Basteleien">
       
       
+        <link rel="canonical" href="https://smarthome.ms1.de/projekte/gasverbrauch/">
+      
       
         <meta name="author" content="saruter">
       
-      
-        <link rel="canonical" href="https://smarthome.ms1.de/projekte/gasverbrauch/">
-      
       <link rel="shortcut icon" href="../../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.0">
     
     
       
@@ -24,15 +25,14 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.18ac144a.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.616af814.min.css">
+      
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
         
-          
-          
-          <meta name="theme-color" content="#2094f3">
-        
+        <meta name="theme-color" content="#2196f3">
       
     
     
@@ -51,12 +51,8 @@
     
     
     
-    
-    
     <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo">
-      
   
-    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -72,9 +68,7 @@
       
     </div>
     
-      
-
-<header class="md-header" data-md-component="header">
+      <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="https://smarthome.ms1.de" title="Smarthome Doku" class="md-header-nav__button md-logo" aria-label="Smarthome Doku">
       
@@ -86,20 +80,18 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
-      <div class="md-header-nav__ellipsis">
-        <div class="md-header-nav__topic">
-          <span class="md-ellipsis">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
             Smarthome Doku
           </span>
-        </div>
-        <div class="md-header-nav__topic">
-          <span class="md-ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
             
               Gaszähler mit ESP8266 und Home Assistant auslesen
             
           </span>
         </div>
-      </div>
+      
     </div>
     
       <label class="md-header-nav__button md-icon" for="__search">
@@ -110,7 +102,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -151,23 +143,54 @@
     
     <div class="md-container" data-md-component="container">
       
+        
       
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home Assistant, ESP8266 und mehr...
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../feinstaubsensor/" class="md-tabs__link md-tabs__link--active">
+          Projekte
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
         
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
             
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    
-
-
-
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="https://smarthome.ms1.de" title="Smarthome Doku" class="md-nav__button md-logo" aria-label="Smarthome Doku">
       
@@ -197,15 +220,12 @@
       
       
 
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        Home Assistant, ESP8266 und mehr...
-      </a>
-    </li>
-  
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home Assistant, ESP8266 und mehr..." class="md-nav__link">
+      Home Assistant, ESP8266 und mehr...
+    </a>
+  </li>
 
     
       
@@ -213,63 +233,66 @@
       
 
   
-  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-  
-  
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
-      
-      <label class="md-nav__link" for="nav-2">
+    <label class="md-nav__link" for="nav-2">
+      Projekte
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Projekte" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Projekte
-        <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="Projekte" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
-          <span class="md-nav__icon md-icon"></span>
-          Projekte
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
           
           
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../feinstaubsensor/" class="md-nav__link">
-        Feinstaubsensor mit ESP8266 und Home Assistant
-      </a>
-    </li>
+          
+
+
+  <li class="md-nav__item">
+    <a href="../feinstaubsensor/" title="Feinstaubsensor mit ESP8266 und Home Assistant" class="md-nav__link">
+      Feinstaubsensor mit ESP8266 und Home Assistant
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
-          
-            
-  
-  
+
+  <li class="md-nav__item md-nav__item--active">
     
-  
-  
-    <li class="md-nav__item md-nav__item--active">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Gaszähler mit ESP8266 und Home Assistant auslesen
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
         Gaszähler mit ESP8266 und Home Assistant auslesen
-      </a>
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Gaszähler mit ESP8266 und Home Assistant auslesen" class="md-nav__link md-nav__link--active">
+      Gaszähler mit ESP8266 und Home Assistant auslesen
+    </a>
+    
       
-        
 <nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
   
   
@@ -277,7 +300,9 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
       Inhaltsverzeichnis
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -313,63 +338,61 @@
     </ul>
   
 </nav>
-      
-    </li>
-  
+    
+  </li>
 
+        
           
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../halterung-unif-ac-pro/" class="md-nav__link">
-        DIY Halterung für Unifi AC-Pro Accesspoint
-      </a>
-    </li>
-  
+          
+          
 
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../solvis-heizung/" class="md-nav__link">
-        Solvis Heizung via Modbus auslesen und steuern
-      </a>
-    </li>
-  
 
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../stromverbrauch/" class="md-nav__link">
-        (digitalen) Stromzähler mit ESP8266 auslesen
-      </a>
-    </li>
-  
+  <li class="md-nav__item">
+    <a href="../halterung-unif-ac-pro/" title="DIY Halterung für Unifi AC-Pro Accesspoint" class="md-nav__link">
+      DIY Halterung für Unifi AC-Pro Accesspoint
+    </a>
+  </li>
 
+        
           
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tasterschaltung/" class="md-nav__link">
-        Eltako Stromstoßrelais durch Shelly 1PM ersetzen
-      </a>
-    </li>
-  
+          
+          
 
+
+  <li class="md-nav__item">
+    <a href="../solvis-heizung/" title="Solvis Heizung via Modbus auslesen und steuern" class="md-nav__link">
+      Solvis Heizung via Modbus auslesen und steuern
+    </a>
+  </li>
+
+        
           
-        </ul>
-      </nav>
-    </li>
-  
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../stromverbrauch/" title="(digitalen) Stromzähler mit ESP8266 auslesen" class="md-nav__link">
+      (digitalen) Stromzähler mit ESP8266 auslesen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tasterschaltung/" title="Eltako Stromstoßrelais durch Shelly 1PM ersetzen" class="md-nav__link">
+      Eltako Stromstoßrelais durch Shelly 1PM ersetzen
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
 
     
   </ul>
@@ -379,8 +402,7 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -391,7 +413,9 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
       Inhaltsverzeichnis
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -437,6 +461,9 @@
               
                 
                 
+                  
+                
+                
                 <h1 id="gaszahler-mit-esp8266-und-home-assistant-auslesen">Gaszähler mit ESP8266 und Home Assistant auslesen<a class="headerlink" href="#gaszahler-mit-esp8266-und-home-assistant-auslesen" title="Permanent link">&para;</a></h1>
 <p>Ein Standardgaszähler hat auf den letzen Ziffern einen Magneten verbaut, der bei jedem Durchlauf mit einem Reed-Kontakt ausgelesen werden kann. Ein Reed-Kontakt (Magnetschalter) erzeugt bei jedem Durchlauf einen Impuls. Diese Impulse werden per ESPhome gezählt und in die Kubikmeter umgerechnet. 1 Impuls entspricht 0,01 m³.</p>
 <p><img alt="Gaszähler" src="../../img/gaszaehler.jpg" /></p>
@@ -454,51 +481,52 @@
 <li><a href="https://esphome.io">ESPHome</a></li>
 </ul>
 <h2 id="auszug-esphome-yaml">Auszug ESPhome YAML<a class="headerlink" href="#auszug-esphome-yaml" title="Permanent link">&para;</a></h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>  <span class="nt">-</span> <span class="nt">platform</span><span class="o">:</span> <span class="nt">pulse_counter</span>
-    <span class="nt">pin</span><span class="o">:</span> 
-      <span class="nt">number</span><span class="o">:</span> <span class="nt">GPIO5</span>
-      <span class="nt">mode</span><span class="o">:</span> <span class="nt">INPUT_PULLUP</span>
-    <span class="nt">name</span><span class="o">:</span> <span class="s2">&quot;Gasverbrauch&quot;</span>
-    <span class="nt">update_interval</span> <span class="o">:</span> <span class="nt">60s</span>
-    <span class="nt">filters</span><span class="o">:</span>
-      <span class="nt">-</span> <span class="nt">lambda</span><span class="o">:</span> <span class="o">|</span><span class="nt">-</span>
-          <span class="nt">static</span> <span class="nt">float</span> <span class="nt">total_value</span> <span class="o">=</span> <span class="nt">0</span><span class="p">.</span><span class="nc">0</span><span class="o">;</span>
-          <span class="nt">total_value</span> <span class="o">+=</span> <span class="nt">x</span> <span class="o">*</span> <span class="nt">0</span><span class="p">.</span><span class="nc">01</span><span class="o">;</span>
-          <span class="nt">return</span> <span class="nt">total_value</span><span class="o">;</span>
-    <span class="nt">unit_of_measurement</span><span class="o">:</span> <span class="s2">&quot;m³&quot;</span>
-    <span class="nt">accuracy_decimals</span><span class="o">:</span> <span class="nt">2</span>
-    <span class="nt">icon</span><span class="o">:</span> <span class="s1">&#39;mdi:fire&#39;</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">  - platform: pulse_counter</span>
+<span class="err">    pin: </span>
+<span class="err">      number: GPIO5</span>
+<span class="err">      mode: INPUT_PULLUP</span>
+<span class="err">    name: &quot;Gasverbrauch&quot;</span>
+<span class="err">    update_interval : 60s</span>
+<span class="err">    filters:</span>
+<span class="err">      - lambda: |-</span>
+<span class="err">          static float total_value = 0.0;</span>
+<span class="err">          total_value += x * 0.01;</span>
+<span class="err">          return total_value;</span>
+<span class="err">    unit_of_measurement: &quot;m³&quot;</span>
+<span class="err">    accuracy_decimals: 2</span>
+<span class="err">    icon: &#39;mdi:fire&#39;</span>
 </code></pre></div>
 </td></tr></table>
+
 <h2 id="auszug-home-assistant-yaml">Auszug Home Assistant YAML<a class="headerlink" href="#auszug-home-assistant-yaml" title="Permanent link">&para;</a></h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">sensor</span><span class="o">:</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">sensor</span><span class="o">:</span>
 
 <span class="n">utility_meter</span><span class="o">:</span>
   <span class="n">gasverbrauch_daily</span><span class="o">:</span>
@@ -515,6 +543,7 @@
     <span class="n">cycle</span><span class="o">:</span> <span class="n">yearly</span>
 </code></pre></div>
 </td></tr></table>
+
 <h1 id="auswertung-in-grafana">Auswertung in Grafana<a class="headerlink" href="#auswertung-in-grafana" title="Permanent link">&para;</a></h1>
 <p>Zur besseren Darstellung der Verbrauchsdaten bietet sich Grafana an. Die Daten von Home Assistant werden hier in eine InfluxDB geschrieben und über Grafana visualisiert.</p>
 <p><img alt="HomeAssistant Gas" src="../../img/grafana-verbrauchhaus.png" /></p>
@@ -536,7 +565,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../feinstaubsensor/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../feinstaubsensor/" title="Feinstaubsensor mit ESP8266 und Home Assistant" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -551,7 +580,7 @@
           </a>
         
         
-          <a href="../halterung-unif-ac-pro/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../halterung-unif-ac-pro/" title="DIY Halterung für Unifi AC-Pro Accesspoint" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
@@ -573,7 +602,7 @@
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright 2019-2020 - saruter. Creative Commons Attribution 4.0.
+            Copyright 2019-2021 - saruter. Creative Commons Attribution 4.0.
           </div>
         
         Made with
@@ -610,15 +639,15 @@
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "In Zwischenablage kopieren", "clipboard.copied": "In Zwischenablage kopiert", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.placeholder": "Suchbegriff eingeben", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.term.missing": "Es fehlt"}</script>
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "In Zwischenablage kopieren", "clipboard.copied": "In Zwischenablage kopiert", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Suchbegriff eingeben", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse"}</script>
       
       <script>
         app = initialize({
           base: "../..",
-          features: ['instant', 'tabs'],
+          features: ["instant", "tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
