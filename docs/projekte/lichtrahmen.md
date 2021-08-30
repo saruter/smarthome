@@ -92,6 +92,7 @@ Nun gilt es den richtigen Abstand zur Wand zu bestimmen, so dass ein schön diff
 In die zwei Löcher des oberen Alu-Profiles wird nun ein Nylon-Faden (1 mm) befestigt. So kann der Rahmen wie ein Bild aufgehängt werden.
 
 Resultat:
+
 ![Bau5](../img/lichtrahmen_wand-bunt.jpg)
 
 ![Bau6](../img/lichtrahmen_wand-ww.jpg)
