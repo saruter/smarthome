@@ -1,22 +1,24 @@
 # DIY Lichtrahmen mit WLED und Home Assistant
-![Lichtrahmen](../img/lichtrahmen_wand-ww.jpg){: style="width:300px"}
-![Lichtrahmen](../img/lichtrahmen.gif){ align=right }
 
-Inspiriert wurde das von [folgender Seite](https://style.oversubstance.net/2020/08/create-a-hue-compatible-diy-led-light-sculpture/) bzw. die [Reflektion-Lichtskulpturen](https://reflektion.shop/).
+![Lichtrahmen2](../img/lichtrahmen.gif)
+
+Inspiriert wurde das von [folgender Seite](https://style.oversubstance.net/2020/08/create-a-hue-compatible-diy-led-light-sculpture/) bzw. die [Reflektion-Lichtskulpturen](https://reflektion.shop/). 
 Der Lichtrahmen besteht aus schwarz eloxierten Aluprofilen inklusive Diffusor und ist mit Abstand zur Wand montiert, so dass keine einzelnen LEDs mehr sichtbar sind. Die Aufhängung erfolgt mittels einem fast unsichtbaren Nylon-Faden wie bei einem Bilderrahmen.
 
+![Lichtrahmen](../img/lichtrahmen_wand-ww.jpg){: style="width:300px"}
+
 ## Benötigtes Werkzeug
-- Gehrungssäge für Metall(je präziser desto besser)
-- evtl. kleine Metallsäge
+- Gehrungssäge für Metall (je präziser desto besser)
+- evtl. kleine Metallsäge für Feinarbeiten (Aussparung LED-Stromzuführung)
 - Lötkölben
-- Feilen/Schleifpapier
+- Feilen/Schleifpapier zum Entgraten
 - 3D-Drucker
 - Bohrmaschine/Akkuschrauber mit 2 mm Bohrer
 
 ## Benötigtes Material  
 - Alu-Profile inkl. Diffusor-Abdeckung ([z.B.diese hier](https://meine-leds.com/Aufputz-Flach-12mm-Serie-ECO))
-- L-Verbinder für die Alu-Profile: Hier habe ich [diese hier](https://www.thingiverse.com/thing:4570908) verwendet, und im Cura-Slicer auf die Maße 21x21x4mm skaliert, gedruck mit PLA
-- Acryl-Rundstäbe als Abstandshalter zur Wand
+- L-Verbinder für die Alu-Profile: Hier habe ich [diese hier](https://www.thingiverse.com/thing:4570908) verwendet, und im Cura-Slicer auf die Maße 22x22x4mm skaliert, gedruck mit PLA
+- Acryl-Rundstäbe als Abstandshalter zur Wand (hier 5 mm, geht auch dünner)
 - Nylon-Schnur (Drachenschnur) für die Aufhängung wie ein Bilderrahmen
 - LED-Streifen (hier ein RGBWW-Streifen mit 60 LEDs/m auf Basis mit SK6812 Modulen für die individuelle Steuerung und einem separaten Warmweis-Kanal, Betriebsspannung 5V, Länge 5m) (AliExpress oder Amazon)
 - 5V/10A Netzteil (3-4 A reichen für die Anzahl LEDs auch aus)
@@ -32,11 +34,11 @@ Der Lichtrahmen besteht aus schwarz eloxierten Aluprofilen inklusive Diffusor un
 ## Bau des Lichtrahmens
 
 ### Aluprofile zuschneiden
-Sägt sehr sorgfältig. Fixiert am besten die Alu-Profile mit einer Schraubzwinge oder ähnlichem. Beachtet, dass das Alu sehr empfindlich ist und Krazter direkt sichtbar sind. Am besten immer mit Stoff Kontaktflächen schützen. Prüft lieber einmal mehr ob ihr auch den Winkel in der richtigen Richtung sägt...
+Sorgfältig und präzise sägen! Am besten die Alu-Profile mit einer Schraubzwinge oder ähnlichem fixieren. Beachtet, dass das Alu sehr empfindlich ist und Kratzer direkt sichtbar sind. Am besten immer mit Stoff Kontaktflächen schützen. Mehrmals prüfen ob man auch den Winkel in die richtige Richtung sägt..
 ![Bau1](../img/lichtrahmen-gehrung.jpg)
 
 ### Aluprofile zusammensetzen
-Sind die Aluprofile zugesägt und bilden eine Rahmen, muss dieser zusammengesteckt werden. Ich druckte dazu [diese hier](https://www.thingiverse.com/thing:4570908)  aus und skalierte sie für das Aluprofil mit folgenden Werten: 21x21x4 (LxBxH). Hier am besten ein paar Probedrucke anfertigen und schauen ob diese schön bündig passen. Unter dem Verbinder müssen noch die Kabel für die Verbindung der einzelnen LED-Streifen hindurchpassen.
+Sind die Aluprofile zugesägt und bilden eine Rahmen, muss dieser zusammengesteckt werden. Ich druckte dazu [diese hier](https://www.thingiverse.com/thing:4570908)  aus und skalierte sie für das Aluprofil mit folgenden Werten: 22x22x4 mm (LxBxH). Hier am besten ein paar Probedrucke anfertigen und schauen ob diese schön bündig passen. Unter dem Verbinder müssen noch die Kabel für die Verbindung der einzelnen LED-Streifen hindurchpassen.
 ![Bau2](../img/lichtrahmen_bauteile.jpg)
 
 ### Löcher für Aufhängung bohren
@@ -60,12 +62,12 @@ Anschließend werden die einzelnen LED-Streifen in die einzelnen Alu-Profile ein
 Die Streifen auf der kurzen und langen Seite sollten jeweils die gleiche Anzahl von LEDs haben um eine gleichmäßige Ausleuchtung zu erhalten. Anschließend die LED-Streifen der einzelnen Seiten über Eck miteinander verlöten mit kurzen Kabeln/Litzen. Die Kabel werden unter die 3D-gedruckten L-Verbinder verlegt. 
 
 !!! tip
-    Tip für nicht-Lötspezialisten: opfert lieber eine LED um dafür einen kompletten Lötpunkt zu erhalten. Schneidet man die LEDs genau in der Mitte der Lötpunkte ist dies schon sehr knapp für eine weitere Anbindung. 
+    Tip für nicht-Lötspezialisten: opfert beim zuschneiden der LED-Streifen lieber eine LED um dafür einen kompletten Lötpunkt an der Schnittkante zu erhalten. Schneidet man die LEDs genau in der Mitte der Lötpunkte/Schnittkante ist dies schon sehr knapp für eine weitere Anbindung. 
     
-    Weiterer Tip: Kabel/Litze vorher mit Lötzinn benetzen und anschließen auch erst die Lötpunkte mit Lötzinn versehen damit es einen schönen Tropfen auf dem Lötpunkt ergibt. Dann ist das zusammenlöten der Kabel auf Lötpunkt sehr einfach und sauber.
+    Weiterer Tip: Kabel/Litze vorher mit Lötzinn benetzen und anschließend auch erst die Lötpunkte mit Lötzinn versehen damit es einen schönen Tropfen auf dem Lötpunkt ergibt. Dann ist das zusammenlöten der Kabel auf Lötpunkt sehr einfach und sauber.
 
 !!! tip
-    Sollten durch nicht 100%ig passende 45°-Winkel beim Zusammenstecken der Ecken die Profile nicht ganz zusammenpassen und die darunter liegenden Kabel durchscheinen, diese am besten mit schwarzem Isolierband umwickenln um dies zu kaschieren
+    Sollten durch nicht 100%ig saubere und glatte 45°-Winkel beim Zusammenstecken der Ecken die Profile nicht ganz bündig passen und die darunter liegenden Kabel durch einen Spalt sichtbar sein, diese am besten mit schwarzem Isolierband umwickenln um dies zu kaschieren.
 
 Anschließend ist der Lichtrahmen dann erstmal fertig zusammengebaut und kann auch nicht mehr ohne Lösen der Lötpunkte auseinandergenommen werden.
 ![Bau3](../img/lichtrahmen_led-loeten.jpg)
@@ -102,7 +104,10 @@ Resultat:
     Die einzelnen Seiten des Rahmens als Segmente anlegen und den Mirror-Effect aktivieren. Das ergibt sehr schöne symmetrische Effekte.
 
 ## Einbindung in Home Assistant
+
 In der Regel wird die WLED-Instanz, sofern in gleichen Netzwerk,  automatisch von Home Assistant erkannt und kann dort leicht integriert werden. Anschließend stehen alle Möglichkeiten offen um darüber den Lichtrahmen zu steuern, Automatisierungen zu erstellen und Einstellungen zu ändern.
+
+![HASS](../img/lichtrahmen-homeassistant.png)
 
 ## Erkenntnisse
 - Sauber geschnittene 45° Winkel sind nur mit einer sehr guten Gehrungssäge möglich
