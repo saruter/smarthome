@@ -70,6 +70,7 @@ Die Streifen auf der kurzen und langen Seite sollten jeweils die gleiche Anzahl 
     Sollten durch nicht 100%ig saubere und glatte 45°-Winkel beim Zusammenstecken der Ecken die Profile nicht ganz bündig passen und die darunter liegenden Kabel durch einen Spalt sichtbar sein, diese am besten mit schwarzem Isolierband umwickenln um dies zu kaschieren.
 
 Anschließend ist der Lichtrahmen dann erstmal fertig zusammengebaut und kann auch nicht mehr ohne Lösen der Lötpunkte auseinandergenommen werden.
+
 ![Bau3](../img/lichtrahmen_led-loeten.jpg)
 ### Diffusor einsetzen
 Die Diffusorprofile einfach auf die richtige Länge zuschneiden und einklipsen.
