@@ -64,7 +64,8 @@ Die Streifen auf der kurzen und langen Seite sollten jeweils die gleiche Anzahl 
 !!! tip
     Tip für nicht-Lötspezialisten: opfert beim zuschneiden der LED-Streifen lieber eine LED um dafür einen kompletten Lötpunkt an der Schnittkante zu erhalten. Schneidet man die LEDs genau in der Mitte der Lötpunkte/Schnittkante ist dies schon sehr knapp für eine weitere Anbindung. 
     
-    Weiterer Tip: Kabel/Litze vorher mit Lötzinn benetzen und anschließend auch erst die Lötpunkte mit Lötzinn versehen damit es einen schönen Tropfen auf dem Lötpunkt ergibt. Dann ist das zusammenlöten der Kabel auf Lötpunkt sehr einfach und sauber.
+!!! tip
+    Kabel/Litze vorher mit Lötzinn benetzen und anschließend auch erst die Lötpunkte mit Lötzinn versehen damit es einen schönen Tropfen auf dem Lötpunkt ergibt. Dann ist das zusammenlöten der Kabel auf Lötpunkt sehr einfach und sauber.
 
 !!! tip
     Sollten durch nicht 100%ig saubere und glatte 45°-Winkel beim Zusammenstecken der Ecken die Profile nicht ganz bündig passen und die darunter liegenden Kabel durch einen Spalt sichtbar sein, diese am besten mit schwarzem Isolierband umwickenln um dies zu kaschieren.
