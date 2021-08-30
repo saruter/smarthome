@@ -1,0 +1,878 @@
+
+
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Doku zu Home Assistant und sonstigen smarten Basteleien">
+      
+      
+        <link rel="canonical" href="https://smarthome.ms1.de/projekte/lichtrahmen/">
+      
+      
+        <meta name="author" content="saruter">
+      
+      <link rel="shortcut icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.0">
+    
+    
+      
+        <title>DIY Lichtrahmen mit WLED und Home Assistant - Smarthome Doku</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.18ac144a.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.616af814.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#diy-lichtrahmen-mit-wled-und-home-assistant" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://smarthome.ms1.de" title="Smarthome Doku" class="md-header-nav__button md-logo" aria-label="Smarthome Doku">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Smarthome Doku
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              DIY Lichtrahmen mit WLED und Home Assistant
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/saruter/smarthome" title="Quellcode" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home Assistant, ESP8266 und mehr...
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../feinstaubsensor/" class="md-tabs__link md-tabs__link--active">
+          Projekte
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://smarthome.ms1.de" title="Smarthome Doku" class="md-nav__button md-logo" aria-label="Smarthome Doku">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg>
+
+    </a>
+    Smarthome Doku
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/saruter/smarthome" title="Quellcode" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home Assistant, ESP8266 und mehr..." class="md-nav__link">
+      Home Assistant, ESP8266 und mehr...
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Projekte
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Projekte" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Projekte
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../feinstaubsensor/" title="Feinstaubsensor mit ESP8266 und Home Assistant" class="md-nav__link">
+      Feinstaubsensor mit ESP8266 und Home Assistant
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gasverbrauch/" title="Gaszähler mit ESP8266 und Home Assistant auslesen" class="md-nav__link">
+      Gaszähler mit ESP8266 und Home Assistant auslesen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../halterung-unif-ac-pro/" title="DIY Halterung für Unifi AC-Pro Accesspoint" class="md-nav__link">
+      DIY Halterung für Unifi AC-Pro Accesspoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        DIY Lichtrahmen mit WLED und Home Assistant
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="DIY Lichtrahmen mit WLED und Home Assistant" class="md-nav__link md-nav__link--active">
+      DIY Lichtrahmen mit WLED und Home Assistant
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#benotigtes-werkzeug" class="md-nav__link">
+    Benötigtes Werkzeug
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benotigtes-material" class="md-nav__link">
+    Benötigtes Material
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hinweise-bevor-es-losgeht" class="md-nav__link">
+    Hinweise bevor es losgeht
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bau-des-lichtrahmens" class="md-nav__link">
+    Bau des Lichtrahmens
+  </a>
+  
+    <nav class="md-nav" aria-label="Bau des Lichtrahmens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aluprofile-zuschneiden" class="md-nav__link">
+    Aluprofile zuschneiden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aluprofile-zusammensetzen" class="md-nav__link">
+    Aluprofile zusammensetzen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locher-fur-aufhangung-bohren" class="md-nav__link">
+    Löcher für Aufhängung bohren
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aussparung-fur-zuleitung-led-streifen" class="md-nav__link">
+    Aussparung für Zuleitung LED-Streifen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#led-streifen-zuschneiden" class="md-nav__link">
+    LED-Streifen zuschneiden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diffusor-einsetzen" class="md-nav__link">
+    Diffusor einsetzen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verkabelung" class="md-nav__link">
+    Verkabelung
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstand-zur-wand-bestimmen-und-abstandshalter-zuschneiden" class="md-nav__link">
+    Abstand zur Wand bestimmen und Abstandshalter zuschneiden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aufhangung" class="md-nav__link">
+    Aufhängung
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#konfiguration-in-wled" class="md-nav__link">
+    Konfiguration in WLED
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#einbindung-in-home-assistant" class="md-nav__link">
+    Einbindung in Home Assistant
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erkenntnisse" class="md-nav__link">
+    Erkenntnisse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offener-punkt" class="md-nav__link">
+    Offener Punkt
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../solvis-heizung/" title="Solvis Heizung via Modbus auslesen und steuern" class="md-nav__link">
+      Solvis Heizung via Modbus auslesen und steuern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../stromverbrauch/" title="(digitalen) Stromzähler mit ESP8266 auslesen" class="md-nav__link">
+      (digitalen) Stromzähler mit ESP8266 auslesen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tasterschaltung/" title="Eltako Stromstoßrelais durch Shelly 1PM ersetzen" class="md-nav__link">
+      Eltako Stromstoßrelais durch Shelly 1PM ersetzen
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#benotigtes-werkzeug" class="md-nav__link">
+    Benötigtes Werkzeug
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benotigtes-material" class="md-nav__link">
+    Benötigtes Material
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hinweise-bevor-es-losgeht" class="md-nav__link">
+    Hinweise bevor es losgeht
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bau-des-lichtrahmens" class="md-nav__link">
+    Bau des Lichtrahmens
+  </a>
+  
+    <nav class="md-nav" aria-label="Bau des Lichtrahmens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aluprofile-zuschneiden" class="md-nav__link">
+    Aluprofile zuschneiden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aluprofile-zusammensetzen" class="md-nav__link">
+    Aluprofile zusammensetzen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locher-fur-aufhangung-bohren" class="md-nav__link">
+    Löcher für Aufhängung bohren
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aussparung-fur-zuleitung-led-streifen" class="md-nav__link">
+    Aussparung für Zuleitung LED-Streifen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#led-streifen-zuschneiden" class="md-nav__link">
+    LED-Streifen zuschneiden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diffusor-einsetzen" class="md-nav__link">
+    Diffusor einsetzen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verkabelung" class="md-nav__link">
+    Verkabelung
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstand-zur-wand-bestimmen-und-abstandshalter-zuschneiden" class="md-nav__link">
+    Abstand zur Wand bestimmen und Abstandshalter zuschneiden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aufhangung" class="md-nav__link">
+    Aufhängung
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#konfiguration-in-wled" class="md-nav__link">
+    Konfiguration in WLED
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#einbindung-in-home-assistant" class="md-nav__link">
+    Einbindung in Home Assistant
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erkenntnisse" class="md-nav__link">
+    Erkenntnisse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offener-punkt" class="md-nav__link">
+    Offener Punkt
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="diy-lichtrahmen-mit-wled-und-home-assistant">DIY Lichtrahmen mit WLED und Home Assistant<a class="headerlink" href="#diy-lichtrahmen-mit-wled-und-home-assistant" title="Permanent link">&para;</a></h1>
+<p><img alt="Lichtrahmen2" src="../../img/lichtrahmen.gif" /></p>
+<p>Inspiriert wurde das von <a href="https://style.oversubstance.net/2020/08/create-a-hue-compatible-diy-led-light-sculpture/">folgender Seite</a> bzw. die <a href="https://reflektion.shop/">Reflektion-Lichtskulpturen</a>. 
+Der Lichtrahmen besteht aus schwarz eloxierten Aluprofilen inklusive Diffusor und ist mit Abstand zur Wand montiert, so dass keine einzelnen LEDs mehr sichtbar sind. Die Aufhängung erfolgt mittels einem fast unsichtbaren Nylon-Faden wie bei einem Bilderrahmen.</p>
+<p><img alt="Lichtrahmen" src="../../img/lichtrahmen_wand-ww.jpg" style="width:300px" /></p>
+<h2 id="benotigtes-werkzeug">Benötigtes Werkzeug<a class="headerlink" href="#benotigtes-werkzeug" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Gehrungssäge für Metall (je präziser desto besser)</li>
+<li>evtl. kleine Metallsäge für Feinarbeiten (Aussparung LED-Stromzuführung)</li>
+<li>Lötkölben</li>
+<li>Feilen/Schleifpapier zum Entgraten</li>
+<li>3D-Drucker</li>
+<li>Bohrmaschine/Akkuschrauber mit 2 mm Bohrer</li>
+</ul>
+<h2 id="benotigtes-material">Benötigtes Material<a class="headerlink" href="#benotigtes-material" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Alu-Profile inkl. Diffusor-Abdeckung (<a href="https://meine-leds.com/Aufputz-Flach-12mm-Serie-ECO">z.B.diese hier</a>)</li>
+<li>L-Verbinder für die Alu-Profile: Hier habe ich <a href="https://www.thingiverse.com/thing:4570908">diese hier</a> verwendet, und im Cura-Slicer auf die Maße 22x22x4mm skaliert, gedruck mit PLA</li>
+<li>Acryl-Rundstäbe als Abstandshalter zur Wand (hier 5 mm, geht auch dünner)</li>
+<li>Nylon-Schnur (Drachenschnur) für die Aufhängung wie ein Bilderrahmen</li>
+<li>LED-Streifen (hier ein RGBWW-Streifen mit 60 LEDs/m auf Basis mit SK6812 Modulen für die individuelle Steuerung und einem separaten Warmweis-Kanal, Betriebsspannung 5V, Länge 5m) (AliExpress oder Amazon)</li>
+<li>5V/10A Netzteil (3-4 A reichen für die Anzahl LEDs auch aus)</li>
+<li>Kabel um die einzelnen LED-Segmente miteinander zu verbinden</li>
+<li>ESP32 für die Ansteuerung</li>
+<li><a href="https://github.com/Aircoookie/WLED">WLED</a> als Software auf ESP32 für die Ansteuerung der LEDs </li>
+</ul>
+<h2 id="hinweise-bevor-es-losgeht">Hinweise bevor es losgeht<a class="headerlink" href="#hinweise-bevor-es-losgeht" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Aluminium ist weich, und schwarz eloxiertes Aluminium ist noch empfindlicher da jeder Kratzer sofort die schwarze Farbe löst und unschöne Stellen zurücklässt. Also alle Arbeiten mit dem Aluminium sehr sorgfältig ausführen. Z.B. immer Stoff oder Tücher unterlegen, beim Sägen die Gehrungssäge auskleiden.</li>
+<li>Alle Arbeiten an den Alu-Profilen am besten an einem Probestück erstmal testweise durchführen (z.B. das Sägen oder Bohren von Löchern)</li>
+</ul>
+<h2 id="bau-des-lichtrahmens">Bau des Lichtrahmens<a class="headerlink" href="#bau-des-lichtrahmens" title="Permanent link">&para;</a></h2>
+<h3 id="aluprofile-zuschneiden">Aluprofile zuschneiden<a class="headerlink" href="#aluprofile-zuschneiden" title="Permanent link">&para;</a></h3>
+<p>Sorgfältig und präzise sägen! Am besten die Alu-Profile mit einer Schraubzwinge oder ähnlichem fixieren. Beachtet, dass das Alu sehr empfindlich ist und Kratzer direkt sichtbar sind. Am besten immer mit Stoff Kontaktflächen schützen. Mehrmals prüfen ob man auch den Winkel in die richtige Richtung sägt..
+<img alt="Bau1" src="../../img/lichtrahmen-gehrung.jpg" /></p>
+<h3 id="aluprofile-zusammensetzen">Aluprofile zusammensetzen<a class="headerlink" href="#aluprofile-zusammensetzen" title="Permanent link">&para;</a></h3>
+<p>Sind die Aluprofile zugesägt und bilden eine Rahmen, muss dieser zusammengesteckt werden. Ich druckte dazu <a href="https://www.thingiverse.com/thing:4570908">diese hier</a>  aus und skalierte sie für das Aluprofil mit folgenden Werten: 22x22x4 mm (LxBxH). Hier am besten ein paar Probedrucke anfertigen und schauen ob diese schön bündig passen. Unter dem Verbinder müssen noch die Kabel für die Verbindung der einzelnen LED-Streifen hindurchpassen.
+<img alt="Bau2" src="../../img/lichtrahmen_bauteile.jpg" /></p>
+<h3 id="locher-fur-aufhangung-bohren">Löcher für Aufhängung bohren<a class="headerlink" href="#locher-fur-aufhangung-bohren" title="Permanent link">&para;</a></h3>
+<p>In das Aluprofil für die Oberseite des Lichtrahmens werden mit einem 2 mm Bohrer zwei Löcher für die Aufhängung gebohrt. Die Löcher entgraten. Später werden hier die Schnüre für die Aufhängung durchgeführt.
+<img alt="Bau_Loch" src="../../img/lichtrahmen_bohrloch.jpg" /></p>
+<h3 id="aussparung-fur-zuleitung-led-streifen">Aussparung für Zuleitung LED-Streifen<a class="headerlink" href="#aussparung-fur-zuleitung-led-streifen" title="Permanent link">&para;</a></h3>
+<p>Sofern gewünscht, kann auf dem Aluprofil der Unterseite eine Kerbe ausgesägt werden um die Zuleitung des LED-Streifens dort durchzuführen. Auch hier Entgraten um scharfe Kanten zu vermeiden.</p>
+<h3 id="led-streifen-zuschneiden">LED-Streifen zuschneiden<a class="headerlink" href="#led-streifen-zuschneiden" title="Permanent link">&para;</a></h3>
+<p>Nun werden die einzelnen LED-Streifen aus dem 5m LED-Strip zugeschnitten. Der LED-Streifen hat Schnittmarkierungen mit Lötpunkten um diese später wieder zu verbinden. </p>
+<p>Schwierig sind die Ecken des Lichtrahmens. Gerade die Zuleitung des LED-Streifens nimmt etwas Platz am Anfang weg. Basierend auf dessen wurden die Abstände der ersten LED zu den Ecken gleich gewählt. Je weiter der Abstand zu den Ecken, desto dunkler wird später die Ecke auch ausgeleuchtet. Dies also beachten.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>An den Enden der einzuklebenden LED-Streifen vorher ein Stück Isolierband auf das Aluprofil einkleben um später beim Löten evtl. Verbindungen mit dem Aluminium zu vermeiden</p>
+</div>
+<p>Die Streifen auf der kurzen und langen Seite sollten jeweils die gleiche Anzahl von LEDs haben um eine gleichmäßige Ausleuchtung zu erhalten. Anschließend die LED-Streifen der einzelnen Seiten über Eck miteinander verlöten mit kurzen Kabeln/Litzen. Die Kabel werden unter die 3D-gedruckten L-Verbinder verlegt. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tip für nicht-Lötspezialisten: opfert beim zuschneiden der LED-Streifen lieber eine LED um dafür einen kompletten Lötpunkt an der Schnittkante zu erhalten. Schneidet man die LEDs genau in der Mitte der Lötpunkte/Schnittkante ist dies schon sehr knapp für eine weitere Anbindung. </p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Kabel/Litze vorher mit Lötzinn benetzen und anschließend auch erst die Lötpunkte mit Lötzinn versehen damit es einen schönen Tropfen auf dem Lötpunkt ergibt. Dann ist das zusammenlöten der Kabel auf Lötpunkt sehr einfach und sauber.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Sollten durch nicht 100%ig saubere und glatte 45°-Winkel beim Zusammenstecken der Ecken die Profile nicht ganz bündig passen und die darunter liegenden Kabel durch einen Spalt sichtbar sein, diese am besten mit schwarzem Isolierband umwickenln um dies zu kaschieren.</p>
+</div>
+<p>Anschließend ist der Lichtrahmen dann erstmal fertig zusammengebaut und kann auch nicht mehr ohne Lösen der Lötpunkte auseinandergenommen werden.</p>
+<p><img alt="Bau3" src="../../img/lichtrahmen_led-loeten.jpg" /></p>
+<h3 id="diffusor-einsetzen">Diffusor einsetzen<a class="headerlink" href="#diffusor-einsetzen" title="Permanent link">&para;</a></h3>
+<p>Die Diffusorprofile einfach auf die richtige Länge zuschneiden und einklipsen.
+<img alt="Bau4" src="../../img/lichtrahmen_diffusor2.jpg" /></p>
+<h3 id="verkabelung">Verkabelung<a class="headerlink" href="#verkabelung" title="Permanent link">&para;</a></h3>
+<p>Falls nicht sowieso schon geschehen, sollte die Verkbabelung nun für das probeweise Ausprobieren erfolgen.</p>
+<p>Der ESP32 sowie der Leuchtrahmen werden von dem 5V Netzteil versorgt. Das ESP32-DevBoard hat einen 5V Pin der mit dem Netzteil verbunden wird. GND ebenso. Das gleiche gilt für die LEDs: 5V an rot, Masse auf Schwarz. Die Steuerleitung für die LEDs muss an GPIO2 im Default. Wenn unklar bei WLED in den Docs suchen bzw. ein Pinout des ESP-Boards suchen.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Falls der ESP von einer anderen Stromquelle gespeist wird als der LED-Streifen, z.B. von einem USB-Netzteil, so muss es ein einheitliches GND geben. D.h. beide GNDs müssen verbunden sein, sonst kommt es nur zu wild blinkendem LED-Pixelsalat da es dann unterschiedliche Null-Potentiale bei ESP und LED-Streifen gibt.</p>
+</div>
+<h3 id="abstand-zur-wand-bestimmen-und-abstandshalter-zuschneiden">Abstand zur Wand bestimmen und Abstandshalter zuschneiden<a class="headerlink" href="#abstand-zur-wand-bestimmen-und-abstandshalter-zuschneiden" title="Permanent link">&para;</a></h3>
+<p>Nun gilt es den richtigen Abstand zur Wand zu bestimmen, so dass ein schön diffuses Licht erzeugt wird. Einzelne LEDs sollten nicht mehr erkennbar sein. Hier waren 5 cm der gewählte Abstand. Dazu werden dann die Acryl-Rundstäbe in die entsprechende Länge zugesägt. An den Ecken wurden diese mit Heißkleber aufgeklebt.</p>
+<h3 id="aufhangung">Aufhängung<a class="headerlink" href="#aufhangung" title="Permanent link">&para;</a></h3>
+<p>In die zwei Löcher des oberen Alu-Profiles wird nun ein Nylon-Faden (1 mm) befestigt. So kann der Rahmen wie ein Bild aufgehängt werden.</p>
+<p>Resultat:</p>
+<p><img alt="Bau5" src="../../img/lichtrahmen_wand-bunt.jpg" /></p>
+<p><img alt="Bau6" src="../../img/lichtrahmen_wand-ww.jpg" /></p>
+<h2 id="konfiguration-in-wled">Konfiguration in WLED<a class="headerlink" href="#konfiguration-in-wled" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Die einzelnen Seiten des Rahmens als Segmente anlegen und den Mirror-Effect aktivieren. Das ergibt sehr schöne symmetrische Effekte.</p>
+</div>
+<h2 id="einbindung-in-home-assistant">Einbindung in Home Assistant<a class="headerlink" href="#einbindung-in-home-assistant" title="Permanent link">&para;</a></h2>
+<p>In der Regel wird die WLED-Instanz, sofern in gleichen Netzwerk,  automatisch von Home Assistant erkannt und kann dort leicht integriert werden. Anschließend stehen alle Möglichkeiten offen um darüber den Lichtrahmen zu steuern, Automatisierungen zu erstellen und Einstellungen zu ändern.</p>
+<p><img alt="HASS" src="../../img/lichtrahmen-homeassistant.png" /></p>
+<h2 id="erkenntnisse">Erkenntnisse<a class="headerlink" href="#erkenntnisse" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sauber geschnittene 45° Winkel sind nur mit einer sehr guten Gehrungssäge möglich</li>
+<li>beim Sägen der Elemente am besten noch einmal mehr prüfen ob der Winkel in der richtigen Richtung gesägt wird <img alt="🤦‍♂️" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f926-200d-2642-fe0f.svg" title=":man_facepalming:" /></li>
+<li>Beim zuschneiden der LED-Streifen: am besten eine LED opfern um einen vollständigen Lötpunkt zu bekommen. Schneidet man in der Hälfte des Lötpunktes sind die Lötpunkte schon sehr schmal (für meine Lötkenntnisse)</li>
+</ul>
+<h2 id="offener-punkt">Offener Punkt<a class="headerlink" href="#offener-punkt" title="Permanent link">&para;</a></h2>
+<p>Die Zuleitung zum Lichtrahmen muss noch aufgehübscht werden. Dazu soll ein Kabel möglichst einheitlich zum Lichtrahmen geführt werden und der ESP bzw Netzteil noch in einem Gehäuse unsichtbar am Boden verstaut werden.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../halterung-unif-ac-pro/" title="DIY Halterung für Unifi AC-Pro Accesspoint" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Zurück
+                </span>
+                DIY Halterung für Unifi AC-Pro Accesspoint
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../solvis-heizung/" title="Solvis Heizung via Modbus auslesen und steuern" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Weiter
+                </span>
+                Solvis Heizung via Modbus auslesen und steuern
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2019-2021 - saruter. Creative Commons Attribution 4.0.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/saruter" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/saruter" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "In Zwischenablage kopieren", "clipboard.copied": "In Zwischenablage kopiert", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Suchbegriff eingeben", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["instant", "tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
