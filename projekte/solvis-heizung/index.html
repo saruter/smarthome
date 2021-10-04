@@ -924,255 +924,313 @@ Sollten die Einstellungen korrekt sein sollte unter der IP-Addresse der Solvis-R
 246
 247
 248
-249</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">modbus</span><span class="o">:</span>
-  <span class="n">name</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-  <span class="n">type</span><span class="o">:</span> <span class="n">tcp</span>
-  <span class="n">host</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">ip</span><span class="o">-</span><span class="n">addresse</span><span class="o">-</span><span class="n">solvis</span><span class="o">-</span><span class="n">remote</span><span class="o">&gt;</span>
-  <span class="n">port</span><span class="o">:</span> <span class="mi">502</span>
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="x">modbus:</span>
+<span class="x">  - name: SolvisRemote</span>
+<span class="x">    type: tcp</span>
+<span class="x">    host: &lt;ip der solvis remote&gt;</span>
+<span class="x">    port: 502</span>
 
- <span class="o">-</span> <span class="n">platform</span><span class="o">:</span> <span class="n">modbus</span>
-    <span class="n">scan_interval</span><span class="o">:</span> <span class="mi">30</span>
-    <span class="n">registers</span><span class="o">:</span>
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Warmwasserpuffer</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33024</span>
+<span class="x">    sensors:</span>
+<span class="x">      - name: Warmwasserpuffer</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33024</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Warmwassertemperatur</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33025</span>
+<span class="x">      - name: Warmwassertemperatur</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33025</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Speicherreferenztemperatur</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33026</span>
+<span class="x">      - name: Speicherreferenztemperatur</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33026</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Heizungspuffertemperatur</span> <span class="n">oben</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33027</span>
+<span class="x">      - name: Heizungspuffertemperatur oben</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33027</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Aussentemperatur</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33033</span>
+<span class="x">      - name: Aussentemperatur</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33033</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Heizungspuffertemperatur</span> <span class="n">unten</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33032</span>
+<span class="x">      - name: Heizungspuffertemperatur unten</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33032</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Zirkulationsdurchfluss</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33034</span>
+<span class="x">      - name: Zirkulationsdurchfluss</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33034</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Vorlauftemperatur</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33035</span>
+<span class="x">      - name: Vorlauftemperatur</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33035</span>
+<span class="x">        scan_interval: 30</span>
 
-<span class="err">#</span>    <span class="n">kein</span> <span class="n">Sensor</span> <span class="n">angeschlossen</span><span class="o">,</span> <span class="n">zeigt</span> <span class="n">immer</span> <span class="mi">10</span><span class="err">°</span><span class="n">C</span>  
-<span class="err">#</span>    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Kaltwassertemperatur</span>
-<span class="err">#</span>      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-<span class="err">#</span>      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-<span class="err">#</span>      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-<span class="err">#</span>      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-<span class="err">#</span>      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-<span class="err">#</span>      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-<span class="err">#</span>      <span class="n">register</span><span class="o">:</span> <span class="mi">33038</span>
+<span class="x">      - name: Kaltwassertemperatur</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33038</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Durchfluss</span> <span class="n">Warmwasserzirkualation</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">l</span><span class="o">/</span><span class="n">min</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33041</span>
+<span class="x">      - name: Durchfluss Warmwasserzirkualation</span>
+<span class="x">        unit_of_measurement: l/min</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33041</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Laufzeit</span> <span class="n">Brenner</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">h</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">0</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33536</span>
+<span class="x">      - name: Laufzeit Brenner</span>
+<span class="x">        unit_of_measurement: h</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 0</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33536</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Brennerstarts</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">Starts</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">0</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33537</span>
+<span class="x">      - name: Brennerstarts</span>
+<span class="x">        unit_of_measurement: Starts </span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 0</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33537</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Brennerleistung</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">kW</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33539</span>
+<span class="x">      - name: Brennerleistung</span>
+<span class="x">        unit_of_measurement: kW</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33539</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">Ionisationsstrom</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">mA</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.1</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33540</span>
+<span class="x">      - name: Ionisationsstrom</span>
+<span class="x">        unit_of_measurement: mA </span>
+<span class="x">        slave: 1</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        precision: 1</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33540</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">VersionSC2</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.01</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">2</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">32770</span>
+<span class="x">      - name: A01.Pumpe Zirkulation</span>
+<span class="x">        slave: 1</span>
+<span class="x">        unit_of_measurement: V</span>
+<span class="x">        scale: 0.01</span>
+<span class="x">        precision: 0</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33280</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">VersionNBG</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.01</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">32771</span>
+<span class="x">      - name: A02.Pumpe Warmwasser</span>
+<span class="x">        slave: 1</span>
+<span class="x">        unit_of_measurement: V</span>
+<span class="x">        scale: 0.01</span>
+<span class="x">        precision: 0</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33281</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">ZirkulationBetriebsart</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">2049</span>
+<span class="x">      - name: A03.Pumpe HK1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        unit_of_measurement: V</span>
+<span class="x">        scale: 0.01</span>
+<span class="x">        precision: 0</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33282</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">A01</span><span class="o">.</span><span class="na">Pumpe</span> <span class="n">Zirkulation</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">V</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.01</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">0</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33280</span>
+<span class="x">      - name: A05.Pumpe Zirkulation</span>
+<span class="x">        slave: 1</span>
+<span class="x">        unit_of_measurement: V</span>
+<span class="x">        scale: 0.01</span>
+<span class="x">        precision: 0</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33284</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">A02</span><span class="o">.</span><span class="na">Pumpe</span> <span class="n">Warmwasser</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">V</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.01</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">0</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33281</span>
+<span class="x">      - name: A12.Brennerstatus</span>
+<span class="x">        slave: 1</span>
+<span class="x">        unit_of_measurement: V</span>
+<span class="x">        scale: 0.01</span>
+<span class="x">        precision: 0</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33291</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">A03</span><span class="o">.</span><span class="na">Pumpe</span> <span class="n">HK1</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">V</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.01</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">0</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33282</span>
+<span class="x">      - name: WW Nachheizung 2322</span>
+<span class="x">        slave: 1</span>
+<span class="x">        #unit_of_measurement: V</span>
+<span class="x">        #scale: 0.01</span>
+<span class="x">        #precision: 0</span>
+<span class="x">        input_type: holding</span>
+<span class="x">        address: 2322</span>
+<span class="x">        scan_interval: 30</span>
 
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">A12</span><span class="o">.</span><span class="na">Brennerstatus</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="n">V</span>
-      <span class="n">scale</span><span class="o">:</span> <span class="mf">0.01</span>
-      <span class="n">precision</span><span class="o">:</span> <span class="mi">0</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33291</span>
-
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">DigIn</span> <span class="n">Stoerungen</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">input</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">33045</span>
-
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">HKR1</span> <span class="n">Betriebsart</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">holding</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">2818</span>
-
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">WW</span> <span class="n">Solltemperatur</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">holding</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">2305</span>
-
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">HKR1</span> <span class="n">Solltemperatur</span> <span class="n">Tag</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">holding</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">2820</span>
-
-    <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">HKR1</span> <span class="n">Absenktemperatur</span> <span class="n">Nacht</span>
-      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span> 
-      <span class="n">unit_of_measurement</span><span class="o">:</span> <span class="err">°</span><span class="n">C</span>
-      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
-      <span class="n">register_type</span><span class="o">:</span> <span class="n">holding</span>
-      <span class="n">register</span><span class="o">:</span> <span class="mi">2821</span>
+<span class="x">      - name: HKR1 Betriebsart</span>
+<span class="x">        slave: 1</span>
+<span class="x">        input_type: holding</span>
+<span class="x">        address: 2818</span>
+<span class="x">        scan_interval: 30  </span>
 
 
+<span class="x"># ab hier 300 Sekunden Poll Interval    </span>
 
-  <span class="o">-</span> <span class="n">platform</span><span class="o">:</span> <span class="n">template</span>
-    <span class="n">sensors</span><span class="o">:</span>
-      <span class="n">ww_zirkulationsart</span><span class="o">:</span>
-       <span class="n">friendly_name</span><span class="o">:</span> <span class="s2">&quot;WW Zirkulation Betriebsart&quot;</span>
-       <span class="n">entity_id</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">zirkulationbetriebsart</span>
-       <span class="n">value_template</span><span class="o">:</span> <span class="o">&gt;-</span>
-          <span class="o">{%</span> <span class="k">if</span> <span class="n">states</span><span class="o">(</span><span class="s1">&#39;sensor.zirkulationbetriebsart&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span> <span class="o">%}</span>
-            <span class="n">Aus</span>
-          <span class="o">{%</span> <span class="n">elif</span> <span class="n">states</span><span class="o">(</span><span class="s1">&#39;sensor.zirkulationbetriebsart&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span> <span class="o">%}</span>
-            <span class="n">Puls</span>
-          <span class="o">{%</span> <span class="n">elif</span> <span class="n">states</span><span class="o">(</span><span class="s1">&#39;sensor.zirkulationbetriebsart&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span> <span class="o">%}</span>
-            <span class="n">Temp</span>
-          <span class="o">{%</span> <span class="n">elif</span> <span class="n">states</span><span class="o">(</span><span class="s1">&#39;sensor.zirkulationbetriebsart&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;4&#39;</span> <span class="o">%}</span>
-            <span class="n">Warten</span>
-          <span class="o">{%</span> <span class="k">else</span> <span class="o">%}</span>
-            <span class="n">unbekannt</span>
-          <span class="o">{%</span> <span class="n">endif</span> <span class="o">%}</span>
+<span class="x">      - name: HKR1 Absenktemperatur Nacht</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        slave: 1</span>
+<span class="x">        input_type: holding</span>
+<span class="x">        address: 2821</span>
+<span class="x">        scan_interval: 300</span>
+
+<span class="x">      - name: HKR1 Solltemperatur Tag</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        slave: 1</span>
+<span class="x">        input_type: holding</span>
+<span class="x">        address: 2820</span>
+<span class="x">        scan_interval: 300</span>
+
+<span class="x">      - name: DigIn Stoerungen</span>
+<span class="x">        slave: 1</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 33045</span>
+<span class="x">        scan_interval: 300</span>
+
+<span class="x">      - name: WW Solltemperatur</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        slave: 1</span>
+<span class="x">        input_type: holding</span>
+<span class="x">        address: 2305</span>
+<span class="x">        scan_interval: 300</span>
+
+<span class="x">      - name: VersionSC2</span>
+<span class="x">        slave: 1</span>
+<span class="x">        scale: 0.01</span>
+<span class="x">        precision: 2</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 32770</span>
+<span class="x">        scan_interval: 300</span>
+
+<span class="x">      - name: VersionNBG</span>
+<span class="x">        slave: 1</span>
+<span class="x">        scale: 0.01</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 32771</span>
+<span class="x">        scan_interval: 300</span>
+
+<span class="x">      - name: ZirkulationBetriebsart</span>
+<span class="x">        slave: 1</span>
+<span class="x">        input_type: input</span>
+<span class="x">        address: 2049</span>
+<span class="x">        scan_interval: 300</span>
 
 
-      <span class="n">hkr1betriebsart</span><span class="o">:</span>
-        <span class="n">friendly_name</span><span class="o">:</span> <span class="s2">&quot;Heizkreislauf Betriebsart&quot;</span>
-        <span class="n">entity_id</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">hkr1_betriebsart</span>
-        <span class="n">value_template</span><span class="o">:</span> <span class="s2">&quot;{%if states.sensor.hkr1_betriebsart.state == &#39;1&#39; %}Aus{% elif states.sensor.hkr1_betriebsart.state == &#39;2&#39; %}Automatik{% elif states.sensor.hkr1_betriebsart.state == &#39;3&#39; %}Tagbetrieb{% elif states.sensor.hkr1_betriebsart.state == &#39;4&#39; %}Absenkbetrieb{% elif states.sensor.hkr1_betriebsart.state == &#39;5&#39; %}Standby{% elif states.sensor.hkr1_betriebsart.state == &#39;6&#39; %}Eco{% elif states.sensor.hkr1_betriebsart.state == &#39;7&#39; %}Urlaub{% elif states.sensor.hkr1_betriebsart.state == &#39;8&#39; %}WW Vorang{% elif states.sensor.zirkulationbetriebsart.state == &#39;9&#39; %}Frostschutz{% elif states.sensor.zirkulationbetriebsart.state == &#39;10&#39; %}Pumpenschutz{% elif states.sensor.hkr1_betriebsart.state == &#39;11&#39; %}Estrich{% endif %}&quot;</span>
+<span class="x">      - name: Raumtemperatur_HKR1</span>
+<span class="x">        unit_of_measurement: °C</span>
+<span class="x">        scale: 0.1</span>
+<span class="x">        slave: 1</span>
+<span class="x">        input_type: holding</span>
+<span class="x">        address: 34304</span>
+<span class="x">        scan_interval: 300</span>
+
+
+
+
+<span class="x">sensor:     </span>
+<span class="x">  - platform: template</span>
+<span class="x">    sensors:</span>
+<span class="x">      ww_zirkulationsart:</span>
+<span class="x">        friendly_name: &quot;WW Zirkulation Betriebsart&quot;</span>
+<span class="x">        #entity_id: sensor.zirkulationbetriebsart</span>
+<span class="x">        value_template: &gt;-</span>
+<span class="x">            </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">states</span><span class="o">(</span><span class="s1">&#39;sensor.zirkulationbetriebsart&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">              Aus</span>
+<span class="x">            </span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states</span><span class="o">(</span><span class="s1">&#39;sensor.zirkulationbetriebsart&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">              Puls</span>
+<span class="x">            </span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states</span><span class="o">(</span><span class="s1">&#39;sensor.zirkulationbetriebsart&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">              Temp</span>
+<span class="x">            </span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states</span><span class="o">(</span><span class="s1">&#39;sensor.zirkulationbetriebsart&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="s1">&#39;4&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">              Warten</span>
+<span class="x">            </span><span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">              unbekannt</span>
+<span class="x">            </span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+
+
+<span class="x">      hkr1betriebsart:</span>
+<span class="x">        friendly_name: &quot;Heizkreislauf Betriebsart&quot;</span>
+<span class="x">        #entity_id: sensor.hkr1_betriebsart</span>
+<span class="x">        value_template: &quot;</span><span class="cp">{%</span><span class="k">if</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span> <span class="cp">%}</span><span class="x">Aus</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span> <span class="cp">%}</span><span class="x">Automatik</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span> <span class="cp">%}</span><span class="x">Tagbetrieb</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;4&#39;</span> <span class="cp">%}</span><span class="x">Absenkbetrieb</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;5&#39;</span> <span class="cp">%}</span><span class="x">Standby</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;6&#39;</span> <span class="cp">%}</span><span class="x">Eco</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;7&#39;</span> <span class="cp">%}</span><span class="x">Urlaub</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;8&#39;</span> <span class="cp">%}</span><span class="x">WW Vorang</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.zirkulationbetriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;9&#39;</span> <span class="cp">%}</span><span class="x">Frostschutz</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.zirkulationbetriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;10&#39;</span> <span class="cp">%}</span><span class="x">Pumpenschutz</span><span class="cp">{%</span> <span class="k">elif</span> <span class="nv">states.sensor.hkr1_betriebsart.state</span> <span class="o">==</span> <span class="s1">&#39;11&#39;</span> <span class="cp">%}</span><span class="x">Estrich</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">&quot;</span>
 </code></pre></div>
 </td></tr></table>
 
