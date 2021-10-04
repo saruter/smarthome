@@ -47,255 +47,283 @@ Sollten die Einstellungen korrekt sein sollte unter der IP-Addresse der Solvis-R
 Nachfolgend ein Auszug der configuration.yaml von Home Assistant mit den wichtigsten Sensoren und Templates
 ```
 modbus:
-  name: SolvisRemote
-  type: tcp
-  host: <ip-addresse-solvis-remote>
-  port: 502
+  - name: SolvisRemote
+    type: tcp
+    host: <ip der solvis remote>
+    port: 502
 
- - platform: modbus
-    scan_interval: 30
-    registers:
-    - name: Warmwasserpuffer
-      hub: SolvisRemote
-      unit_of_measurement: °C
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33024
+    sensors:
+      - name: Warmwasserpuffer
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33024
+        scan_interval: 30
+   
+      - name: Warmwassertemperatur
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33025
+        scan_interval: 30
+   
+      - name: Speicherreferenztemperatur
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33026
+        scan_interval: 30
+   
+      - name: Heizungspuffertemperatur oben
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33027
+        scan_interval: 30
+   
+      - name: Aussentemperatur
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33033
+        scan_interval: 30
+   
+      - name: Heizungspuffertemperatur unten
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33032
+        scan_interval: 30
+   
+      - name: Zirkulationsdurchfluss
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33034
+        scan_interval: 30
+   
+      - name: Vorlauftemperatur
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33035
+        scan_interval: 30
+    
+      - name: Kaltwassertemperatur
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33038
+        scan_interval: 30
+        
+      - name: Durchfluss Warmwasserzirkualation
+        unit_of_measurement: l/min
+        slave: 1
+        precision: 2
+        scale: 0.1
+        input_type: input
+        address: 33041
+        scan_interval: 30
+   
+      - name: Laufzeit Brenner
+        unit_of_measurement: h
+        slave: 1
+        precision: 0
+        input_type: input
+        address: 33536
+        scan_interval: 30
+   
+      - name: Brennerstarts
+        unit_of_measurement: Starts 
+        slave: 1
+        precision: 0
+        input_type: input
+        address: 33537
+        scan_interval: 30
+   
+      - name: Brennerleistung
+        unit_of_measurement: kW
+        scale: 0.1
+        slave: 1
+        precision: 2
+        input_type: input
+        address: 33539
+        scan_interval: 30
+   
+      - name: Ionisationsstrom
+        unit_of_measurement: mA 
+        slave: 1
+        scale: 0.1
+        precision: 1
+        input_type: input
+        address: 33540
+        scan_interval: 30
+   
+      - name: A01.Pumpe Zirkulation
+        slave: 1
+        unit_of_measurement: V
+        scale: 0.01
+        precision: 0
+        input_type: input
+        address: 33280
+        scan_interval: 30
+   
+      - name: A02.Pumpe Warmwasser
+        slave: 1
+        unit_of_measurement: V
+        scale: 0.01
+        precision: 0
+        input_type: input
+        address: 33281
+        scan_interval: 30
+   
+      - name: A03.Pumpe HK1
+        slave: 1
+        unit_of_measurement: V
+        scale: 0.01
+        precision: 0
+        input_type: input
+        address: 33282
+        scan_interval: 30
+   
+      - name: A05.Pumpe Zirkulation
+        slave: 1
+        unit_of_measurement: V
+        scale: 0.01
+        precision: 0
+        input_type: input
+        address: 33284
+        scan_interval: 30
+   
+      - name: A12.Brennerstatus
+        slave: 1
+        unit_of_measurement: V
+        scale: 0.01
+        precision: 0
+        input_type: input
+        address: 33291
+        scan_interval: 30
+        
+      - name: WW Nachheizung 2322
+        slave: 1
+        #unit_of_measurement: V
+        #scale: 0.01
+        #precision: 0
+        input_type: holding
+        address: 2322
+        scan_interval: 30
+        
+      - name: HKR1 Betriebsart
+        slave: 1
+        input_type: holding
+        address: 2818
+        scan_interval: 30  
+   
+   
+# ab hier 300 Sekunden Poll Interval    
+   
+      - name: HKR1 Absenktemperatur Nacht
+        unit_of_measurement: °C
+        slave: 1
+        input_type: holding
+        address: 2821
+        scan_interval: 300
+   
+      - name: HKR1 Solltemperatur Tag
+        unit_of_measurement: °C
+        slave: 1
+        input_type: holding
+        address: 2820
+        scan_interval: 300
+   
+      - name: DigIn Stoerungen
+        slave: 1
+        input_type: input
+        address: 33045
+        scan_interval: 300
+        
+      - name: WW Solltemperatur
+        unit_of_measurement: °C
+        slave: 1
+        input_type: holding
+        address: 2305
+        scan_interval: 300
+   
+      - name: VersionSC2
+        slave: 1
+        scale: 0.01
+        precision: 2
+        input_type: input
+        address: 32770
+        scan_interval: 300
+   
+      - name: VersionNBG
+        slave: 1
+        scale: 0.01
+        input_type: input
+        address: 32771
+        scan_interval: 300
+   
+      - name: ZirkulationBetriebsart
+        slave: 1
+        input_type: input
+        address: 2049
+        scan_interval: 300
+        
+        
+      - name: Raumtemperatur_HKR1
+        unit_of_measurement: °C
+        scale: 0.1
+        slave: 1
+        input_type: holding
+        address: 34304
+        scan_interval: 300
+  
 
-    - name: Warmwassertemperatur
-      hub: SolvisRemote
-      unit_of_measurement: °C
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33025
-
-    - name: Speicherreferenztemperatur
-      hub: SolvisRemote
-      unit_of_measurement: °C
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33026
-
-    - name: Heizungspuffertemperatur oben
-      hub: SolvisRemote
-      unit_of_measurement: °C
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33027
-
-    - name: Aussentemperatur
-      hub: SolvisRemote
-      unit_of_measurement: °C
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33033
-
-    - name: Heizungspuffertemperatur unten
-      hub: SolvisRemote
-      unit_of_measurement: °C
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33032
-
-    - name: Zirkulationsdurchfluss
-      hub: SolvisRemote
-      unit_of_measurement: °C
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33034
-
-    - name: Vorlauftemperatur
-      hub: SolvisRemote
-      unit_of_measurement: °C
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33035
-
-#    kein Sensor angeschlossen, zeigt immer 10°C  
-#    - name: Kaltwassertemperatur
-#      hub: SolvisRemote
-#      unit_of_measurement: °C
-#      scale: 0.1
-#      slave: 1
-#      precision: 2
-#      register_type: input
-#      register: 33038
       
-    - name: Durchfluss Warmwasserzirkualation
-      hub: SolvisRemote
-      unit_of_measurement: l/min
-      slave: 1
-      precision: 2
-      scale: 0.1
-      register_type: input
-      register: 33041
-
-    - name: Laufzeit Brenner
-      hub: SolvisRemote
-      unit_of_measurement: h
-      slave: 1
-      precision: 0
-      register_type: input
-      register: 33536
-
-    - name: Brennerstarts
-      hub: SolvisRemote
-      unit_of_measurement: Starts 
-      slave: 1
-      precision: 0
-      register_type: input
-      register: 33537
-
-    - name: Brennerleistung
-      hub: SolvisRemote
-      unit_of_measurement: kW
-      scale: 0.1
-      slave: 1
-      precision: 2
-      register_type: input
-      register: 33539
-
-    - name: Ionisationsstrom
-      hub: SolvisRemote
-      unit_of_measurement: mA 
-      slave: 1
-      scale: 0.1
-      precision: 1
-      register_type: input
-      register: 33540
-
-    - name: VersionSC2
-      hub: SolvisRemote 
-      slave: 1
-      scale: 0.01
-      precision: 2
-      register_type: input
-      register: 32770
-
-    - name: VersionNBG
-      hub: SolvisRemote 
-      slave: 1
-      scale: 0.01
-      register_type: input
-      register: 32771
-
-    - name: ZirkulationBetriebsart
-      hub: SolvisRemote 
-      slave: 1
-      register_type: input
-      register: 2049
-
-    - name: A01.Pumpe Zirkulation
-      hub: SolvisRemote 
-      slave: 1
-      unit_of_measurement: V
-      scale: 0.01
-      precision: 0
-      register_type: input
-      register: 33280
- 
-    - name: A02.Pumpe Warmwasser
-      hub: SolvisRemote 
-      slave: 1
-      unit_of_measurement: V
-      scale: 0.01
-      precision: 0
-      register_type: input
-      register: 33281
-
-    - name: A03.Pumpe HK1
-      hub: SolvisRemote 
-      slave: 1
-      unit_of_measurement: V
-      scale: 0.01
-      precision: 0
-      register_type: input
-      register: 33282
-
-    - name: A12.Brennerstatus
-      hub: SolvisRemote 
-      slave: 1
-      unit_of_measurement: V
-      scale: 0.01
-      precision: 0
-      register_type: input
-      register: 33291
-
-    - name: DigIn Stoerungen
-      hub: SolvisRemote 
-      slave: 1
-      register_type: input
-      register: 33045
-     
-    - name: HKR1 Betriebsart
-      hub: SolvisRemote 
-      slave: 1
-      register_type: holding
-      register: 2818
       
-    - name: WW Solltemperatur
-      hub: SolvisRemote 
-      unit_of_measurement: °C
-      slave: 1
-      register_type: holding
-      register: 2305
-     
-    - name: HKR1 Solltemperatur Tag
-      hub: SolvisRemote 
-      unit_of_measurement: °C
-      slave: 1
-      register_type: holding
-      register: 2820
-      
-    - name: HKR1 Absenktemperatur Nacht
-      hub: SolvisRemote 
-      unit_of_measurement: °C
-      slave: 1
-      register_type: holding
-      register: 2821
-      
-      
-      
+sensor:     
   - platform: template
     sensors:
       ww_zirkulationsart:
-       friendly_name: "WW Zirkulation Betriebsart"
-       entity_id: sensor.zirkulationbetriebsart
-       value_template: >-
-          {% if states('sensor.zirkulationbetriebsart') == '1' %}
-            Aus
-          {% elif states('sensor.zirkulationbetriebsart') == '2' %}
-            Puls
-          {% elif states('sensor.zirkulationbetriebsart') == '3' %}
-            Temp
-          {% elif states('sensor.zirkulationbetriebsart') == '4' %}
-            Warten
-          {% else %}
-            unbekannt
-          {% endif %}
-            
+        friendly_name: "WW Zirkulation Betriebsart"
+        #entity_id: sensor.zirkulationbetriebsart
+        value_template: >-
+            {% if states('sensor.zirkulationbetriebsart') == '1' %}
+              Aus
+            {% elif states('sensor.zirkulationbetriebsart') == '2' %}
+              Puls
+            {% elif states('sensor.zirkulationbetriebsart') == '3' %}
+              Temp
+            {% elif states('sensor.zirkulationbetriebsart') == '4' %}
+              Warten
+            {% else %}
+              unbekannt
+            {% endif %}
+              
         
       hkr1betriebsart:
         friendly_name: "Heizkreislauf Betriebsart"
-        entity_id: sensor.hkr1_betriebsart
+        #entity_id: sensor.hkr1_betriebsart
         value_template: "{%if states.sensor.hkr1_betriebsart.state == '1' %}Aus{% elif states.sensor.hkr1_betriebsart.state == '2' %}Automatik{% elif states.sensor.hkr1_betriebsart.state == '3' %}Tagbetrieb{% elif states.sensor.hkr1_betriebsart.state == '4' %}Absenkbetrieb{% elif states.sensor.hkr1_betriebsart.state == '5' %}Standby{% elif states.sensor.hkr1_betriebsart.state == '6' %}Eco{% elif states.sensor.hkr1_betriebsart.state == '7' %}Urlaub{% elif states.sensor.hkr1_betriebsart.state == '8' %}WW Vorang{% elif states.sensor.zirkulationbetriebsart.state == '9' %}Frostschutz{% elif states.sensor.zirkulationbetriebsart.state == '10' %}Pumpenschutz{% elif states.sensor.hkr1_betriebsart.state == '11' %}Estrich{% endif %}"
-         
    
 ```
 
