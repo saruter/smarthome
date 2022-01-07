@@ -11,7 +11,7 @@
         <meta name="description" content="Doku zu Home Assistant und sonstigen smarten Basteleien">
       
       
-        <link rel="canonical" href="https://smarthome.ms1.de/projekte/stromverbrauch/">
+        <link rel="canonical" href="https://smarthome.ms1.de/projekte/wasserverbrauch/">
       
       
         <meta name="author" content="saruter">
@@ -21,7 +21,7 @@
     
     
       
-        <title>(digitalen) Stromzähler mit ESP8266 auslesen - Smarthome Doku</title>
+        <title>Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge) - Smarthome Doku</title>
       
     
     
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#digitalen-stromzahler-mit-esp8266-auslesen" class="md-skip">
+        <a href="#wasserzahler-mit-esp32-cam-auslesen-ai-on-the-edge" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -87,7 +87,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              (digitalen) Stromzähler mit ESP8266 auslesen
+              Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)
             
           </span>
         </div>
@@ -319,88 +319,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        (digitalen) Stromzähler mit ESP8266 auslesen
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="(digitalen) Stromzähler mit ESP8266 auslesen" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../stromverbrauch/" title="(digitalen) Stromzähler mit ESP8266 auslesen" class="md-nav__link">
       (digitalen) Stromzähler mit ESP8266 auslesen
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#hardware" class="md-nav__link">
-    Hardware
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#software-auf-esp8266" class="md-nav__link">
-    Software auf ESP8266
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#auszug-esphome-yaml" class="md-nav__link">
-    Auszug ESPhome YAML
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#home-assistant" class="md-nav__link">
-    Home Assistant
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#auszug-home-assistant-konfiguration" class="md-nav__link">
-    Auszug Home Assistant Konfiguration
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verbrauchswerte-in-grafana" class="md-nav__link">
-    Verbrauchswerte in Grafana
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -420,11 +343,67 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../wasserverbrauch/" title="Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)" class="md-nav__link md-nav__link--active">
       Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#benotigte-hardware" class="md-nav__link">
+    benötigte Hardware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softwaredokumentation" class="md-nav__link">
+    Software/Dokumentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auszug-home-assistant-yaml" class="md-nav__link">
+    Auszug Home Assistant YAML
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -459,43 +438,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hardware" class="md-nav__link">
-    Hardware
+  <a href="#benotigte-hardware" class="md-nav__link">
+    benötigte Hardware
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#software-auf-esp8266" class="md-nav__link">
-    Software auf ESP8266
+  <a href="#softwaredokumentation" class="md-nav__link">
+    Software/Dokumentation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#auszug-esphome-yaml" class="md-nav__link">
-    Auszug ESPhome YAML
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#home-assistant" class="md-nav__link">
-    Home Assistant
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#auszug-home-assistant-konfiguration" class="md-nav__link">
-    Auszug Home Assistant Konfiguration
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verbrauchswerte-in-grafana" class="md-nav__link">
-    Verbrauchswerte in Grafana
+  <a href="#auszug-home-assistant-yaml" class="md-nav__link">
+    Auszug Home Assistant YAML
   </a>
   
 </li>
@@ -516,23 +474,30 @@
                   
                 
                 
-                <h1 id="digitalen-stromzahler-mit-esp8266-auslesen">(digitalen) Stromzähler mit ESP8266 auslesen<a class="headerlink" href="#digitalen-stromzahler-mit-esp8266-auslesen" title="Permanent link">&para;</a></h1>
-<p>Das Auslesen eines digitalen Stromzählers (EhZ) geschieht anhand der optischen S0-Schnittstelle bei der der Stromzähler den Verbrauch über die Impulsrate einer IR-LED anzeigt. Hier zeigen 10000 Impulse 1 kwH an. Über die Pulsrate kann der aktuelle Leistungsbedarf in Watt berechnet werden. Die S0-Schnittstelle ist hier mittels einer IR-Led ausgeführt die mittels eines Phototransistors oder wie in meinem Fall über ein TCRT-5000 (IR-Licht/Abstandssensor) ausgelesen werden kann.</p>
-<p>Gut zu wissen: mit einer Handykamera (meist die Selfie-Kamera) kann man meist die IR-Signale "sehen" da dort kein IR-Filter eingebaut ist. Beim Hager EhZ sieht man allerdings nur die Signale der seriellen SML-Schnittstelle. Die Impulse der S0-IR-Led waren zu schwach um sie sichtbar in der Fotoansicht zu sehen.</p>
-<p><img alt="Stromzähler2" src="../../img/stromzaehler-2.jpg" /></p>
-<p><img alt="TCRT-5000" src="../../img/stromzaehler-1.jpg" /></p>
-<h2 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h2>
+                <h1 id="wasserzahler-mit-esp32-cam-auslesen-ai-on-the-edge">Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)<a class="headerlink" href="#wasserzahler-mit-esp32-cam-auslesen-ai-on-the-edge" title="Permanent link">&para;</a></h1>
+<p>Ein üblicher Wasserzähler kann leider nicht so einfach automatisch ausgelesen werden, es fehlen magnetische, elektronische oder sonstige Schnittstellen. Bleibt nur die Möglichkeit optisch per Kamera den Zählerstand irgendwie auszulesen. Viele Projekte haben schon einige Methoden probiert und funktionieren eher mäßig. 
+Zuletzt fand ich ein Projekt welches hervorragend nun auch den Wasserzähler zuverlässig auslesen kann. Das Projekt kann aber auch für andere Zählerstände verwendet werden, wie z.B. Stromzähler.</p>
+<p>Das Projekt nennt sich <a href="https://github.com/jomjol/AI-on-the-edge-device/">Ai on the Edge</a> und setzt sich aus den günstigen Hardwarekomponenten ESP32-Cam, eine kleine SD-Karte und einem vortrainierten neuronalem Netzwerk zusammen, das im Vorfeld vom Ersteller des Projektes mit vielen Bildern von Ziffern verschiedener Zähler und analoger Zeigerpositionen trainiert wurde.</p>
+<p>Die ESP32-Cam wird zuerst auf den eigenen Zähler montiert. Anschließend werden die Stellen der Ziffern und Zeiger definiert, die dann später zyklisch erkannt werden.</p>
+<p>Die Anbindung an Home Assistant geschieht dann per MQTT.</p>
+<p><img alt="Wasserzähler" src="../../img/wasserzaehler.jpg" />
+<img alt="Wasserzähler" src="../../img/wasserzaehler2.jpg" /></p>
+<p><img alt="Ai on the edge" src="../../img/aiontheedge.png" /></p>
+<p><img alt="HomeAssistant Wasser" src="../../img/HassWasserzaehler.png" />
+<img alt="HomeAssistant Wasser" src="../../img/HassWasserzaehler2.png" /></p>
+<h2 id="benotigte-hardware">benötigte Hardware<a class="headerlink" href="#benotigte-hardware" title="Permanent link">&para;</a></h2>
 <ul>
-<li>ESP8266 NodeMCU</li>
-<li>Phototransistor oder TCRT-5000 (IR-Licht/Abstandssensor)</li>
-<li>Käbelchen</li>
+<li>ESP32-Cam</li>
+<li>Käbelchen für Stromversorgung</li>
+<li>UART-TTL-USB-Adapter für die Programmierung der ESP32-Cam (hat kein USB wie eine NodeMCU)</li>
 <li>USB-Netzteil</li>
+<li>Gehäuse gibt's gleich passend zum Projekt bei <a href="https://www.thingiverse.com/thing:4573481">Thingiverse</a> zum drucken</li>
 </ul>
-<h2 id="software-auf-esp8266">Software auf ESP8266<a class="headerlink" href="#software-auf-esp8266" title="Permanent link">&para;</a></h2>
+<h2 id="softwaredokumentation">Software/Dokumentation<a class="headerlink" href="#softwaredokumentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://esphome.io">ESPHome</a></li>
+<li><a href="https://github.com/jomjol/AI-on-the-edge-device/">AI-on-the-edge-device</a></li>
 </ul>
-<h2 id="auszug-esphome-yaml">Auszug ESPhome YAML<a class="headerlink" href="#auszug-esphome-yaml" title="Permanent link">&para;</a></h2>
+<h2 id="auszug-home-assistant-yaml">Auszug Home Assistant YAML<a class="headerlink" href="#auszug-home-assistant-yaml" title="Permanent link">&para;</a></h2>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -552,74 +517,102 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code> <span class="o">-</span> <span class="n">platform</span><span class="p">:</span> <span class="n">pulse_counter</span>
-    <span class="n">pin</span><span class="p">:</span> <span class="n">GPIO5</span>
-    <span class="n">unit_of_measurement</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span>
-    <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Energieverbrauch&#39;</span>
-    <span class="n">update_interval</span><span class="p">:</span> <span class="mi">60</span><span class="n">s</span>
-    <span class="n">filters</span><span class="p">:</span>
-    <span class="o">#</span> <span class="o">-</span> <span class="n">multiply</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">06</span> <span class="k">in</span> <span class="n">KW</span>
-      <span class="o">-</span> <span class="n">multiply</span><span class="p">:</span> <span class="mi">6</span> <span class="o">#</span> <span class="k">in</span> <span class="n">W</span>
-    <span class="n">accuracy_decimals</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="n">icon</span><span class="p">:</span> <span class="s1">&#39;mdi:flash&#39;</span>
-    <span class="n">id</span><span class="p">:</span> <span class="n">energieverbrauch_w</span>
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="x">sensor:</span>
+<span class="x"> - platform: &quot;mqtt&quot;</span>
+<span class="x">   name: &quot;Wasserzähler&quot;</span>
+<span class="x">   state_topic: &quot;wasserzaehler/main/value&quot;</span>
+<span class="x">   value_template: &quot;</span><span class="cp">{{</span> <span class="nv">value</span> <span class="cp">}}</span><span class="x">&quot;</span>
+<span class="x">   unit_of_measurement: &quot;m³&quot;</span>
+<span class="x">   icon: &quot;mdi:water-pump&quot;</span>
+<span class="x"> - platform: &quot;mqtt&quot;</span>
+<span class="x">   name: &quot;Wasserzähler_Liter&quot;</span>
+<span class="x">   state_topic: &quot;wasserzaehler/main/value&quot;</span>
+<span class="x">   value_template: &quot;</span><span class="cp">{{</span><span class="o">(</span> <span class="nv">value</span> <span class="o">|</span> <span class="nf">float</span> <span class="o">*</span> <span class="m">1000</span> <span class="o">)</span> <span class="o">|</span> <span class="nf">round</span><span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="cp">}}</span><span class="x">&quot;</span>
+<span class="x">   unit_of_measurement: &quot;l&quot;</span>
+<span class="x">   icon: &quot;mdi:water-pump&quot;</span>
+<span class="x"> - platform: &quot;mqtt&quot;</span>
+<span class="x">   name: &quot;Wasserzähler Flussrate&quot;</span>
+<span class="x">   state_topic: &quot;wasserzaehler/main/rate&quot;</span>
+<span class="x">   value_template: &quot;</span><span class="cp">{{</span> <span class="nv">value</span> <span class="cp">}}</span><span class="x">&quot;</span>
+<span class="x">   icon: &quot;mdi:swap-vertical&quot;</span>
+<span class="x"> - platform: &quot;mqtt&quot;</span>
+<span class="x">   name: &quot;Wasserzähler letzter Wert&quot;</span>
+<span class="x">   state_topic: &quot;wasserzaehler/main/timestamp&quot;</span>
+<span class="x">   value_template: &quot;</span><span class="cp">{{</span> <span class="nv">value</span> <span class="cp">}}</span><span class="x">&quot;</span>
+<span class="x">   icon: &quot;mdi:clock-outline&quot;</span>
+<span class="x">binary_sensor:</span>
+<span class="x"> - platform: &quot;mqtt&quot;</span>
+<span class="x">   name: &quot;Wasserzähler Fehler&quot;</span>
+<span class="x">   state_topic: &quot;wasserzaehler/main/error&quot;</span>
+<span class="x">   value_template: &quot;</span><span class="cp">{{</span> <span class="nv">value</span> <span class="o">!=</span> <span class="s1">&#39;no error&#39;</span> <span class="cp">}}</span><span class="x">&quot;</span>
+<span class="x">   json_attributes_topic: &quot;wasserzaehler/main/json&quot;</span>
+<span class="x">   icon: &quot;mdi:alert-circle&quot;</span>
 
-  <span class="o">#</span> <span class="n">Dieser</span> <span class="n">Sensor</span> <span class="n">errechnet</span> <span class="n">die</span> <span class="n">Wh</span> <span class="n">aus</span> <span class="n">den</span> <span class="n">aktuellen</span> <span class="n">Verbrauchswerten</span> <span class="k">in</span> <span class="n">W</span>  
-  <span class="o">-</span> <span class="n">platform</span><span class="p">:</span> <span class="n">total_daily_energy</span>
-    <span class="n">name</span><span class="p">:</span> <span class="ss">&quot;Tagesverbrauch&quot;</span>
-    <span class="n">power_id</span><span class="p">:</span> <span class="n">energieverbrauch_w</span>
+<span class="x">utility_meter:</span>
+<span class="x">  wasserverbrauch_tag:</span>
+<span class="x">    source: sensor.wasserzahler</span>
+<span class="x">    cycle: daily</span>
+<span class="x">  wasserverbrauch_woche:</span>
+<span class="x">    source: sensor.wasserzahler</span>
+<span class="x">    cycle: weekly</span>
+<span class="x">  wasserverbrauch_monat:</span>
+<span class="x">    source: sensor.wasserzahler</span>
+<span class="x">    cycle: monthly</span>
+<span class="x">  wasserverbrauch_jahr:</span>
+<span class="x">    source: sensor.wasserzahler</span>
+<span class="x">    cycle: yearly</span>
 
-<span class="k">time</span><span class="p">:</span>
-  <span class="o">-</span> <span class="n">platform</span><span class="p">:</span> <span class="n">sntp</span>
-    <span class="n">id</span><span class="p">:</span> <span class="n">my_time</span>
+<span class="x">  wasserverbrauch_tag_liter:</span>
+<span class="x">    source: sensor.wasserzahler_liter</span>
+<span class="x">    cycle: daily</span>
+<span class="x">  wasserverbrauch_woche_liter:</span>
+<span class="x">    source: sensor.wasserzahler_liter</span>
+<span class="x">    cycle: weekly</span>
+<span class="x">  wasserverbrauch_monat_liter:</span>
+<span class="x">    source: sensor.wasserzahler_liter</span>
+<span class="x">    cycle: monthly</span>
+<span class="x">  wasserverbrauch_jahr_liter:</span>
+<span class="x">    source: sensor.wasserzahler_liter</span>
+<span class="x">    cycle: yearly</span>
 </code></pre></div>
 </td></tr></table>
-
-<h2 id="home-assistant">Home Assistant<a class="headerlink" href="#home-assistant" title="Permanent link">&para;</a></h2>
-<p><img alt="HomeAssistant" src="/../img/HassStromGaszaehler.png" /></p>
-<p>Dort wird über die Integration "utility_meter" des Sensors "sensor.tagesverbrauch" (siehe ESPHome Sensor vom Typ "total_daily_energy") der Stromverbrauch in Wh über die Zeiträume </p>
-<ul>
-<li>täglich</li>
-<li>wöchentlich</li>
-<li>monatlich</li>
-<li>jährlich</li>
-</ul>
-<p>aufgenommen und angezeigt. Diese Sensoren dienen auch als Datenbasis zur Darstellung des Verbrauchs in Grafana via InfluxDB.</p>
-<h2 id="auszug-home-assistant-konfiguration">Auszug Home Assistant Konfiguration<a class="headerlink" href="#auszug-home-assistant-konfiguration" title="Permanent link">&para;</a></h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">sensor</span><span class="o">:</span>
-
-<span class="n">utility_meter</span><span class="o">:</span>
-  <span class="n">stromverbrauch_tag</span><span class="o">:</span>
-    <span class="n">source</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">tagesverbrauch</span>
-    <span class="n">cycle</span><span class="o">:</span> <span class="n">daily</span>
-  <span class="n">stromverbrauch_woche</span><span class="o">:</span>  
-    <span class="n">source</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">tagesverbrauch</span>
-    <span class="n">cycle</span><span class="o">:</span> <span class="n">weekly</span>
-  <span class="n">stromverbrauch_monat</span><span class="o">:</span>
-    <span class="n">source</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">tagesverbrauch</span>
-    <span class="n">cycle</span><span class="o">:</span> <span class="n">monthly</span>
-  <span class="n">stromverbrauch_jahr</span><span class="o">:</span>
-    <span class="n">source</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">tagesverbrauch</span>
-    <span class="n">cycle</span><span class="o">:</span> <span class="n">yearly</span>
-</code></pre></div>
-</td></tr></table>
-
-<h2 id="verbrauchswerte-in-grafana">Verbrauchswerte in Grafana<a class="headerlink" href="#verbrauchswerte-in-grafana" title="Permanent link">&para;</a></h2>
-<p><img alt="Grafana" src="../../img/grafana-verbrauchhaus.png" /></p>
                 
               
               
@@ -638,7 +631,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../solvis-heizung/" title="Solvis Heizung via Modbus auslesen und steuern" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../tasterschaltung/" title="Eltako Stromstoßrelais durch Shelly 1PM ersetzen" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -647,25 +640,11 @@
                 <span class="md-footer-nav__direction">
                   Zurück
                 </span>
-                Solvis Heizung via Modbus auslesen und steuern
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../tasterschaltung/" title="Eltako Stromstoßrelais durch Shelly 1PM ersetzen" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Weiter
-                </span>
                 Eltako Stromstoßrelais durch Shelly 1PM ersetzen
               </div>
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
           </a>
+        
         
       </nav>
     </div>

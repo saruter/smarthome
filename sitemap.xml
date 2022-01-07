@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://smarthome.ms1.de/</loc>
-     <lastmod>2021-10-04</lastmod>
+     <lastmod>2022-01-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://smarthome.ms1.de/projekte/feinstaubsensor/</loc>
-     <lastmod>2021-10-04</lastmod>
+     <lastmod>2022-01-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://smarthome.ms1.de/projekte/gasverbrauch/</loc>
-     <lastmod>2021-10-04</lastmod>
+     <lastmod>2022-01-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://smarthome.ms1.de/projekte/halterung-unif-ac-pro/</loc>
-     <lastmod>2021-10-04</lastmod>
+     <lastmod>2022-01-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://smarthome.ms1.de/projekte/lichtrahmen/</loc>
-     <lastmod>2021-10-04</lastmod>
+     <lastmod>2022-01-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://smarthome.ms1.de/projekte/solvis-heizung/</loc>
-     <lastmod>2021-10-04</lastmod>
+     <lastmod>2022-01-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://smarthome.ms1.de/projekte/stromverbrauch/</loc>
-     <lastmod>2021-10-04</lastmod>
+     <lastmod>2022-01-07</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://smarthome.ms1.de/projekte/tasterschaltung/</loc>
-     <lastmod>2021-10-04</lastmod>
+     <lastmod>2022-01-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://smarthome.ms1.de/projekte/wasserverbrauch/</loc>
+     <lastmod>2022-01-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
