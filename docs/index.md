@@ -11,6 +11,7 @@ Bisher vorhanden:
 * Austausch von mehreren Eltako Stromstoßrelais durch ein [Shelly 1PM](https://shelly.cloud) zur smarten Flurlichtschaltung
 * DIY Halterung für Unifi APs
 * DIY Lichtrahmen mit WLED und Home Assistant
+* Sidewinder X1 3D-Drucker mit LED-Statusbeleuchtung
 
 [Hier gehts zur Projektübersicht](projekte/feinstaubsensor.md)
 
