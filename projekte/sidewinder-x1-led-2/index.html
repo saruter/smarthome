@@ -13,14 +13,14 @@
         <meta name="author" content="saruter">
       
       
-        <link rel="canonical" href="https://smarthome.ms1.de/projekte/wasserverbrauch/">
+        <link rel="canonical" href="https://smarthome.ms1.de/projekte/sidewinder-x1-led-2/">
       
       <link rel="shortcut icon" href="../../img/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge) - Smarthome Doku</title>
+        <title>Artillery Sidewinder X1 LED Statusbeleuchtung - Smarthome Doku</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#wasserzahler-mit-esp32-cam-auslesen-ai-on-the-edge" class="md-skip">
+        <a href="#artillery-sidewinder-x1-led-statusbeleuchtung" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -95,7 +95,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)
+              Artillery Sidewinder X1 LED Statusbeleuchtung
             
           </span>
         </div>
@@ -286,11 +286,63 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../sidewinder-x1-led-2/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Artillery Sidewinder X1 LED Statusbeleuchtung
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Artillery Sidewinder X1 LED Statusbeleuchtung
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#benotigtes-werkzeug" class="md-nav__link">
+    benötigtes Werkzeug
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benotigte-hardwareteile-zum-drucken" class="md-nav__link">
+    benötigte Hardware/Teile zum Drucken
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-fur-octoprint" class="md-nav__link">
+    Plugin für Octoprint
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -334,63 +386,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../wasserverbrauch/" class="md-nav__link">
         Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#benotigte-hardware" class="md-nav__link">
-    benötigte Hardware
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#softwaredokumentation" class="md-nav__link">
-    Software/Dokumentation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#auszug-home-assistant-yaml" class="md-nav__link">
-    Auszug Home Assistant YAML
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -426,22 +426,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#benotigte-hardware" class="md-nav__link">
-    benötigte Hardware
+  <a href="#benotigtes-werkzeug" class="md-nav__link">
+    benötigtes Werkzeug
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#softwaredokumentation" class="md-nav__link">
-    Software/Dokumentation
+  <a href="#benotigte-hardwareteile-zum-drucken" class="md-nav__link">
+    benötigte Hardware/Teile zum Drucken
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#auszug-home-assistant-yaml" class="md-nav__link">
-    Auszug Home Assistant YAML
+  <a href="#plugin-fur-octoprint" class="md-nav__link">
+    Plugin für Octoprint
   </a>
   
 </li>
@@ -459,145 +459,64 @@
               
                 
                 
-                <h1 id="wasserzahler-mit-esp32-cam-auslesen-ai-on-the-edge">Wasserzähler mit ESP32-Cam auslesen (Ai on the Edge)<a class="headerlink" href="#wasserzahler-mit-esp32-cam-auslesen-ai-on-the-edge" title="Permanent link">&para;</a></h1>
-<p>Ein üblicher Wasserzähler kann leider nicht so einfach automatisch ausgelesen werden, es fehlen magnetische, elektronische oder sonstige Schnittstellen. Bleibt nur die Möglichkeit optisch per Kamera den Zählerstand irgendwie auszulesen. Viele Projekte haben schon einige Methoden probiert und funktionieren eher mäßig. 
-Zuletzt fand ich ein Projekt welches hervorragend nun auch den Wasserzähler zuverlässig auslesen kann. Das Projekt kann aber auch für andere Zählerstände verwendet werden, wie z.B. Stromzähler.</p>
-<p>Das Projekt nennt sich <a href="https://github.com/jomjol/AI-on-the-edge-device/">Ai on the Edge</a> und setzt sich aus den günstigen Hardwarekomponenten ESP32-Cam, eine kleine SD-Karte und einem vortrainierten neuronalem Netzwerk zusammen, das im Vorfeld vom Ersteller des Projektes mit vielen Bildern von Ziffern verschiedener Zähler und analoger Zeigerpositionen trainiert wurde.</p>
-<p>Die ESP32-Cam wird zuerst auf den eigenen Zähler montiert. Anschließend werden die Stellen der Ziffern und Zeiger definiert, die dann später zyklisch erkannt werden.</p>
-<p>Die Anbindung an Home Assistant geschieht dann per MQTT.</p>
-<p><img alt="Wasserzähler" src="../../img/wasserzaehler.jpg" />
-<img alt="Wasserzähler" src="../../img/wasserzaehler2.jpg" /></p>
-<p><img alt="Ai on the edge" src="../../img/aiontheedge.png" /></p>
-<p><img alt="HomeAssistant Wasser" src="../../img/HassWasserzaehler.png" />
-<img alt="HomeAssistant Wasser" src="../../img/HassWasserzaehler2.png" /></p>
-<h2 id="benotigte-hardware">benötigte Hardware<a class="headerlink" href="#benotigte-hardware" title="Permanent link">&para;</a></h2>
+                <h1 id="artillery-sidewinder-x1-led-statusbeleuchtung">Artillery Sidewinder X1 LED Statusbeleuchtung<a class="headerlink" href="#artillery-sidewinder-x1-led-statusbeleuchtung" title="Permanent link">&para;</a></h1>
+<p>Damit beim 3D-Druck auch besser zu sehen ist was gedruckt wird, macht eine Beleuchtung der Druckplatte Sinn. Ist fast schon ein klassisches Upgrade für jeden 3D-Drucker.</p>
+<p>Hier wird ein Artillery Sidewinder X1 mit einem SK6812-LED-Streifen (insgesamt 18 LEDs) versehen. Strom bekommt der Streifen vom internen 24V-Netzteil des Sidewinders über einen Step-Down Converter der aus den 24V passende 5V macht. Dieser ist auch im Gehäuse des Sidewinders untergebracht, sodass hier nicht viel von außen zu sehen ist.
+Die Kabelführung zum LED-Streifen geschieht über die rechte Z-Achse. Dort hinein wird das Kabel gelegt und mit einer gedruckten Abdeckung verblendet. Die Ansteuerung des LED-Streifens zur Anzeige von Druckstatus/Fortschritt erfolgt über einen Raspberry Pi 4 mit Octoprint und dem Plugin "WS281x LED Status".</p>
+<div class="admonition danger">
+<p class="admonition-title">Achtung!</p>
+<p>Im Gehäuse sind 230V Netzspannung anliegend. Wer hier keine Ahnung hat, besser die Finger davon lassen. Auf jeden Fall den Drucker vom Stromnetz trennen!</p>
+</div>
+<p><img alt="Sidewinder X1 mit LED-Statusbeleuchtung" src="../../img/sidewinderx1-led-finish.jpg" /></p>
+<h2 id="benotigtes-werkzeug">benötigtes Werkzeug<a class="headerlink" href="#benotigtes-werkzeug" title="Permanent link">&para;</a></h2>
 <ul>
-<li>ESP32-Cam</li>
-<li>Käbelchen für Stromversorgung</li>
-<li>UART-TTL-USB-Adapter für die Programmierung der ESP32-Cam (hat kein USB wie eine NodeMCU)</li>
-<li>USB-Netzteil</li>
-<li>Gehäuse gibt's gleich passend zum Projekt bei <a href="https://www.thingiverse.com/thing:4573481">Thingiverse</a> zum drucken</li>
+<li>Schraubenzieher</li>
+<li>Lötkolben</li>
+<li>Schrumpfschlauch</li>
+<li>Aderendhülsen und Wago-Klemmen sind hilfreich bzw. empfohlen</li>
+<li>Multimeter</li>
 </ul>
-<h2 id="softwaredokumentation">Software/Dokumentation<a class="headerlink" href="#softwaredokumentation" title="Permanent link">&para;</a></h2>
+<h2 id="benotigte-hardwareteile-zum-drucken">benötigte Hardware/Teile zum Drucken<a class="headerlink" href="#benotigte-hardwareteile-zum-drucken" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://github.com/jomjol/AI-on-the-edge-device/">AI-on-the-edge-device</a></li>
+<li>WS2812/SK6812 LED-Streifen</li>
+<li>Step-Down Buck Converter, z.B. LM2596</li>
+<li>Kabel für Anschluß LED-Streifen + Step Down Converter</li>
+<li>Abdeckschienen für das Kabel zum LED-Streifen zu verstecken gibt es bei <a href="https://www.thingiverse.com/thing:4478369">Thingiverse</a> zum drucken</li>
+<li>Gehäuse für den Step-Down Converter bei Thingiverse <a href="https://www.thingiverse.com/thing:1968276">Thingiverse</a></li>
+<li>für eine Steckverbindung zw. LED-Streifen und den im Sidewinder befindlichen Teilen benutze ich noch 3-Polige Schnellverbinder für LED-Streifen</li>
 </ul>
-<h2 id="auszug-home-assistant-yaml">Auszug Home Assistant YAML<a class="headerlink" href="#auszug-home-assistant-yaml" title="Permanent link">&para;</a></h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="x">sensor:</span>
-<span class="x"> - platform: &quot;mqtt&quot;</span>
-<span class="x">   name: &quot;Wasserzähler&quot;</span>
-<span class="x">   state_topic: &quot;wasserzaehler/main/value&quot;</span>
-<span class="x">   value_template: &quot;</span><span class="cp">{{</span> <span class="nv">value</span> <span class="cp">}}</span><span class="x">&quot;</span>
-<span class="x">   unit_of_measurement: &quot;m³&quot;</span>
-<span class="x">   icon: &quot;mdi:water-pump&quot;</span>
-<span class="x"> - platform: &quot;mqtt&quot;</span>
-<span class="x">   name: &quot;Wasserzähler_Liter&quot;</span>
-<span class="x">   state_topic: &quot;wasserzaehler/main/value&quot;</span>
-<span class="x">   value_template: &quot;</span><span class="cp">{{</span><span class="o">(</span> <span class="nv">value</span> <span class="o">|</span> <span class="nf">float</span> <span class="o">*</span> <span class="m">1000</span> <span class="o">)</span> <span class="o">|</span> <span class="nf">round</span><span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="cp">}}</span><span class="x">&quot;</span>
-<span class="x">   unit_of_measurement: &quot;l&quot;</span>
-<span class="x">   icon: &quot;mdi:water-pump&quot;</span>
-<span class="x"> - platform: &quot;mqtt&quot;</span>
-<span class="x">   name: &quot;Wasserzähler Flussrate&quot;</span>
-<span class="x">   state_topic: &quot;wasserzaehler/main/rate&quot;</span>
-<span class="x">   value_template: &quot;</span><span class="cp">{{</span> <span class="nv">value</span> <span class="cp">}}</span><span class="x">&quot;</span>
-<span class="x">   icon: &quot;mdi:swap-vertical&quot;</span>
-<span class="x"> - platform: &quot;mqtt&quot;</span>
-<span class="x">   name: &quot;Wasserzähler letzter Wert&quot;</span>
-<span class="x">   state_topic: &quot;wasserzaehler/main/timestamp&quot;</span>
-<span class="x">   value_template: &quot;</span><span class="cp">{{</span> <span class="nv">value</span> <span class="cp">}}</span><span class="x">&quot;</span>
-<span class="x">   icon: &quot;mdi:clock-outline&quot;</span>
-<span class="x">binary_sensor:</span>
-<span class="x"> - platform: &quot;mqtt&quot;</span>
-<span class="x">   name: &quot;Wasserzähler Fehler&quot;</span>
-<span class="x">   state_topic: &quot;wasserzaehler/main/error&quot;</span>
-<span class="x">   value_template: &quot;</span><span class="cp">{{</span> <span class="nv">value</span> <span class="o">!=</span> <span class="s1">&#39;no error&#39;</span> <span class="cp">}}</span><span class="x">&quot;</span>
-<span class="x">   json_attributes_topic: &quot;wasserzaehler/main/json&quot;</span>
-<span class="x">   icon: &quot;mdi:alert-circle&quot;</span>
-
-<span class="x">utility_meter:</span>
-<span class="x">  wasserverbrauch_tag:</span>
-<span class="x">    source: sensor.wasserzahler</span>
-<span class="x">    cycle: daily</span>
-<span class="x">  wasserverbrauch_woche:</span>
-<span class="x">    source: sensor.wasserzahler</span>
-<span class="x">    cycle: weekly</span>
-<span class="x">  wasserverbrauch_monat:</span>
-<span class="x">    source: sensor.wasserzahler</span>
-<span class="x">    cycle: monthly</span>
-<span class="x">  wasserverbrauch_jahr:</span>
-<span class="x">    source: sensor.wasserzahler</span>
-<span class="x">    cycle: yearly</span>
-
-<span class="x">  wasserverbrauch_tag_liter:</span>
-<span class="x">    source: sensor.wasserzahler_liter</span>
-<span class="x">    cycle: daily</span>
-<span class="x">  wasserverbrauch_woche_liter:</span>
-<span class="x">    source: sensor.wasserzahler_liter</span>
-<span class="x">    cycle: weekly</span>
-<span class="x">  wasserverbrauch_monat_liter:</span>
-<span class="x">    source: sensor.wasserzahler_liter</span>
-<span class="x">    cycle: monthly</span>
-<span class="x">  wasserverbrauch_jahr_liter:</span>
-<span class="x">    source: sensor.wasserzahler_liter</span>
-<span class="x">    cycle: yearly</span>
-</code></pre></div>
-</td></tr></table>
+<h2 id="plugin-fur-octoprint">Plugin für Octoprint<a class="headerlink" href="#plugin-fur-octoprint" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/cp2004/OctoPrint-WS281x_LED_Status">OctoPrint WS281x LED Status</a></li>
+</ul>
+<h1 id="aufbau">Aufbau<a class="headerlink" href="#aufbau" title="Permanent link">&para;</a></h1>
+<h2 id="sidewinder-offnen-um-an-die-innereien-zu-kommen">Sidewinder öffnen um an die Innereien zu kommen<a class="headerlink" href="#sidewinder-offnen-um-an-die-innereien-zu-kommen" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Stecker aus dem Netzteil!</li>
+<li>Die kleinen Schrauben an der Bodenplatte lösen, Achtung die Garantie erlischt ab dem Moment!</li>
+<li>Beim Abnehmen der Bodenplatte muss noch der Lüfter vom Mainboard abgezogen werden
+<img alt="Sidewinder X1 Innereien" src="../../img/sidewinderx1-offen.jpg" /></li>
+</ul>
+<h2 id="buck-converter-an-netzteil-des-sidewinders-anschlieen">Buck-Converter an Netzteil des Sidewinders anschließen<a class="headerlink" href="#buck-converter-an-netzteil-des-sidewinders-anschlieen" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Achtung: 230V am Netzteil! Stecker raus!</li>
+<li>Am Netzteil sind noch jeweils 1 Klemme für V+ und V- (24V) frei. Hier kann der Spannungswandler angeschlossen werden. Vorher muss dieser natürlich entsprechend mit Kabeln angelötet werden</li>
+<li>Der Converter ist hier im Foto in einem kleinen Gehäuse drin
+<img alt="Sidewinder X1 mit Converter" src="../../img/sidewinderx1-buck-converter.jpg" />
+<img alt="Sidewinder X1 LM2596" src="../../img/sidewinderx1-LM2596.jpg" /></li>
+</ul>
+<h2 id="einstellen-der-ausgangsspannung">Einstellen der Ausgangsspannung<a class="headerlink" href="#einstellen-der-ausgangsspannung" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Der Buck-Converter hat eine kleine Schraube an der die Ausgangsspannung eingestellt werden kann. Diese mit einem Multimeter auf ca. 5V für den LED-Streifen einstellen</li>
+<li>Achtung: Hierzu müsst ihr das Netzteil unter Strom setzen. Achtung: keine Teile anfassen!</li>
+</ul>
+<h2 id="verkabelung">Verkabelung<a class="headerlink" href="#verkabelung" title="Permanent link">&para;</a></h2>
+<p>Der LED-Streifen wird mit einem 3-poligen Stecker auf eine 3-Polige Buchse an der rechten Z-Achse angeschlossen. Vom Raspberry Pi führen noch 2 Jumper Kabel von den GPIOs ins Innere um ein gemeinsames GND für den LED-Streifen zu haben und für die Steuerleitung der LEDs. 
+Im Sidewinder sind die einzelnen Kabel für V+, V- und D (Steuerung) dann per Wago Klemmen zusammengeschaltet.</p>
+<p><img alt="Sidewinder X1 Kabelverlegung" src="../../img/sidewinderx1-kabelverlegung.jpg" /></p>
+<h2 id="einstellen-des-octoprint-plugins">Einstellen des Octoprint Plugins<a class="headerlink" href="#einstellen-des-octoprint-plugins" title="Permanent link">&para;</a></h2>
+<p>Dazu gibt es die Doku beim Plugin. Hier wird auch noch die Verkabelung genauer erläutert:
+<a href="https://cp2004.gitbook.io/ws281x-led-status/">Plugin Doku</a></p>
                 
               
               
@@ -616,7 +535,7 @@ Zuletzt fand ich ein Projekt welches hervorragend nun auch den Wasserzähler zuv
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../tasterschaltung/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../lichtrahmen/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -625,11 +544,25 @@ Zuletzt fand ich ein Projekt welches hervorragend nun auch den Wasserzähler zuv
                 <span class="md-footer-nav__direction">
                   Zurück
                 </span>
-                Eltako Stromstoßrelais durch Shelly 1PM ersetzen
+                DIY Lichtrahmen mit WLED und Home Assistant
               </div>
             </div>
           </a>
         
+        
+          <a href="../solvis-heizung/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Weiter
+                </span>
+                Solvis Heizung via Modbus auslesen und steuern
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>
