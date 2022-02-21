@@ -33,7 +33,7 @@ Das Pixel It Projekt nutzt Node-Red für die Anzeige von Wetterdaten/sonstigen Z
 D.h. zuerst wird ein REST-Call definiert (was soll auf der Uhr angezeigt werden) und dann per Automatisierung wird dieser Service dann getriggert (z.B. alle Minute die Temperatur anzeigen).
 
 ### Definiton der Services
-Die Services definieren des REST-API-Call zur Pixel IT Clock, z.B. zeige die Außentemperatur mit Icon für Thermomether an. Diese Services können dann in den Automatisierung getriggert werden.
+Die Services definieren des REST-API-Call zur Pixel IT Clock, z.B. zeige die Außentemperatur mit Icon für Thermomether an. Diese Services können dann per Automatisierung getriggert werden.
 
 In der Pixel IT Webobefläche kann man die API-Calls erst testen, auch die Icons können dort sehr einfach ausgewählt werden. Die Doku zur API befindet sich [hier](https://docs.bastelbunker.de/pixelit/api.html)
 ```
@@ -89,3 +89,8 @@ action:
   - service: rest_command.pixel_aussentemperatur
 mode: single
 ```
+## Anwendungsbeispiele
+- Waschmaschine fertig
+![Waschmaschine](../img/pixelit_waschmaschine-fertig.gif)
+- Trockner fertig
+- Nachricht bei Türklingeln
