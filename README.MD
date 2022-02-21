@@ -4,6 +4,7 @@
 - Monitoring Water consumption with ESP32-Cam
 - Monitoring and control my Solvis Max Heating System via Modbus TCP
 - Using Shelly1PM for controlling lights
+- PixelIT Matrix Clock
 - Building an air quality and temperature/air pressure sensor with ESP8266, DHT-11 (Luftdaten.info)
 
 Documentation is here: https://smarthome.ms1.de (in german)

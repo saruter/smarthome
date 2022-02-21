@@ -12,6 +12,7 @@ Bisher vorhanden:
 * DIY Halterung für Unifi APs
 * DIY Lichtrahmen mit WLED und Home Assistant
 * Sidewinder X1 3D-Drucker mit LED-Statusbeleuchtung
+* PixelIT LED Matrix Clock (smarte LED-Matrix Uhr)
 
 [Hier gehts zur Projektübersicht](projekte/feinstaubsensor.md)
 
