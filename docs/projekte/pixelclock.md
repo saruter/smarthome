@@ -1,6 +1,6 @@
 # PixelClock, smarte LED Matrix
 Die PixelClock zeigt im Standard die Uhrzeit und Datum an (per NTP bezogen). Per MQTT bzw. API Schnittstellen können aber auch sogenannte Screens mit Text und Icons angezeigt werden. Ein Helligkeitssensor regelt die Helligkeit der Anzeige je nach Lichtstärke im Raum.
-Basierend ist diese Anzeige auf dem Projekt [PixelIT](https://github.com/o0shojo0o/PixelIt), das Gehäuse ist mit dem 3D-Drucker gedruckt.
+Basierend ist diese Anzeige auf dem Projekt [PixelIT](https://github.com/pixelit-project/PixelIt), das Gehäuse ist mit dem 3D-Drucker gedruckt.
 
 ![PixelIT Uhr](../img/pixelit-clock.jpg)
 ![PixelIT GUI](../img/pixelit-gui1.png)
@@ -15,8 +15,8 @@ Basierend ist diese Anzeige auf dem Projekt [PixelIT](https://github.com/o0shojo
 - (optional) Helligkeitssensor, z.B. LDR GL5516
 - Ein 1000µF Kondensator für Stabilisierung (geht evtl. auch ohne)
 - weiteres Infos zur Hardware und Software beim Projekt:
-    - [bei Github](https://github.com/o0shojo0o/PixelIt)
-    - [Doku Seite](https://docs.bastelbunker.de/pixelit/)
+    - [bei Github](https://github.com/pixelit-project/PixelIt)
+    - [Doku Seite](https://pixelit-project.github.io/)
 - Gehäuse zum Drucken:
     - [Gehäuse bei Thingiverse](https://www.thingiverse.com/thing:3559014)
     - [anderes Gehäuse](https://github.com/PricelessToolkit/Pixelit_Config):
@@ -35,7 +35,7 @@ D.h. zuerst wird ein REST-Call definiert (was soll auf der Uhr angezeigt werden)
 ### Definiton der Services
 Die Services definieren des REST-API-Call zur Pixel IT Clock, z.B. zeige die Außentemperatur mit Icon für Thermomether an. Diese Services können dann per Automatisierung getriggert werden.
 
-In der Pixel IT Webobefläche kann man die API-Calls erst testen, auch die Icons können dort sehr einfach ausgewählt werden. Die Doku zur API befindet sich [hier](https://docs.bastelbunker.de/pixelit/api.html)
+In der Pixel IT Webobefläche kann man die API-Calls erst testen, auch die Icons können dort sehr einfach ausgewählt werden. Die Doku zur API befindet sich [hier](https://pixelit-project.github.io/api.html)
 ```
 rest_command:
   pixel_aussentemperatur:
