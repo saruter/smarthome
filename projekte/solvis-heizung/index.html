@@ -434,7 +434,41 @@
         
           <li class="md-nav__item">
   <a href="#konfiguration-home-assistant" class="md-nav__link">
-    Konfiguration Home-Assistant
+    Konfiguration Home Assistant
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatischer-absenkbetrieb-wenn-niemand-zu-hause" class="md-nav__link">
+    Automatischer Absenkbetrieb wenn niemand zu Hause
+  </a>
+  
+    <nav class="md-nav" aria-label="Automatischer Absenkbetrieb wenn niemand zu Hause">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voraussetzungen-home-assistant" class="md-nav__link">
+    Voraussetzungen Home Assistant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voraussetzungen-solvis-heizung" class="md-nav__link">
+    Voraussetzungen Solvis Heizung
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatisierung-in-home-assistant" class="md-nav__link">
+    Automatisierung in Home Assistant
   </a>
   
 </li>
@@ -617,7 +651,41 @@
         
           <li class="md-nav__item">
   <a href="#konfiguration-home-assistant" class="md-nav__link">
-    Konfiguration Home-Assistant
+    Konfiguration Home Assistant
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatischer-absenkbetrieb-wenn-niemand-zu-hause" class="md-nav__link">
+    Automatischer Absenkbetrieb wenn niemand zu Hause
+  </a>
+  
+    <nav class="md-nav" aria-label="Automatischer Absenkbetrieb wenn niemand zu Hause">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voraussetzungen-home-assistant" class="md-nav__link">
+    Voraussetzungen Home Assistant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voraussetzungen-solvis-heizung" class="md-nav__link">
+    Voraussetzungen Solvis Heizung
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatisierung-in-home-assistant" class="md-nav__link">
+    Automatisierung in Home Assistant
   </a>
   
 </li>
@@ -1293,10 +1361,10 @@ Sollten die Einstellungen korrekt sein sollte unter der IP-Addresse der Solvis-R
 <p>Hier wäre ein Nutzungsszenario für folgende Automatisierung:
 Schalte den Heizkreis auf Standby-Modus für x-Stunden (z.B. bis Abends).</p>
 <p><img alt="stundenweises Standby HKR1" src="../../img/hass-heizung-automate-standby.png" /></p>
-<p>Realisiert ist dies über einen <code>timer</code> in Home-Assistant, dessen Zeitwert (Stunden) per <code>input_number</code> gesetzt wird (Schieberegler im Frontend). Über ein <code>input_boolean</code> (Ein-/Ausschalter im Frontend) wird dann eine Automatisierung ausgeführt, die den Timer startet (<code>service: timer.start</code>) und das Modbus Register 2818 auf den Wert <code>5</code> (HKR1 Standbymodus) schreibt.</p>
+<p>Realisiert ist dies über einen <code>timer</code> in Home Assistant, dessen Zeitwert (Stunden) per <code>input_number</code> gesetzt wird (Schieberegler im Frontend). Über ein <code>input_boolean</code> (Ein-/Ausschalter im Frontend) wird dann eine Automatisierung ausgeführt, die den Timer startet (<code>service: timer.start</code>) und das Modbus Register 2818 auf den Wert <code>5</code> (HKR1 Standbymodus) schreibt.</p>
 <p>Wenn der Timer abgelaufen ist, startet eine zweite Automatisierung (getriggert durch <code>event_type: timer.finished</code>) die dann den Ein-/Ausschalter wieder auf "Aus" setzt.</p>
 <p>Durch das setzen des Ein-Ausschalters auf "Aus" durch diese Automatisierung wird wiederum eine weitere Automatisierung getriggert die dann zum Einen das Modbus-Register 2818 wieder auf <code>2</code> (Automatik) setzt, also den Heizkreis wieder in den normalen Automatikmodus versetzt. Der zweite Anwendungsfall ist das manuelle Umschalten des Ein-/Ausschalters in der Weboberfläche auf "Aus" um wieder manuell auf "Automatik" umzuschalten. Auch hier triggert diese Automatisierung. </p>
-<h3 id="konfiguration-home-assistant">Konfiguration Home-Assistant<a class="headerlink" href="#konfiguration-home-assistant" title="Permanent link">&para;</a></h3>
+<h3 id="konfiguration-home-assistant">Konfiguration Home Assistant<a class="headerlink" href="#konfiguration-home-assistant" title="Permanent link">&para;</a></h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1434,6 +1502,149 @@ Schalte den Heizkreis auf Standby-Modus für x-Stunden (z.B. bis Abends).</p>
 <span class="x">        entity_id: input_boolean.heizungstandbyon</span>
 </code></pre></div>
 </td></tr></table>
+<h2 id="automatischer-absenkbetrieb-wenn-niemand-zu-hause">Automatischer Absenkbetrieb wenn niemand zu Hause<a class="headerlink" href="#automatischer-absenkbetrieb-wenn-niemand-zu-hause" title="Permanent link">&para;</a></h2>
+<p>Weitere Einsparmöglichkeiten für Gas ergeben sich, wenn man den Heizkreislauf bei Abwesenheit aller Personen auf den Absenkbetrieb ändert.</p>
+<p>Über Geofencing wird erkannt, welche Personen sich zu Hause aufhalten.
+Nun kann man leicht eine Automatisierung bauen, die bei Abwesenheit aller Personen den Heizkreislauf in den Absenkbetrieb versetzt. Sobald eine Person zu Hause ist, soll aber der Automtikmodus wieder aktiviert werden. Ausnahme: vorher wurde manuell eine andere Betriebsart eingestellt (Standby oder Urlaub o.ä.)</p>
+<h3 id="voraussetzungen-home-assistant">Voraussetzungen Home Assistant<a class="headerlink" href="#voraussetzungen-home-assistant" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Die Home Assistant Instanz muss über das Internet erreichbar sein, damit die Smartphones mit Home Assistant App die Position an Home Assistant senden können</li>
+<li>In Home Assistant wurde eine Zone für zu Hause angelegt</li>
+<li>die Personen in Home Assistant haben als jeweiligen Device-Tracker ihre Smartphones mit installierter Home Assistant App zugeordnet</li>
+</ul>
+<h3 id="voraussetzungen-solvis-heizung">Voraussetzungen Solvis Heizung<a class="headerlink" href="#voraussetzungen-solvis-heizung" title="Permanent link">&para;</a></h3>
+<p>Schreibender Modbus-Zugriff auf Register 2818 (HKR1 Betriebsart)</p>
+<h3 id="automatisierung-in-home-assistant">Automatisierung in Home Assistant<a class="headerlink" href="#automatisierung-in-home-assistant" title="Permanent link">&para;</a></h3>
+<p>Das ganze lässt sich grafisch im Automatisierungseditor zusammenklicken, das folgende YAML kam dabei heraus:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">alias</span><span class="o">:</span> <span class="n">Heizung</span> <span class="n">Absenkbetrieb</span> <span class="n">wenn</span> <span class="n">keiner</span> <span class="n">zu</span> <span class="n">Hause</span>
+<span class="n">description</span><span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="n">trigger</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">platform</span><span class="o">:</span> <span class="n">zone</span>
+    <span class="n">entity_id</span><span class="o">:</span> <span class="n">person</span><span class="o">.</span><span class="na">johndoe</span>
+    <span class="n">zone</span><span class="o">:</span> <span class="n">zone</span><span class="o">.</span><span class="na">home</span>
+    <span class="n">event</span><span class="o">:</span> <span class="n">leave</span>
+  <span class="o">-</span> <span class="n">platform</span><span class="o">:</span> <span class="n">zone</span>
+    <span class="n">entity_id</span><span class="o">:</span> <span class="n">person</span><span class="o">.</span><span class="na">janedoe</span>
+    <span class="n">zone</span><span class="o">:</span> <span class="n">zone</span><span class="o">.</span><span class="na">home</span>
+    <span class="n">event</span><span class="o">:</span> <span class="n">leave</span>
+<span class="n">condition</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">condition</span><span class="o">:</span> <span class="n">not</span>
+    <span class="n">conditions</span><span class="o">:</span>
+      <span class="o">-</span> <span class="n">condition</span><span class="o">:</span> <span class="n">zone</span>
+        <span class="n">entity_id</span><span class="o">:</span> <span class="n">person</span><span class="o">.</span><span class="na">johndoe</span>
+        <span class="n">zone</span><span class="o">:</span> <span class="n">zone</span><span class="o">.</span><span class="na">home</span>
+      <span class="o">-</span> <span class="n">condition</span><span class="o">:</span> <span class="n">zone</span>
+        <span class="n">entity_id</span><span class="o">:</span> <span class="n">person</span><span class="o">.</span><span class="na">janedoe</span>
+        <span class="n">zone</span><span class="o">:</span> <span class="n">zone</span><span class="o">.</span><span class="na">home</span>
+  <span class="o">-</span> <span class="n">condition</span><span class="o">:</span> <span class="n">state</span>
+    <span class="n">entity_id</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">hkr1betriebsart</span>
+    <span class="n">state</span><span class="o">:</span> <span class="n">Automatik</span>
+<span class="n">action</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">service</span><span class="o">:</span> <span class="n">modbus</span><span class="o">.</span><span class="na">write_register</span>
+    <span class="n">data</span><span class="o">:</span>
+      <span class="n">address</span><span class="o">:</span> <span class="mi">2818</span>
+      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
+      <span class="n">value</span><span class="o">:</span> <span class="mi">4</span>
+      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
+    <span class="n">enabled</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="o">-</span> <span class="n">service</span><span class="o">:</span> <span class="n">notify</span><span class="o">.</span><span class="na">mobile_app_oneplus8pro</span>
+    <span class="n">data</span><span class="o">:</span>
+      <span class="n">message</span><span class="o">:</span> <span class="n">Heizung</span> <span class="n">auf</span> <span class="n">Absenkbetrieb</span> <span class="n">weil</span> <span class="n">keiner</span> <span class="n">daheim</span><span class="o">....</span>
+<span class="n">mode</span><span class="o">:</span> <span class="n">single</span>
+</code></pre></div>
+</td></tr></table>
+<p>Automatisierung wird getriggert wenn jemand die Zone "Home" verlässt. Dann werden die Bedingungen geprüft: Wenn keiner zu Hause ist und der Betriebsmodus des Heizkreislaufs auf Automatik steht (also nicht manuell verändert wurde), dann schreibe "4" in Modbus Register 2818 was laut Modbus Doku von Solvis dem Absenkbetrieb entspricht und sende noch eine Mitteilung ans Smartphone.</p>
+<p>Umgekehrt wenn wieder jemand nach Hause kommt</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">alias</span><span class="o">:</span> <span class="n">Heizung</span> <span class="n">auf</span> <span class="n">Automatik</span> <span class="n">wenn</span> <span class="n">zurück</span> <span class="n">daheim</span>
+<span class="n">description</span><span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="n">trigger</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">platform</span><span class="o">:</span> <span class="n">zone</span>
+    <span class="n">entity_id</span><span class="o">:</span> <span class="n">person</span><span class="o">.</span><span class="na">johndoe</span>
+    <span class="n">zone</span><span class="o">:</span> <span class="n">zone</span><span class="o">.</span><span class="na">home</span>
+    <span class="n">event</span><span class="o">:</span> <span class="n">enter</span>
+  <span class="o">-</span> <span class="n">platform</span><span class="o">:</span> <span class="n">zone</span>
+    <span class="n">entity_id</span><span class="o">:</span> <span class="n">person</span><span class="o">.</span><span class="na">janedoe</span>
+    <span class="n">zone</span><span class="o">:</span> <span class="n">zone</span><span class="o">.</span><span class="na">home</span>
+    <span class="n">event</span><span class="o">:</span> <span class="n">enter</span>
+<span class="n">condition</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">condition</span><span class="o">:</span> <span class="n">state</span>
+    <span class="n">entity_id</span><span class="o">:</span> <span class="n">sensor</span><span class="o">.</span><span class="na">hkr1betriebsart</span>
+    <span class="n">state</span><span class="o">:</span> <span class="n">Absenkbetrieb</span>
+<span class="n">action</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">service</span><span class="o">:</span> <span class="n">modbus</span><span class="o">.</span><span class="na">write_register</span>
+    <span class="n">data</span><span class="o">:</span>
+      <span class="n">address</span><span class="o">:</span> <span class="mi">2818</span>
+      <span class="n">slave</span><span class="o">:</span> <span class="mi">1</span>
+      <span class="n">value</span><span class="o">:</span> <span class="mi">2</span>
+      <span class="n">hub</span><span class="o">:</span> <span class="n">SolvisRemote</span>
+    <span class="n">enabled</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="o">-</span> <span class="n">service</span><span class="o">:</span> <span class="n">notify</span><span class="o">.</span><span class="na">mobile_app_oneplus8pro</span>
+    <span class="n">data</span><span class="o">:</span>
+      <span class="n">message</span><span class="o">:</span> <span class="n">Heizung</span> <span class="n">auf</span> <span class="n">Automatik</span>
+<span class="n">mode</span><span class="o">:</span> <span class="n">single</span>
+</code></pre></div>
+</td></tr></table>
+<p>Automatisierung wird getriggert, wenn eine der Personen die Zone "Home" betreten. Dann wird geprüft, ob der aktuelle Betriebszustand des Heizkreislaufes dem Zustand "Absenkbetrieb" entspricht. Wenn ja, dann schreibe "2" in das Register "2818" der Solvis Heizung was dem Automatikbetrieb entspricht und sende noch eine Nachricht an das Smartphone.</p>
 <h2 id="links-zu-solvis-doku">Links zu Solvis Doku<a class="headerlink" href="#links-zu-solvis-doku" title="Permanent link">&para;</a></h2>
 <p><a href="https://solvis-files.s3.eu-central-1.amazonaws.com/seiten/produkte/solvisremote/Download/SolvisRemote+Modbus+Spezifikationen+201906.pdf">Doku: Solvis Modbus Register</a></p>
                 
