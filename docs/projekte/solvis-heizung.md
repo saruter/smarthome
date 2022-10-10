@@ -381,12 +381,12 @@ Schalte den Heizkreis auf Standby-Modus für x-Stunden (z.B. bis Abends).
 
 ![stundenweises Standby HKR1](../img/hass-heizung-automate-standby.png)
 
-Realisiert ist dies über einen `timer` in Home-Assistant, dessen Zeitwert (Stunden) per `input_number` gesetzt wird (Schieberegler im Frontend). Über ein `input_boolean` (Ein-/Ausschalter im Frontend) wird dann eine Automatisierung ausgeführt, die den Timer startet (`service: timer.start`) und das Modbus Register 2818 auf den Wert `5` (HKR1 Standbymodus) schreibt.
+Realisiert ist dies über einen `timer` in Home Assistant, dessen Zeitwert (Stunden) per `input_number` gesetzt wird (Schieberegler im Frontend). Über ein `input_boolean` (Ein-/Ausschalter im Frontend) wird dann eine Automatisierung ausgeführt, die den Timer startet (`service: timer.start`) und das Modbus Register 2818 auf den Wert `5` (HKR1 Standbymodus) schreibt.
 
 Wenn der Timer abgelaufen ist, startet eine zweite Automatisierung (getriggert durch `event_type: timer.finished`) die dann den Ein-/Ausschalter wieder auf "Aus" setzt.
 
 Durch das setzen des Ein-Ausschalters auf "Aus" durch diese Automatisierung wird wiederum eine weitere Automatisierung getriggert die dann zum Einen das Modbus-Register 2818 wieder auf `2` (Automatik) setzt, also den Heizkreis wieder in den normalen Automatikmodus versetzt. Der zweite Anwendungsfall ist das manuelle Umschalten des Ein-/Ausschalters in der Weboberfläche auf "Aus" um wieder manuell auf "Automatik" umzuschalten. Auch hier triggert diese Automatisierung. 
-### Konfiguration Home-Assistant
+### Konfiguration Home Assistant
 ```
 # Eingabefelder 
 input_number:
@@ -458,6 +458,93 @@ automation:
         entity_id: input_boolean.heizungstandbyon
 ```
 
+## Automatischer Absenkbetrieb wenn niemand zu Hause
+Weitere Einsparmöglichkeiten für Gas ergeben sich, wenn man den Heizkreislauf bei Abwesenheit aller Personen auf den Absenkbetrieb ändert.
+
+Über Geofencing wird erkannt, welche Personen sich zu Hause aufhalten.
+Nun kann man leicht eine Automatisierung bauen, die bei Abwesenheit aller Personen den Heizkreislauf in den Absenkbetrieb versetzt. Sobald eine Person zu Hause ist, soll aber der Automtikmodus wieder aktiviert werden. Ausnahme: vorher wurde manuell eine andere Betriebsart eingestellt (Standby oder Urlaub o.ä.)
+
+### Voraussetzungen Home Assistant
+- Die Home Assistant Instanz muss über das Internet erreichbar sein, damit die Smartphones mit Home Assistant App die Position an Home Assistant senden können
+- In Home Assistant wurde eine Zone für zu Hause angelegt
+- die Personen in Home Assistant haben als jeweiligen Device-Tracker ihre Smartphones mit installierter Home Assistant App zugeordnet
+
+### Voraussetzungen Solvis Heizung
+Schreibender Modbus-Zugriff auf Register 2818 (HKR1 Betriebsart)
+
+### Automatisierung in Home Assistant
+Das ganze lässt sich grafisch im Automatisierungseditor zusammenklicken, das folgende YAML kam dabei heraus:
+
+```
+alias: Heizung Absenkbetrieb wenn keiner zu Hause
+description: ""
+trigger:
+  - platform: zone
+    entity_id: person.johndoe
+    zone: zone.home
+    event: leave
+  - platform: zone
+    entity_id: person.janedoe
+    zone: zone.home
+    event: leave
+condition:
+  - condition: not
+    conditions:
+      - condition: zone
+        entity_id: person.johndoe
+        zone: zone.home
+      - condition: zone
+        entity_id: person.janedoe
+        zone: zone.home
+  - condition: state
+    entity_id: sensor.hkr1betriebsart
+    state: Automatik
+action:
+  - service: modbus.write_register
+    data:
+      address: 2818
+      slave: 1
+      value: 4
+      hub: SolvisRemote
+    enabled: true
+  - service: notify.mobile_app_oneplus8pro
+    data:
+      message: Heizung auf Absenkbetrieb weil keiner daheim....
+mode: single
+```
+Automatisierung wird getriggert wenn jemand die Zone "Home" verlässt. Dann werden die Bedingungen geprüft: Wenn keiner zu Hause ist und der Betriebsmodus des Heizkreislaufs auf Automatik steht (also nicht manuell verändert wurde), dann schreibe "4" in Modbus Register 2818 was laut Modbus Doku von Solvis dem Absenkbetrieb entspricht und sende noch eine Mitteilung ans Smartphone.
+
+Umgekehrt wenn wieder jemand nach Hause kommt
+```
+alias: Heizung auf Automatik wenn zurück daheim
+description: ""
+trigger:
+  - platform: zone
+    entity_id: person.johndoe
+    zone: zone.home
+    event: enter
+  - platform: zone
+    entity_id: person.janedoe
+    zone: zone.home
+    event: enter
+condition:
+  - condition: state
+    entity_id: sensor.hkr1betriebsart
+    state: Absenkbetrieb
+action:
+  - service: modbus.write_register
+    data:
+      address: 2818
+      slave: 1
+      value: 2
+      hub: SolvisRemote
+    enabled: true
+  - service: notify.mobile_app_oneplus8pro
+    data:
+      message: Heizung auf Automatik
+mode: single
+```
+Automatisierung wird getriggert, wenn eine der Personen die Zone "Home" betreten. Dann wird geprüft, ob der aktuelle Betriebszustand des Heizkreislaufes dem Zustand "Absenkbetrieb" entspricht. Wenn ja, dann schreibe "2" in das Register "2818" der Solvis Heizung was dem Automatikbetrieb entspricht und sende noch eine Nachricht an das Smartphone.
 
 
 ## Links zu Solvis Doku
