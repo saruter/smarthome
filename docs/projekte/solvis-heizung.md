@@ -462,7 +462,7 @@ automation:
 Weitere Einsparmöglichkeiten für Gas ergeben sich, wenn man den Heizkreislauf bei Abwesenheit aller Personen auf den Absenkbetrieb ändert.
 
 Über Geofencing wird erkannt, welche Personen sich zu Hause aufhalten.
-Nun kann man leicht eine Automatisierung bauen, die bei Abwesenheit aller Personen den Heizkreislauf in den Absenkbetrieb versetzt. Sobald eine Person zu Hause ist, soll aber der Automtikmodus wieder aktiviert werden. Ausnahme: vorher wurde manuell eine andere Betriebsart eingestellt (Standby oder Urlaub o.ä.)
+Nun kann man leicht eine Automatisierung bauen, die bei Abwesenheit aller Personen den Heizkreislauf in den Absenkbetrieb versetzt. Sobald eine Person zu Hause ist, soll aber der Automatikmodus wieder aktiviert werden. Ausnahme: vorher wurde manuell eine andere Betriebsart eingestellt (Standby oder Urlaub o.ä.)
 
 ### Voraussetzungen Home Assistant
 - Die Home Assistant Instanz muss über das Internet erreichbar sein, damit die Smartphones mit Home Assistant App die Position an Home Assistant senden können
